@@ -3,22 +3,21 @@ import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import App from './App';
+
 import './index.css';
 import {AppContainer} from 'react-hot-loader';
+import Root from "./client/root";
+import registerServiceWorker from "./registerServiceWorker";
 
 const rootEl = document.getElementById('root');
 
-ReactDOM.render(
-    <AppContainer>
-        <App />
-    </AppContainer>,
-    rootEl
-);
+ReactDOM.render(<Root />, rootEl);
+registerServiceWorker();
+
 
 if (module.hot) {
-    module.hot.accept('./App', () => {
-        const NextApp = require('./App').default; // eslint-disable-line global-require
+    module.hot.accept('./shared/App', () => {
+        const NextApp = require('./shared/App').default; // eslint-disable-line global-require
         ReactDOM.render(
             <AppContainer>
                 <NextApp />
