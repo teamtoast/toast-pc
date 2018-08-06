@@ -7,10 +7,14 @@ class Header extends Component {
         return (
             <div>
                 <div className="logo">
-                    <NavLink exact to="/" activeClassName="active">토스트로고</NavLink>
+                    <NavLink exact to="/" activeClassName="active">
+                        <img alt="logo" src="/src/assets/image/logo-nav.png"
+                             srcSet="/src/assets/image/logo-nav@2x.png 2x,/src/assets/image//logo-nav@3x.png 3x"
+                             className="Logo_Nav" />
+                    </NavLink>
                 </div>
                 <div className="profile">
-                    <NavLink to="/home" activeClassName="active" >프로필</NavLink>
+                    <NavLink to="/login" activeClassName="active" >프로필</NavLink>
                 </div>
             </div>
         );

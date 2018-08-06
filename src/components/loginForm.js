@@ -3,6 +3,7 @@ import { Container, Row, Col, Input, Button } from 'mdbreact';
 
 class LoginForm extends React.Component  {
     state = {
+        userState: 0,
         userID: '',
         userPassword: ''
     }
@@ -18,12 +19,8 @@ class LoginForm extends React.Component  {
         e.preventDefault();
         // 상태값을 onCreate 를 통하여 부모에게 전달
         this.props.onCreate(this.state);
-        // 상태 초기화
-        this.setState({
-            userID: '',
-            userPassword: ''
-        })
     }
+
 
     render() {
         return(

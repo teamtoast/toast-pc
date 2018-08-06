@@ -4,14 +4,13 @@ import '../components/Sidebar/sidebar.scss';
 import Sidebar from '../components/Sidebar/sidebar';
 import Header from "../components/header/header";
 import Home from "../components/home";
-import LoginForm from "../components/loginForm";
-import RegisterForm from "../components/registerForm";
 import NoMatch from "../components/nomatch";
-import { Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import StudyCategory from "../components/studyCategory";
 import StudyRoomList from "../components/studyRoomList";
 import LevelTest from "../components/levelTest";
-
+import LoginContainer from "../containers/loginContainer";
+import LoginForm from "../components/loginForm";
 
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
@@ -36,6 +35,8 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                         <Route path="/study-category" component={StudyCategory} />
                         <Route path="/studyRoom" component={StudyRoomList} />
                         <Route path="/level-test" component={LevelTest} />
+                        <Route path="/login" component={LoginForm} />
+                        {/*<Route path="/login" component={LoginContainer} />*/}
                         <Route component={NoMatch} />
                     </Switch>
                 </div>

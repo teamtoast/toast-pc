@@ -8,19 +8,21 @@
   z-index: -1;
   padding: 15px 20px;
 }
+
 .header {
   position: absolute;
   width: 100%;
   top: 0;
   left: 0;
   height: 64px;
-  background-color: white;
-  border-bottom: 1px solid #979797;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px 1px #e6e6e6;
 }
 
 .sidebar {
-  background-color: #FF7A2F;
   width: 88px;
+  background-image: linear-gradient(to top, #ff7a2f, #ff6032);
+  box-shadow: 1px 2px 4px 0 #ff6032;
   position: absolute;
   height: 100%;
   top: 0;
