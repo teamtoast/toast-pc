@@ -10,7 +10,7 @@ import StudyCategory from "../components/studyCategory";
 import StudyRoomList from "../components/studyRoomList";
 import LevelTest from "../components/levelTest";
 import LoginContainer from "../containers/loginContainer";
-import LoginForm from "../components/loginForm";
+import LoginForm from "../components/loginForm/loginForm";
 
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
