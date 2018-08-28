@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Input, Button } from 'mdbreact';
 import "./loginForm.scss"
+import {NavLink} from "react-router-dom";
 
 class LoginForm extends React.Component  {
     state = {
@@ -88,8 +89,14 @@ class LoginForm extends React.Component  {
                              ${require('./img/button-login@3x.png')} 1280w`}
                              className="Button_Login"></img>
                     </button>
-
                 </div>
+                <br/>
+                <div className="Register-Link">
+                    <div className="\-">계정이 없으신가요?</div>
+                    <div><NavLink className="TOAST-" to="/register" activeClassName="active">TOAST 회원가입하기</NavLink></div>
+                </div>
+
+
 
                 {/*<form onSubmit={this.handleSubmit}>*/}
                     {/*<p className="h5 text-center mb-4">로그인</p>*/}

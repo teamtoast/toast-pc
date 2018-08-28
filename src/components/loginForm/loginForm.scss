@@ -105,6 +105,7 @@
     color: #4a4a4a;
   }
 
+
   .Button_Login {
     width: 304px;
     height: 48px;
@@ -117,5 +118,27 @@
     border: none;
     padding: 0px;
   }
+
+  .TOAST- {
+    width: 115px;
+    height: 19px;
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #ff6032;
+
+  }
+
+  .Register-Link {
+    margin-top: 30px;
+    display: inline-block;
+
+  }
+
 }
 
