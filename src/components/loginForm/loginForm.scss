@@ -119,6 +119,10 @@
     background-color: unset;
   }
 
+  button:focus{
+    outline: none;
+  }
+
   .TOAST- {
     width: 115px;
     height: 19px;

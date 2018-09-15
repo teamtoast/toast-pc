@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Container} from "mdbreact";
 import "./StudyRoomList.scss"
 
@@ -45,7 +45,7 @@ function StudyRooms() {
                          ${require('./img/button-in.png')} 300w,
                          ${require('./img/button-in@2x.png')} 768w,
                          ${require('./img/button-in@3x.png')} 1280w`}
-                         className="Button_In"></img>
+                         className="Button_In"  alt=""/>
                 </button>
             </div>
 
@@ -62,12 +62,10 @@ const StudyRoomList = ({match}) => {
             <div className="title">
                 {(() => {
                     switch (match.params.category) {
-                        case "free":
-                            return "자유주제";
                         case "travel":
                             return "여행";
-                        // default:
-                        //     return "#FFFFFF";
+                        default:
+                            return "자유주제";
                     }
                 })()}
             </div>

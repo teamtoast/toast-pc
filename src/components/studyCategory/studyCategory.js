@@ -29,7 +29,7 @@ class StudyCategory extends Component {
                          ${require('./img/img-card-culture.png')} 300w,
                          ${require('./img/img-card-culture@2x.png')} 768w,
                          ${require('./img/img-card-culture@3x.png')} 1280w`}
-                                     className="img_Card_background"></img>
+                                     className="img_Card_background"  alt=""></img>
 
                             </div>
 
@@ -39,7 +39,7 @@ class StudyCategory extends Component {
                          ${require('./img/category-culture.png')} 300w,
                          ${require('./img/category-culture@2x.png')} 768w,
                          ${require('./img/category-culture@3x.png')} 1280w`}
-                                     className="Category-title-big"></img>
+                                     className="Category-title-big"  alt=""></img>
                                 <div className="Category-title-small layer"> 여행</div>
                             </div>
                         </NavLink>

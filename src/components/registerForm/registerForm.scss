@@ -1,0 +1,107 @@
+.RegisterForm {
+  text-align: center;
+
+
+  .Logo_Login {
+    width: 120px;
+    height: 108px;
+    object-fit: contain;
+    display: inline-block;
+  }
+
+  .Rectangle-18 {
+    width: 360px;
+    height: 905px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.2);
+    padding: 40px 32px;
+    display: inline-block;
+  }
+
+  .Rectangle-19 {
+    width: 296px;
+    height: 48px;
+    border-radius: 4px;
+    border: solid 1px #e6e6e6;
+  }
+
+  .Rectangle-19-confirm {
+    margin-top: 8px;
+  }
+
+  .inLine {
+    display: inline-flex;
+  }
+
+  .inLine-Line2 {
+    margin-top: 32px;
+  }
+
+  .Line-2 {
+    width: 126px;
+    height: 2px;
+    border: solid 1px #bdbdbd;
+  }
+
+  .type {
+    font-family: NotoSansCJKkr;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #4a4a4a;
+    text-align: left;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+  button {
+    border: none;
+    padding: 0px;
+    background-color: unset;
+  }
+
+  button:focus{
+    outline: none;
+  }
+
+  .Button_Signup {
+    width: 304px;
+    height: 48px;
+    object-fit: contain;
+    margin-top: 40px;
+
+  }
+  .Button_FacebookSignup {
+    width: 296px;
+    height: 48px;
+    object-fit: contain;
+  }
+  .Button_GoogleSignup {
+    width: 296px;
+    height: 48px;
+    object-fit: contain;
+    margin-top: 8px;
+  }
+
+  .Button_Gender {
+    display: inline-flex;
+
+    >button {
+      width: 149px;
+      height: 48px;
+      object-fit: contain;
+      border: solid 1px #e6e6e6;
+    }
+
+    .Button_Woman {
+      border-radius: 4px 0px 0px 4px;
+    }
+    .Button_Man {
+      border-radius: 0px 4px 4px 0px;
+    }
+
+  }
+}

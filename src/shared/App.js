@@ -9,9 +9,8 @@ import {Route, Switch} from "react-router-dom";
 import StudyCategory from "../components/studyCategory/studyCategory";
 import StudyRoomList from "../components/StudyRoomList/studyRoomList";
 import LevelTest from "../components/levelTest";
-import LoginContainer from "../containers/loginContainer";
 import LoginForm from "../components/loginForm/loginForm";
-import RegisterForm from "../components/registerForm";
+import RegisterForm from "../components/registerForm/registerForm";
 
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
