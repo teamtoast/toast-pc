@@ -1,0 +1,94 @@
+.StudyCatogory {
+  .title {
+    width: 470px;
+    height: 59px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    color: #212121;
+
+    margin-top: 80px;
+
+  }
+
+  .list-title {
+    width: 152px;
+    height: 24px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    color: #888888;
+    margin-top: 40px;
+  }
+  .category-list {
+    margin-top: 24px;
+  }
+
+  .Rectangle-20 {
+    width: 280px;
+    height: 240px;
+    border-radius: 8px;
+    background-image: linear-gradient(46deg, #ff7a2f, #ff6032);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .layer-free {
+    width: 124px;
+    height: 50px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 34px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .layer {
+    width: 62px;
+    height: 50px;
+    font-family: NotoSansCJKkr;
+    font-size: 34px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .img_Card_background {
+    width: 280px;
+    height: 240px;
+    object-fit: contain;
+    //box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .Category-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  .Category-title-big {
+    width: 56px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  button {
+    border: none;
+    padding: 0px;
+    background-color: unset;
+  }
+}

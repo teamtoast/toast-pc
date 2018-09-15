@@ -31,7 +31,7 @@ class Sidebar extends Component{
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/study-category" activeClassName="active">
+                    <NavLink to="/study" activeClassName="active">
                         <img alt="study"
                              src={require('./img/ic-study.png')}
                              srcSet={`

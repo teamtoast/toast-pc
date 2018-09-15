@@ -6,8 +6,8 @@ import Header from "../components/header/header";
 import Home from "../components/home";
 import NoMatch from "../components/nomatch";
 import {Route, Switch} from "react-router-dom";
-import StudyCategory from "../components/studyCategory";
-import StudyRoomList from "../components/studyRoomList";
+import StudyCategory from "../components/studyCategory/studyCategory";
+import StudyRoomList from "../components/StudyRoomList/studyRoomList";
 import LevelTest from "../components/levelTest";
 import LoginContainer from "../containers/loginContainer";
 import LoginForm from "../components/loginForm/loginForm";
@@ -33,8 +33,8 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/home" component={Home} />
-                        <Route path="/study-category" component={StudyCategory} />
-                        <Route path="/studyRoom" component={StudyRoomList} />
+                        <Route exact path="/study" component={StudyCategory} />
+                        <Route path="/study/:category" component={StudyRoomList} />
                         <Route path="/level-test" component={LevelTest} />
                         <Route path="/login" component={LoginForm} />
                         <Route path="/register" component={RegisterForm} />
