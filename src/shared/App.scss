@@ -6,7 +6,7 @@
   top: 64px;
   left: 88px;
   z-index: -1;
-  padding: 15px 20px;
+  overflow: scroll;
 }
 
 .header {
@@ -27,4 +27,18 @@
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.Container {
+}
+
+button {
+  border: none;
+  padding: 0px;
+  background-color: unset;
+  cursor: pointer;
+}
+
+button:focus{
+  outline: none;
 }
