@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from 'mdbreact';
 import "./loginForm.scss"
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
@@ -35,13 +34,13 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Container className="LoginForm">
+            <div className="Container LoginForm">
                 <img src={require('./img/logo-login.png')}
                      srcSet={`
                          ${require('./img/logo-login.png')} 300w,
                          ${require('./img/logo-login@2x.png')} 768w,
                          ${require('./img/logo-login@3x.png')} 1280w`}
-                     className="Logo_Login"  alt=""/>
+                     className="Logo_Login" alt=""/>
                 <br/>
 
                 <div className="Rectangle-18">
@@ -52,7 +51,7 @@ class LoginForm extends React.Component {
                              ${require('./img/button-facebook-login.png')} 300w,
                              ${require('./img/button-facebook-login@2x.png')} 768w,
                              ${require('./img/button-facebook-login@3x.png')} 1280w`}
-                             className="Button_FacebookLogin"  alt=""/>
+                             className="Button_FacebookLogin" alt=""/>
                     </button>
 
                     {/*google login*/}
@@ -62,7 +61,7 @@ class LoginForm extends React.Component {
                          ${require('./img/button-google-login.png')} 300w,
                          ${require('./img/button-google-login@2x.png')} 768w,
                          ${require('./img/button-google-login@3x.png')} 1280w`}
-                             className="Button_GoogleLogin"  alt=""/>
+                             className="Button_GoogleLogin" alt=""/>
                     </button>
 
                     <div className="inLine inLine-Line2">
@@ -78,7 +77,7 @@ class LoginForm extends React.Component {
 
                     <img src="img/ic-check.png"
                          srcSet="img/ic-check@2x.png 2x,img/ic-check@3x.png 3x"
-                         className="ic_Check"  alt=""/>
+                         className="ic_Check" alt=""/>
 
                     <div className="inLine inLine-icCheck">
                         <img src={require('./img/ic-check.png')}
@@ -86,7 +85,7 @@ class LoginForm extends React.Component {
                              ${require('./img/ic-check.png')} 300w,
                              ${require('./img/ic-check@2x.png')} 768w,
                              ${require('./img/ic-check@3x.png')} 1280w`}
-                             className="ic_Check"  alt=""/>
+                             className="ic_Check" alt=""/>
 
                         <div className="\-">로그인 상태 유지하기</div>
                     </div>
@@ -97,16 +96,16 @@ class LoginForm extends React.Component {
                              ${require('./img/button-login.png')} 300w,
                              ${require('./img/button-login@2x.png')} 768w,
                              ${require('./img/button-login@3x.png')} 1280w`}
-                             className="Button_Login"  alt=""/>
+                             className="Button_Login" alt=""/>
                     </button>
                 </div>
                 <br/>
                 <div className="Register-Link">
-                    <div className="\-">계정이 없으신가요?</div>
+                    <div className="desc">계정이 없으신가요?</div>
                     <div><NavLink className="TOAST-" to="/register" activeClassName="active">TOAST 회원가입하기</NavLink>
                     </div>
                 </div>
-            </Container>
+            </div>
         );
     }
 };

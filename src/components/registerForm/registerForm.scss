@@ -1,6 +1,6 @@
 .RegisterForm {
   text-align: center;
-
+  padding: 40px 20px;
 
   .Logo_Login {
     width: 120px;
@@ -34,18 +34,32 @@
     display: inline-flex;
   }
 
-  .inLine-Line2 {
-    margin-top: 32px;
-  }
-
   .Line-2 {
     width: 126px;
     height: 2px;
     border: solid 1px #bdbdbd;
+    margin-top: 32px;
+  }
+
+  .layer {
+    width: 24px;
+    height: 19px;
+    font-size: 13px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #4a4a4a;
+    margin: 26px 8px 23px 8px;
+  }
+
+  .input-group {
+    margin-bottom: 32px;
   }
 
   .type {
-    font-family: NotoSansCJKkr;
     font-size: 13px;
     font-weight: 500;
     font-style: normal;
@@ -54,24 +68,48 @@
     letter-spacing: -0.2px;
     color: #4a4a4a;
     text-align: left;
-    margin-top: 32px;
     margin-bottom: 8px;
-  }
-  button {
-    border: none;
-    padding: 0px;
-    background-color: unset;
+
   }
 
-  button:focus{
-    outline: none;
+  .input-group-email {
+    .ic_Check {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+    }
+
+    .Fill-3 {
+      width: 6px;
+      height: 4.4px;
+      background-color: #ffffff;
+    }
+
+    .inLine-icCheck {
+      margin-top: 7px;
+      float: right;
+    }
+
+    .desc {
+      width: 50px;
+      height: 19px;
+      font-size: 13px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      color: #4a4a4a;
+
+      margin-left: 8px;
+    }
   }
 
   .Button_Signup {
     width: 304px;
     height: 48px;
     object-fit: contain;
-    margin-top: 40px;
+    margin-top: 8px;
 
   }
   .Button_FacebookSignup {
@@ -89,7 +127,7 @@
   .Button_Gender {
     display: inline-flex;
 
-    >button {
+    > button {
       width: 149px;
       height: 48px;
       object-fit: contain;
@@ -103,5 +141,28 @@
       border-radius: 0px 4px 4px 0px;
     }
 
+  }
+
+  .TOAST- {
+    width: 115px;
+    height: 19px;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #ff6032;
+
+  }
+
+  .Login-Link {
+    margin-top: 30px;
+    display: inline-block;
+
+    .desc {
+      font-size: 13px;
+    }
   }
 }
