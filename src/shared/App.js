@@ -34,10 +34,10 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                         <Route path="/home" component={Home} />
                         <Route exact path="/study" component={StudyCategory} />
                         <Route path="/study/:category" component={StudyRoomList} />
+                        {/*<Route path="/study/:category/:studyroomID" component={StudyRoom} />*/}
                         <Route path="/level-test" component={LevelTest} />
                         <Route path="/login" component={LoginForm} />
                         <Route path="/register" component={RegisterForm} />
-                        {/*<Route path="/login" component={LoginContainer} />*/}
                         <Route component={NoMatch} />
                     </Switch>
                 </div>

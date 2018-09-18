@@ -7,25 +7,17 @@ class Sidebar extends Component{
         return (
             <ul className="menu-list">
                 <li>
-                    <NavLink exact to="/" activeClassName="active">
+                    <NavLink exact to="/" activeClassName="active" >
                         <img alt="home"
-                             src={require('./img/ic-manu-w.png')}
-                             srcSet={`
-                             ${require('./img/ic-manu-w.png')} 300w,
-                             ${require('./img/ic-manu-w@2x.png')} 768w,
-                             ${require('./img/ic-manu-w@3x.png')} 1280w`}
-                             className="ic_Manu_W"></img>
+                             src={require('./img/ic-manu-w@3x.png')}
+                             className="ic_Manu_W"/>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/" activeClassName="active">
                         <img alt="home"
-                             src={require('./img/ic-home.png')}
-                             srcSet={`
-                             ${require('./img/ic-home.png')} 300w,
-                             ${require('./img/ic-home@2x.png')} 768w,
-                             ${require('./img/ic-home@3x.png')} 1280w`}
-                             className="ic_Home"></img>
+                             src={require('./img/ic-home@3x.png')}
+                             className="ic_Home"/>
                         <br/>
                         <div className="menu-font">Home</div>
                     </NavLink>
@@ -33,12 +25,8 @@ class Sidebar extends Component{
                 <li>
                     <NavLink to="/study" activeClassName="active">
                         <img alt="study"
-                             src={require('./img/ic-study.png')}
-                             srcSet={`
-                             ${require('./img/ic-study.png')} 300w,
-                             ${require('./img/ic-study@2x.png')} 768w,
-                             ${require('./img/ic-study@3x.png')} 1280w`}
-                             className="ic_Study"></img>
+                             src={require('./img/ic-study@3x.png')}
+                             className="ic_Study"/>
                         <br/>
                         <div className="menu-font">Study</div>
                     </NavLink>
@@ -46,12 +34,8 @@ class Sidebar extends Component{
                 <li>
                     <NavLink to="/level-test" activeClassName="active">
                         <img alt="level"
-                             src={require('./img/ic-level-test-active.png')}
-                             srcSet={`
-                             ${require('./img/ic-level-test-active.png')} 300w,
-                             ${require('./img/ic-level-test-active@2x.png')} 768w,
-                             ${require('./img/ic-level-test-active@3x.png')} 1280w`}
-                             className="ic_LevelTest_active"></img>
+                             src={require('./img/ic-level-test@3x.png')}
+                             className="ic_LevelTest"/>
                         <br/>
                         <div className="menu-font">Level Test</div>
                         </NavLink>
