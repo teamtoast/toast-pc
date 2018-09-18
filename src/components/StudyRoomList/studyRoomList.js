@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from "mdbreact";
 import "./StudyRoomList.scss"
 
 
@@ -28,10 +27,34 @@ function StudyRooms() {
         studyroomTime: 1,
         studyroomMaxUser: 1,
         state: "pending"
+    },{
+        studyroomID: 4,
+        studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
+        studyroomDate: "",
+        studyroomMinLevel: 1,
+        studyroomTime: 1,
+        studyroomMaxUser: 1,
+        state: "pending"
+    }, {
+        studyroomID: 5,
+        studyroomTitle: "2018 대기업 준비방입니다",
+        studyroomDate: "",
+        studyroomMinLevel: 1,
+        studyroomTime: 1,
+        studyroomMaxUser: 1,
+        state: "ongoing"
+    }, {
+        studyroomID: 6,
+        studyroomTitle: "스터디룸 1",
+        studyroomDate: "",
+        studyroomMinLevel: 1,
+        studyroomTime: 1,
+        studyroomMaxUser: 1,
+        state: "pending"
     }];
 
-    const listItems = studyRooms.map((studyRoom) =>
-        <li className="studyRoom">
+    let listItems = studyRooms.map((studyRoom, i ) =>
+        <li key={i} className="studyRoom">
             <div className="studyRoom-header">
                 <p>{studyRoom.state === "pending"? '대기중' : '진행중'}</p>
             </div>
@@ -58,7 +81,7 @@ function StudyRooms() {
 
 const StudyRoomList = ({match}) => {
     return (
-        <Container className="StudyRoomList">
+        <div className="Container StudyRoomList">
             <div className="title">
                 {(() => {
                     switch (match.params.category) {
@@ -72,7 +95,7 @@ const StudyRoomList = ({match}) => {
             <div className="list-title">스터디룸 리스트</div>
             <br/>
             <StudyRooms/>
-        </Container>
+        </div>
     );
 };
 
