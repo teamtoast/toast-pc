@@ -1,4 +1,7 @@
 .StudyCatogory {
+
+  padding: 0px 10%;
+
   .title {
     width: 470px;
     height: 59px;
@@ -28,67 +31,53 @@
     color: #888888;
     margin-top: 40px;
   }
+
   .category-list {
     margin-top: 24px;
+    display: inline-block;
+    list-style: none;
+    padding: 0px;
+
+    >li {
+      display: inline-block;
+
+      a:hover {
+        text-decoration: none;
+
+      }
+    }
   }
 
-  .Rectangle-20 {
+  .category-card {
     width: 280px;
     height: 240px;
     border-radius: 8px;
     background-image: linear-gradient(46deg, #ff7a2f, #ff6032);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+    margin: 0px 16px 16px 0px;
+
+    .category-title {
+      font-size: 34px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.5px;
+      text-align: center;
+      color: #ffffff;
+
+      position: relative;
+      top: 96px;
+    }
   }
 
-  .layer-free {
-    width: 124px;
-    height: 50px;
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 34px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.5px;
-    text-align: center;
-    color: #ffffff;
-  }
-
-  .layer {
-    width: 62px;
-    height: 50px;
-    font-family: NotoSansCJKkr;
-    font-size: 34px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.5px;
-    text-align: center;
-    color: #ffffff;
-  }
-
-  .img_Card_background {
+  .category-card:hover {
     width: 280px;
     height: 240px;
-    object-fit: contain;
-    //box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
+    border-radius: 8px;
+    background-color: #ff6032;
   }
 
-  .Category-title {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-  }
-  .Category-title-big {
-    width: 56px;
-    height: 24px;
-    object-fit: contain;
-  }
-
-  button {
-    border: none;
-    padding: 0px;
-    background-color: unset;
-  }
 }
