@@ -7,6 +7,7 @@
     height: 108px;
     object-fit: contain;
     display: inline-block;
+    margin-bottom: 24px;
   }
 
   .Rectangle-18 {
@@ -57,6 +58,35 @@
 
   .input-group {
     margin-bottom: 32px;
+    display: inline-block;
+
+
+    input {
+      font-size: 13px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      color: #4a4a4a;
+      padding-left: 12px;
+
+    }
+
+    input::placeholder {
+      font-size: 13px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      color: #9b9b9b;
+    }
+
+    input:focus {
+      border: solid 1px #ff6032;
+      outline: none;
+    }
   }
 
   .type {
@@ -73,36 +103,46 @@
   }
 
   .input-group-email {
-    .ic_Check {
-      width: 14px;
-      height: 14px;
-      object-fit: contain;
-    }
-
-    .Fill-3 {
-      width: 6px;
-      height: 4.4px;
-      background-color: #ffffff;
-    }
-
+    margin-bottom: 14px !important;
     .inLine-icCheck {
-      margin-top: 7px;
+      margin-top: 7px ;
       float: right;
+      display: inline-block;
+
+      input[type='checkbox'] {
+        display: none;
+      }
+
+      input[type='checkbox'] + label::before { /* 가짜 체크박스 만들기 */
+        content: ' ';
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+        vertical-align: middle;
+        background: url('../loginForm/img/ic-un-check@3x.png');
+        background-size: contain !important;
+        margin: -2px 9px 0px 0px;
+      }
+
+      input[type='checkbox']:checked + label::before {
+        background: url('../loginForm/img/ic-check@3x.png');
+      }
+
+      label {
+        height: 19px;
+        font-size: 13px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        color: #4a4a4a;
+
+        margin-left: 8px;
+      }
     }
 
-    .desc {
-      width: 50px;
-      height: 19px;
-      font-size: 13px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.2px;
-      color: #4a4a4a;
-
-      margin-left: 8px;
-    }
   }
 
   .Button_Signup {
@@ -132,6 +172,14 @@
       height: 48px;
       object-fit: contain;
       border: solid 1px #e6e6e6;
+
+      font-size: 13px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      color: #9b9b9b;
     }
 
     .Button_Woman {
@@ -139,6 +187,13 @@
     }
     .Button_Man {
       border-radius: 0px 4px 4px 0px;
+    }
+
+    .active {
+      background-color: #ff6032;
+      color: white;
+      border: solid 1px #ff6032;
+
     }
 
   }
@@ -160,7 +215,9 @@
   .Login-Link {
     margin-top: 30px;
     display: inline-block;
-
+    a {
+      text-decoration: none;
+    }
     .desc {
       font-size: 13px;
     }

@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69fdf342-6abe-4a1c-b2e7-739b455d043a" name="Default Changelist" comment="[WIP]fixed sidebar">
-      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyRoomList/img/button-fab-plus@3x.png" afterDir="false" />
+    <list default="true" id="69fdf342-6abe-4a1c-b2e7-739b455d043a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/loginForm/img/ic-un-check@3x.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/img/button-in.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/img/button-in@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-facebook-login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-facebook-login@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-google-login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-google-login@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/button-login@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/ic-check.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/ic-check@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/logo-login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/img/logo-login@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/loginForm/loginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loginForm/loginForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/loginForm/loginForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/loginForm/loginForm.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/registerForm/registerForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/registerForm/registerForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/registerForm/registerForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/registerForm/registerForm.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,7 +44,7 @@
         <counts>
           <entry key="css" value="5" />
           <entry key="html" value="4" />
-          <entry key="js" value="100" />
+          <entry key="js" value="102" />
           <entry key="json" value="6" />
           <entry key="lock" value="1" />
           <entry key="md" value="1" />
@@ -55,7 +60,7 @@
           <entry key="HTML" value="4" />
           <entry key="Image" value="7" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="100" />
+          <entry key="JavaScript" value="102" />
           <entry key="Markdown" value="1" />
           <entry key="SCSS" value="39" />
           <entry key="SVG" value="1" />
@@ -67,11 +72,11 @@
         <counts>
           <entry key="css" value="81" />
           <entry key="html" value="16" />
-          <entry key="js" value="7970" />
+          <entry key="js" value="8257" />
           <entry key="json" value="17" />
           <entry key="md" value="345" />
-          <entry key="scss" value="2376" />
-          <entry key="txt" value="227" />
+          <entry key="scss" value="2623" />
+          <entry key="txt" value="276" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -79,10 +84,10 @@
           <entry key="CSS" value="81" />
           <entry key="HTML" value="17" />
           <entry key="JSON" value="17" />
-          <entry key="JavaScript" value="7969" />
+          <entry key="JavaScript" value="8256" />
           <entry key="Markdown" value="345" />
-          <entry key="PLAIN_TEXT" value="227" />
-          <entry key="SCSS" value="2376" />
+          <entry key="PLAIN_TEXT" value="276" />
+          <entry key="SCSS" value="2623" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -93,52 +98,9 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6009427">
+    <splitter split-orientation="horizontal" split-proportion="0.49541286">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/intro/introPage.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#0#39#0" expanded="true" />
-                    <element signature="e#946#1865#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-123">
-                  <caret line="85" column="35" selection-start-line="85" selection-start-column="35" selection-end-line="85" selection-end-column="35" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/shared/App.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="15">
-                  <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="3" selection-end-column="21" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/shared/App.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -151,6 +113,30 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="269">
+                  <caret line="66" column="20" lean-forward="true" selection-start-line="66" selection-start-column="20" selection-end-line="70" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="626">
+                  <caret line="124" column="70" selection-start-line="124" selection-start-column="70" selection-end-line="124" selection-end-column="70" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -158,44 +144,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Sidebar/sidebar.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="410">
-                  <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+                <state relative-caret-position="493">
+                  <caret line="217" column="4" selection-start-line="217" selection-start-column="4" selection-end-line="219" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1020">
-                  <caret line="68" selection-start-line="68" selection-end-line="68" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="98" column="4" lean-forward="true" selection-start-line="98" selection-start-column="4" selection-end-line="139" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret lean-forward="true" />
+                <state relative-caret-position="523">
+                  <caret line="166" column="5" selection-start-line="166" selection-start-column="5" selection-end-line="166" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -224,10 +183,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>history</find>
-      <find>BrowserRouter</find>
-      <find>/Sidebar/si</find>
-      <find>availa</find>
       <find>logincon</find>
       <find>mdbrea</find>
       <find>.Button_Login</find>
@@ -254,6 +209,10 @@
       <find>submit</find>
       <find>API</find>
       <find>scroll</find>
+      <find>ic-check.pn</find>
+      <find>=</find>
+      <find>+</find>
+      <find>ic-chck</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -295,22 +254,22 @@
         <option value="$PROJECT_DIR$/src/components/header/header.scss" />
         <option value="$PROJECT_DIR$/src/components/studyRoomList.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/components/loginForm/loginForm.js" />
-        <option value="$PROJECT_DIR$/src/components/registerForm/registerForm.js" />
         <option value="$PROJECT_DIR$/src/model/StudyCategory.js" />
         <option value="$PROJECT_DIR$/src/model/StudyCategoryModel.js" />
-        <option value="$PROJECT_DIR$/src/components/registerForm/registerForm.scss" />
         <option value="$PROJECT_DIR$/src/components/studyCategory/studyCategory.scss" />
         <option value="$PROJECT_DIR$/src/components/studyCategory/studyCategory.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/sidebar.scss" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/sidebar.js" />
-        <option value="$PROJECT_DIR$/src/components/loginForm/loginForm.scss" />
         <option value="$PROJECT_DIR$/src/shared/App.js" />
         <option value="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" />
         <option value="$PROJECT_DIR$/src/shared/App.scss" />
         <option value="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" />
-        <option value="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" />
         <option value="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js" />
+        <option value="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" />
+        <option value="$PROJECT_DIR$/src/components/loginForm/loginForm.js" />
+        <option value="$PROJECT_DIR$/src/components/registerForm/registerForm.js" />
+        <option value="$PROJECT_DIR$/src/components/registerForm/registerForm.scss" />
+        <option value="$PROJECT_DIR$/src/components/loginForm/loginForm.scss" />
       </list>
     </option>
   </component>
@@ -387,6 +346,28 @@
               <item name="toast-pc" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="loginForm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toast-pc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toast-pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="loginForm" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toast-pc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toast-pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="registerForm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toast-pc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toast-pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="studyCategory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -442,11 +423,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/loginForm/img" />
       <recent name="$PROJECT_DIR$/src/components/StudyRoomList/img" />
       <recent name="$PROJECT_DIR$/src/components/Sidebar/img" />
       <recent name="$PROJECT_DIR$/src/components/studyCategory/img" />
       <recent name="$PROJECT_DIR$/src/components/registerForm/img" />
-      <recent name="$PROJECT_DIR$/src/components/header/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/registerForm" />
@@ -504,7 +485,7 @@
       <workItem from="1536915689134" duration="16273000" />
       <workItem from="1537243729051" duration="4346000" />
       <workItem from="1537250817706" duration="8691000" />
-      <workItem from="1537419483400" duration="7122000" />
+      <workItem from="1537419483400" duration="11706000" />
     </task>
     <task id="LOCAL-00001" summary="updated readme">
       <created>1533539631604</created>
@@ -590,17 +571,38 @@
       <option name="project" value="LOCAL" />
       <updated>1537261791678</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fixed studyroom list">
+      <created>1537427971162</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1537427971162</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[WIP] added StudyRoom">
+      <created>1537428007410</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1537428007410</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed studyroom list">
+      <created>1537428016840</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1537428016840</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73452000" />
+    <option name="totallyTimeSpent" value="78036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11597222" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09166667" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -662,7 +664,9 @@
     <MESSAGE value="fixed studyroom" />
     <MESSAGE value="removed mdbreact" />
     <MESSAGE value="[WIP]fixed sidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="[WIP]fixed sidebar" />
+    <MESSAGE value="[WIP] added StudyRoom" />
+    <MESSAGE value="fixed studyroom list" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed studyroom list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -798,26 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="93" column="28" lean-forward="true" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="71" column="65" selection-start-line="71" selection-start-column="65" selection-end-line="71" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shared/App.test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -852,13 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/studyCategory/studyCategory.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
@@ -868,13 +845,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Sidebar/img/ic-level-test@3x.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -924,41 +894,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/intro/introPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shared/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-          <folding>
-            <element signature="e#54#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/sidebar.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="98" column="4" lean-forward="true" selection-start-line="98" selection-start-column="4" selection-end-line="139" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shared/App.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="3" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -972,21 +911,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        <state relative-caret-position="705">
+          <caret line="47" column="29" lean-forward="true" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#946#1865#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/intro/introPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shared/App.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shared/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+          <folding>
+            <element signature="e#54#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+          <folding>
+            <element signature="e#77#1524#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/sidebar.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="124" column="70" selection-start-line="124" selection-start-column="70" selection-end-line="124" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="66" column="20" lean-forward="true" selection-start-line="66" selection-start-column="20" selection-end-line="70" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/registerForm/registerForm.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="217" column="4" selection-start-line="217" selection-start-column="4" selection-end-line="219" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/loginForm/loginForm.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="166" column="5" selection-start-line="166" selection-start-column="5" selection-end-line="166" selection-end-column="5" />
         </state>
       </provider>
     </entry>

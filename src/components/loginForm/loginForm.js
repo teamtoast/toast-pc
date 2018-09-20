@@ -35,32 +35,20 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="Container LoginForm">
-                <img src={require('./img/logo-login.png')}
-                     srcSet={`
-                         ${require('./img/logo-login.png')} 300w,
-                         ${require('./img/logo-login@2x.png')} 768w,
-                         ${require('./img/logo-login@3x.png')} 1280w`}
+                <img src={require('./img/logo-login@3x.png')}
                      className="Logo_Login" alt=""/>
                 <br/>
 
                 <div className="Rectangle-18">
                     {/*facebook login*/}
                     <button onClick={this.facebookSubmit}>
-                        <img src={require('./img/button-facebook-login.png')}
-                             srcSet={`
-                             ${require('./img/button-facebook-login.png')} 300w,
-                             ${require('./img/button-facebook-login@2x.png')} 768w,
-                             ${require('./img/button-facebook-login@3x.png')} 1280w`}
+                        <img src={require('./img/button-facebook-login@3x.png')}
                              className="Button_FacebookLogin" alt=""/>
                     </button>
 
                     {/*google login*/}
                     <button>
-                        <img src={require('./img/button-google-login.png')}
-                             srcSet={`
-                         ${require('./img/button-google-login.png')} 300w,
-                         ${require('./img/button-google-login@2x.png')} 768w,
-                         ${require('./img/button-google-login@3x.png')} 1280w`}
+                        <img src={require('./img/button-google-login@3x.png')}
                              className="Button_GoogleLogin" alt=""/>
                     </button>
 
@@ -75,27 +63,14 @@ class LoginForm extends React.Component {
                     <input className="Rectangle-19"
                            placeholder="비밀번호 입력"/>
 
-                    <img src="img/ic-check.png"
-                         srcSet="img/ic-check@2x.png 2x,img/ic-check@3x.png 3x"
-                         className="ic_Check" alt=""/>
 
                     <div className="inLine inLine-icCheck">
-                        <img src={require('./img/ic-check.png')}
-                             srcSet={`
-                             ${require('./img/ic-check.png')} 300w,
-                             ${require('./img/ic-check@2x.png')} 768w,
-                             ${require('./img/ic-check@3x.png')} 1280w`}
-                             className="ic_Check" alt=""/>
-
-                        <div className="\-">로그인 상태 유지하기</div>
+                        <input type="checkbox" id="login-status"></input>
+                        <label for="login-status" className="\-">로그인 상태 유지하기</label>
                     </div>
 
                     <button>
-                        <img src={require('./img/button-login.png')}
-                             srcSet={`
-                             ${require('./img/button-login.png')} 300w,
-                             ${require('./img/button-login@2x.png')} 768w,
-                             ${require('./img/button-login@3x.png')} 1280w`}
+                        <img src={require('./img/button-login@3x.png')}
                              className="Button_Login" alt=""/>
                     </button>
                 </div>

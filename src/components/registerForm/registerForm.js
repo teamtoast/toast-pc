@@ -34,31 +34,20 @@ class RegisterForm extends React.Component {
         return (
             <div className="Container RegisterForm">
                 <img className="Logo_Login"
-                     src={require('./img/logo-login.png')}
-                     srcSet={`
-                     ${require('./img/logo-login.png')} 300w,
-                     ${require('./img/logo-login@2x.png')} 768w,
-                     ${require('./img/logo-login@3x.png')} 1280w`} alt=""/>
+                     src={require('./img/logo-login@3x.png')}
+                     alt=""/>
                 <br/>
 
                 <div className="Rectangle-18">
                     {/*facebook signin*/}
                     <button onClick={this.facebookSiginin}>
-                        <img src={require('./img/button-facebook-signup.png')}
-                             srcSet={`
-                             ${require('./img/button-facebook-signup.png')} 300w,
-                             ${require('./img/button-facebook-signup@2x.png')} 768w,
-                             ${require('./img/button-facebook-signup@3x.png')} 1280w`}
+                        <img src={require('./img/button-facebook-signup@3x.png')}
                              className="Button_FacebookSignup" alt=""/>
                     </button>
 
                     {/*google signin*/}
                     <button onClick={this.googleSiginin}>
-                        <img src={require('./img/button-google-signup.png')}
-                             srcSet={`
-                         ${require('./img/button-google-signup.png')} 300w,
-                         ${require('./img/button-google-signup@2x.png')} 768w,
-                         ${require('./img/button-google-signup@3x.png')} 1280w`}
+                        <img src={require('./img/button-google-signup@3x.png')}
                              className="Button_GoogleSignup" alt=""/>
                     </button>
 
@@ -78,17 +67,10 @@ class RegisterForm extends React.Component {
                                }}/>
 
                         <div className="inLine inLine-icCheck">
-                            <img src={require('../loginForm/img/ic-check.png')}
-                                 srcSet={`
-                             ${require('../loginForm/img/ic-check.png')} 300w,
-                             ${require('../loginForm/img/ic-check@2x.png')} 768w,
-                             ${require('../loginForm/img/ic-check@3x.png')} 1280w`}
-                                 className="ic_Check" alt=""/>
-
-                            <div className="desc">중복확인</div>
+                            <input type="checkbox" id="id-check"></input>
+                            <label htmlFor="id-check" className="\-">중복확인</label>
                         </div>
                     </div>
-
 
 
                     <div className="input-group">
@@ -126,25 +108,28 @@ class RegisterForm extends React.Component {
                     <div className="input-group">
                         <div className="type">성별</div>
                         <div className="Button_Gender">
-                            <button className="Button_Woman"
-                                    onClick={() => {
-                                        this.setState({userBirth: 'Woman'})
-                                    }}> 여자
+                            <button
+                                onClick={() => {
+                                    this.setState({userGender: "Woman"});
+                                    console.log(this.state.userGender);
+                                }}
+                                className={this.state.userGender === "Woman" ? "Button_Woman active" : "Button_Woman"}>
+                                여자
                             </button>
-                            <button className="Button_Man"
-                                    onClick={() => {
-                                        this.setState({userBirth: 'Man'})
-                                    }}>남자
+
+                            <button
+                                onClick={() => {
+                                    this.setState({userGender: "Man"});
+                                    console.log(this.state.userGender);
+                                }}
+                                className={this.state.userGender === "Man" ? "Button_Man active" : "Button_Man"}>
+                                남자
                             </button>
                         </div>
                     </div>
 
                     <button onClick={this.handleSubmit}>
-                        <img src={require('./img/button-signup.png')}
-                             srcSet={`
-                             ${require('./img/button-signup.png')} 300w,
-                             ${require('./img/button-signup@2x.png')} 768w,
-                             ${require('./img/button-signup@3x.png')} 1280w`}
+                        <img src={require('./img/button-signup@3x.png')}
                              className="Button_Signup" alt=""/>
                     </button>
                 </div>
