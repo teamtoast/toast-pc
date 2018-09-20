@@ -11,6 +11,7 @@ import StudyRoomList from "../components/StudyRoomList/studyRoomList";
 import LevelTest from "../components/levelTest";
 import LoginForm from "../components/loginForm/loginForm";
 import RegisterForm from "../components/registerForm/registerForm";
+import StudyRoom from "../components/StudyRoom/StudyRoom";
 
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
@@ -33,8 +34,8 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                         <Route exact path="/" component={Home} />
                         <Route path="/home" component={Home} />
                         <Route exact path="/study" component={StudyCategory} />
-                        <Route path="/study/:category" component={StudyRoomList} />
-                        {/*<Route path="/study/:category/:studyroomID" component={StudyRoom} />*/}
+                        <Route exact path="/study/:category" component={StudyRoomList} />
+                        <Route exact path="/study/:category/:studyroomID" component={StudyRoom} />
                         <Route path="/level-test" component={LevelTest} />
                         <Route path="/login" component={LoginForm} />
                         <Route path="/register" component={RegisterForm} />

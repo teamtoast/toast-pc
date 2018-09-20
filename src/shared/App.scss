@@ -1,12 +1,15 @@
 .content {
   background-color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: calc(100% - 88px);
   height: calc(100% - 64px);
   position: absolute;
   top: 64px;
   left: 88px;
   z-index: -1;
-  overflow: scroll;
+
+
 }
 
 .header {
