@@ -51,7 +51,7 @@ const StudyRoom = ({match}) => {
                                 return "여행";
                             default:
                                 return "자유주제";
-                        }
+                        };
                     })()}
                 </div>
                 <div className="title">

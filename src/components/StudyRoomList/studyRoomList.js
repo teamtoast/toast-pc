@@ -89,7 +89,7 @@ function StudyRooms(props) {
                         </tbody>
                     </table>
                 </div>
-                <NavLink exact to={{pathname: '/study/' + props.category + "/" + studyRoom.studyroomID}}>
+                <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
                     <button>
                         <img src={require('./img/button-in@3x.png')}
                              className="Button_In" alt=""/>
@@ -105,11 +105,8 @@ function StudyRooms(props) {
     );
 }
 
-function CreateStudyRoom() {
 
-}
-
-const CreateModal = ({handleClose, modalShow,children}) => {
+const CreateModal = ({modalSubmit, modalShow,children}) => {
 
     const studyRoomInfo = {
         studyroomTitle: "",
@@ -125,7 +122,7 @@ const CreateModal = ({handleClose, modalShow,children}) => {
 
                 {children}
 
-                <button className="submit-button" onClick={handleClose}>완료</button>
+                <button className="submit-button" onClick={modalSubmit}>완료</button>
             </section>
         </div>
     );
@@ -143,22 +140,33 @@ class StudyRoomList extends Component {
         modalShow: false
     };
 
+
+
     showModal = () => {
         this.setState({modalShow: true});
     };
 
     hideModal = () => {
         this.setState({modalShow: false});
-    };
+    }
+
+    modalSubmit = () => {
+        //API: [POST] 모달 생성
+    }
+
 
     render() {
-        const category = this.props.match.params.category;
+        const categoryID = this.props.match.params.categoryID;
 
         return (
             <div className="Container StudyRoomList">
 
-                <CreateModal modalShow={this.state.modalShow} handleClose={this.hideModal}>
+                <CreateModal modalShow={this.state.modalShow} modalSubmit={this.modalSubmit}>
                     <p className="title">스터디룸 개설</p>
+                    <button onClick={this.hideModal}>
+                        <img src={require('./img/close-button.png')}
+                             className="Close_Button" alt=""/>
+                    </button>
 
                     <div className="input-group">
                         <div className="type">방 제목</div>
@@ -246,18 +254,11 @@ class StudyRoomList extends Component {
                 </CreateModal>
 
                 <div className="title">
-                    {(() => {
-                        switch (category) {
-                            case "travel":
-                                return "여행";
-                            default:
-                                return "자유주제";
-                        }
-                    })()}
+                    {categoryID}
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms category={category}/>
+                <StudyRooms category={categoryID}/>
 
                 <button onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}

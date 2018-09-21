@@ -36,7 +36,7 @@ function GetStudyCategories() {
     let StudyCategoryList = StudyCategories.map((StudyCategory, i) =>
 
         <li key={i}>
-            <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryLevel2}}>
+            <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryID}}>
                 <div className="category-card">
                     <div className="category-title">{StudyCategory.categoryLevel2}</div>
                 </div>
