@@ -5,28 +5,28 @@ import {NavLink} from "react-router-dom";
 const StudyCategories = [
     {
         categoryID: 1,
-        categoryLevel1: 'free',
-        categoryLevel2: 'free'
+        categoryLevel1: '자유주제',
+        categoryLevel2: '자유주제'
     }, {
         categoryID: 2,
-        categoryLevel1: 'culture',
-        categoryLevel2: 'travel'
+        categoryLevel1: '문화',
+        categoryLevel2: '여행'
     }, {
         categoryID: 3,
-        categoryLevel1: 'life',
-        categoryLevel2: 'love'
+        categoryLevel1: '생활',
+        categoryLevel2: '연애'
     }, {
         categoryID: 4,
-        categoryLevel1: 'world',
-        categoryLevel2: 'refugee'
+        categoryLevel1: '세계',
+        categoryLevel2: '난민'
     }, {
         categoryID: 5,
-        categoryLevel1: 'life',
-        categoryLevel2: 'Heat'
+        categoryLevel1: '생활',
+        categoryLevel2: '폭염'
     }, {
         categoryID: 6,
-        categoryLevel1: 'social',
-        categoryLevel2: 'employment'
+        categoryLevel1: '사회',
+        categoryLevel2: '취업'
     }
 ];
 
