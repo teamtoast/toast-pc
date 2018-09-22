@@ -144,17 +144,41 @@
             margin-top: 36px;
             width: 80px;
             height: 80px;
-            border-style: solid;
-            border-width: 3px;
-            border-image-source: linear-gradient(207deg, #ff9559, #ff6032);
-            border-image-slice: 1;
+            border: 0px;
+            background-image: linear-gradient(207deg, #ff9559, #ff6032);
+            border-radius: 50px;
             display: inline-block;
+            position: relative;
 
             >img {
               width: 72px;
               height: 72px;
               text-align: center;
               display: inline-block;
+              margin: 4px;
+              border-radius: 50px;
+            }
+            .level-circle {
+              width: 25px;
+              height: 25px;
+              background-color: #ff6032;
+              border: solid 3px #ffffff;
+              border-radius: 50px;
+              position: absolute;
+              bottom: 0px;
+              right: 0px;
+
+              >p {
+                font-size: 12px;
+                font-weight: bold;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: -0.2px;
+                text-align: center;
+                color: #ffffff;
+                margin:6px 0px 0px 0px;
+              }
 
             }
           }

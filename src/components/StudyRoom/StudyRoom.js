@@ -28,6 +28,9 @@ const UserList = () => {
                     <div className="profile-picture">
                         <img src={require('./img/profile-pic.png')}
                              className="profile-picture-content" alt=""/>
+                        <div className="level-circle">
+                            <p>{User.userLevel}</p>
+                        </div>
                     </div>
                     <p className="userNickname">{User.userNickname}</p>
                     <p className="userID">{User.userID}</p>
@@ -38,6 +41,7 @@ const UserList = () => {
 
 
                 </div>
+
                 <div className="social-link">
                     <ul>
                         <li>
@@ -60,6 +64,7 @@ const UserList = () => {
                         </li>
                     </ul>
                 </div>
+
             </div>
         </li>
     );
