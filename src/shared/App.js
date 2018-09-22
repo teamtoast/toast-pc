@@ -16,10 +16,6 @@ import StudyRoom from "../components/StudyRoom/StudyRoom";
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
 
-    // handleCreate = (data) => {
-    //     console.log(data);
-    // }
-
     render() { //class 형태의 Component에 필수로 있어야하는 함수_내부에서 JSX 리턴
         return (
             <div>

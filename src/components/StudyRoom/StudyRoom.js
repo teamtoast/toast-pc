@@ -13,17 +13,10 @@ const studyRoomUserList = [{
     userProfilePath: " ",
     userLevel: 12,
     status: 'ready'
-}, {
-    userID: "tyty12@naver.com",
-    userNickname: "user3",
-    userProfilePath: " ",
-    userLevel: 9,
-    status: 'wait'
 }];
 
 const UserList = () => {
     //API: [GET] 스터디룸 유저 정보
-
 
     let UserList = studyRoomUserList.map((User, i) =>
         <li key={i}>
@@ -97,9 +90,13 @@ class StudyRoom extends React.Component {
     //API: [GET] 스터디룸 정보
     // {props.match.params.studyroomID}
 
-    state= {
+    state = {
         CurrUser: {
-
+            userID: "asdf@naver.com",
+            userNickname: "user1",
+            userProfilePath: " ",
+            userLevel: 15,
+            status: 'wait'
         },
         CurrStatus: 'wait'
     };
@@ -178,7 +175,14 @@ class StudyRoom extends React.Component {
                 </div>
 
                 <div className="side-box">
-                    <div className="curr-status"></div>
+                    <div className="curr-status">
+                        <div className="Rectangle-8">
+                            <p>진행</p>
+                        </div>
+                        <div className="Rectangle-8 Rectangle-8-active">
+                            <p>대기</p>
+                        </div>
+                    </div>
                     <div className="relative-word">
                         <p className="title">{studyRoomInfo.category} 추천 단어 </p>
 
@@ -186,12 +190,17 @@ class StudyRoom extends React.Component {
                     <div className="curr-status-btn">
                         <button
                             onClick={() => {
-                                if (this.state.CurrStatus === "wait") this.setState({CurrStatus: 'ready' });
-                                else if (this.state.CurrStatus === "ready") this.setState({CurrStatus: 'wait' });
+                                if (this.state.CurrStatus === "wait") this.setState({CurrStatus: 'ready'});
+                                else if (this.state.CurrStatus === "ready") this.setState({CurrStatus: 'wait'});
 
                             }}
-                            className={this.state.CurrStatus === "wait" ? "Button_Ready" : "Button_Ready active"}>
+                            className={this.state.CurrStatus === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
                             Ready
+                        </button>
+                    </div>
+                    <div className="start-btn">
+                        <button className="Button_Ready">
+                            Start
                         </button>
                     </div>
                 </div>

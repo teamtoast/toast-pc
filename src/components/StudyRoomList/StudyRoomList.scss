@@ -1,5 +1,4 @@
 .StudyRoomList {
-
   padding-left: 15%;
 
   > .title {
@@ -281,9 +280,11 @@
 
       .Button_Time_1, .Button_MaxUser_1 {
         border-radius: 4px 0px 0px 4px;
+        border-right: 0px;
       }
       .Button_Time_3, .Button_MaxUser_3 {
         border-radius: 0px 4px 4px 0px;
+        border-left: 0px;
       }
 
       .active {
