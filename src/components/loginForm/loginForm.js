@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
 
                     <div className="inLine inLine-icCheck">
                         <input type="checkbox" id="login-status"></input>
-                        <label for="login-status" className="\-">로그인 상태 유지하기</label>
+                        <label htmlFor="login-status" className="\-">로그인 상태 유지하기</label>
                     </div>
 
                     <button>

@@ -1,6 +1,72 @@
 import React from 'react';
 import "./StudyRoom.scss"
 
+const studyRoomUserList = [{
+    userID: "asdf@naver.com",
+    userNickname: "user1",
+    userProfilePath: " ",
+    userLevel: 15,
+    status: 'wait'
+}, {
+    userID: "asdf@naver.com",
+    userNickname: "user2",
+    userProfilePath: " ",
+    userLevel: 12,
+    status: 'ready'
+}, {
+    userID: "tyty12@naver.com",
+    userNickname: "user3",
+    userProfilePath: " ",
+    userLevel: 9,
+    status: 'wait'
+}];
+
+const UserList = () => {
+    //API: [GET] 스터디룸 유저 정보
+
+
+    let UserList = studyRoomUserList.map((User, i) =>
+        <li key={i}>
+            <div className="user-card">
+                <div className="profile">
+                    <div className={"user-status" + (User.status === "ready" ? " ready" : "")}>
+                        <p>{User.status === "ready" ? 'ready' : 'wait'}</p>
+                    </div>
+                    <div className="profile-picture">
+                        <img src={require('./img/profile-pic.png')}
+                             className="profile-picture-content" alt=""/>
+                    </div>
+                    <p className="userNickname">{User.userNickname}</p>
+                    <p className="userID">{User.userID}</p>
+                    <button className="btn-add-friend">친구추가</button>
+
+                </div>
+                <div className="social-link">
+
+                </div>
+            </div>
+        </li>
+    );
+
+    for (var i = 0; i < 4 - studyRoomUserList.length; i++){
+        UserList.push(
+            <li key={i}>
+                <div className="user-card user-card-empty">
+                    <img src={require('./img/profile-pic.png')}
+                         className="profile-picture-content" alt=""/>
+                    <p>친구를 기다려요!</p>
+                </div>
+            </li>
+        )
+
+    }
+    return (
+        <ul className="user-list">{UserList}</ul>
+    )
+    ;
+};
+
+
 const StudyRoom = ({match}) => {
 
     //API: [GET] 스터디룸 정보
@@ -12,32 +78,10 @@ const StudyRoom = ({match}) => {
         studyroomDate: "",
         studyroomMinLevel: 1,
         studyroomTime: 1,
-        studyroomMaxUser: 1,
+        studyroomMaxUser: 4,
+        category: '자유주제',
         state: "pending"
     }
-
-    //API: [GET] 스터디룸 유저 정보
-    const studyRoomUserList = [{
-        userID: "asdf@naver.com",
-        userNickname: "user1",
-        userProfilePath: " ",
-        userLevel: 15
-    },{
-        userID: "asdf@naver.com",
-        userNickname: "user2",
-        userProfilePath: " ",
-        userLevel: 12
-    },{
-        userID: "tyty12@naver.com",
-        userNickname: "user3",
-        userProfilePath: " ",
-        userLevel: 9
-    },{
-        userID: "wded@naver.com",
-        userNickname: "user1",
-        userProfilePath: " ",
-        userLevel: 7
-    }]
 
 
     return (
@@ -45,14 +89,7 @@ const StudyRoom = ({match}) => {
         <div className="Container StudyRoom">
             <div className="main-box">
                 <div className="category">
-                    {(() => {
-                        switch (match.params.category) {
-                            case "travel":
-                                return "여행";
-                            default:
-                                return "자유주제";
-                        };
-                    })()}
+                    {studyRoomInfo.category}
                 </div>
                 <div className="title">
                     {studyRoomInfo.studyroomTitle}
@@ -70,7 +107,7 @@ const StudyRoom = ({match}) => {
                         <tbody>
                         <tr>
                             <td className="MaxUser">
-                                <strong>{studyRoomInfo.studyroomMaxUser}</strong> / 4
+                                <strong>{studyRoomUserList.length}</strong> / {studyRoomInfo.studyroomMaxUser}
                             </td>
                             <td className="MinLevel">
                                 <strong>{studyRoomInfo.studyroomTime}</strong> m
@@ -83,8 +120,11 @@ const StudyRoom = ({match}) => {
                     </table>
                 </div>
 
-                <div className="user">
+                <div className="user-box">
+                    <UserList/>
+                </div>
 
+                <div className="chat-box">
                 </div>
             </div>
 
@@ -92,10 +132,9 @@ const StudyRoom = ({match}) => {
             </div>
 
 
-
         </div>
     );
 
-}
+};
 
 export default StudyRoom;

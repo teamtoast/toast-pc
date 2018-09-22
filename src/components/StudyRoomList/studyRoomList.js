@@ -5,6 +5,8 @@ import StudyCategory from "../studyCategory/studyCategory";
 
 
 function StudyRooms(props) {
+
+    //API: [GET] 스터디룸 리스트 가져오기
     const studyRooms = [{
         studyroomID: 1,
         studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
@@ -157,6 +159,13 @@ class StudyRoomList extends Component {
 
     render() {
         const categoryID = this.props.match.params.categoryID;
+        //API: [GET] 카테고리 리스트
+        const category = {
+                categoryID: 1,
+                categoryLevel1: '자유주제',
+                categoryLevel2: '자유주제'
+            }
+
 
         return (
             <div className="Container StudyRoomList">
@@ -254,11 +263,11 @@ class StudyRoomList extends Component {
                 </CreateModal>
 
                 <div className="title">
-                    {categoryID}
+                    {category.categoryLevel2}
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms category={categoryID}/>
+                <StudyRooms categoryID={categoryID}/>
 
                 <button onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}
