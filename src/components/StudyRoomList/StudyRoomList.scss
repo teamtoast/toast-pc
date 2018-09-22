@@ -129,6 +129,16 @@
               color: #ff6032;
             }
           }
+          .Time {
+            .up-arrow {
+              width: 11.2px;
+              height: 15.4px;
+              border-radius: 0.5px;
+              background-color: #ff6032;
+              background-color: var(--dusty-orange);
+              margin-left: 3px;
+            }
+          }
         }
         .MinLevel {
           border-left: solid 1px #e0e0e0;

@@ -86,16 +86,19 @@ function StudyRooms(props) {
                             </td>
                             <td className="Time">
                                 Lv.<strong>{studyRoom.studyroomMinLevel}</strong>
+                                <img src={require('./img/ic-arrow@3x.png')} className="up-arrow" alt=""/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
-                    <button>
-                        <img src={require('./img/button-in@3x.png')}
-                             className="Button_In" alt=""/>
-                    </button>
+                        <button>
+                            {(studyRoom.state === "pending" ?
+                                <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
+                                : <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban" alt=""/>)}
+                        </button>
+
                 </NavLink>
 
             </div>

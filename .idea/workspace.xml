@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69fdf342-6abe-4a1c-b2e7-739b455d043a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/profile-pic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/button-send@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/ic-social-facebook@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/ic-social-twitter@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/ic-social-web@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoom/img/ic-toast-gray@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoomList/img/button-ban@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StudyRoomList/img/ic-arrow@3x.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,12 +68,12 @@
         <counts>
           <entry key="css" value="81" />
           <entry key="html" value="16" />
-          <entry key="js" value="9873" />
+          <entry key="js" value="10504" />
           <entry key="json" value="17" />
           <entry key="lock" value="2" />
           <entry key="md" value="345" />
-          <entry key="scss" value="3377" />
-          <entry key="txt" value="362" />
+          <entry key="scss" value="4193" />
+          <entry key="txt" value="395" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -73,10 +81,10 @@
           <entry key="CSS" value="81" />
           <entry key="HTML" value="17" />
           <entry key="JSON" value="17" />
-          <entry key="JavaScript" value="9872" />
+          <entry key="JavaScript" value="10503" />
           <entry key="Markdown" value="345" />
-          <entry key="PLAIN_TEXT" value="362" />
-          <entry key="SCSS" value="3377" />
+          <entry key="PLAIN_TEXT" value="395" />
+          <entry key="SCSS" value="4193" />
           <entry key="yarn.lock" value="2" />
         </counts>
       </usages-collector>
@@ -88,7 +96,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.49382716">
+    <splitter split-orientation="horizontal" split-proportion="0.6616314">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -103,10 +111,11 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+                <state relative-caret-position="327">
+                  <caret line="88" column="105" lean-forward="true" selection-start-line="88" selection-start-column="105" selection-end-line="88" selection-end-column="105" />
                   <folding>
-                    <element signature="n#!!block;n#StudyRooms#0" />
+                    <element signature="e#3816#4313#0" />
+                    <element signature="e#5178#10072#0" />
                   </folding>
                 </state>
               </provider>
@@ -136,10 +145,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="321">
-                  <caret line="124" column="22" lean-forward="true" selection-start-line="124" selection-start-column="22" selection-end-line="124" selection-end-column="22" />
+                <state relative-caret-position="1412">
+                  <caret line="195" column="26" lean-forward="true" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
                   <folding>
-                    <element signature="e#2613#3649#0" />
+                    <element signature="e#0#26#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -173,13 +182,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+                <state relative-caret-position="263">
+                  <caret line="338" lean-forward="true" selection-start-line="338" selection-end-line="338" />
                   <folding>
                     <element signature="e#93#280#0" />
                     <element signature="e#292#479#0" />
-                    <element signature="e#492#1520#0" />
-                    <element signature="e#1688#1702#0" />
                   </folding>
                 </state>
               </provider>
@@ -197,8 +204,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1060">
-                  <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+                <state relative-caret-position="436">
+                  <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -218,26 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.prop</find>
-      <find>Route</find>
-      <find>submit</find>
-      <find>API</find>
-      <find>scroll</find>
-      <find>ic-check.pn</find>
-      <find>=</find>
-      <find>+</find>
-      <find>Component</find>
-      <find>ic-chck</find>
-      <find>desc</find>
-      <find>handle</find>
-      <find>onClick</find>
-      <find>studyRoomList</find>
-      <find>StudyRoom</find>
-      <find>button_in</find>
-      <find>font-awe</find>
-      <find>bootstrap</find>
-      <find>스터디 카테</find>
-      <find>title</find>
       <find>Line-2</find>
       <find>Rectangle-18</find>
       <find>GET]</find>
@@ -245,9 +232,29 @@
       <find>/study/</find>
       <find>handleClose</find>
       <find>img</find>
-      <find>?</find>
-      <find>ongo</find>
       <find>catego</find>
+      <find>===`</find>
+      <find>ongo</find>
+      <find>time</find>
+      <find>detail</find>
+      <find>&lt;a</find>
+      <find>absolute</find>
+      <find>absol</find>
+      <find>placehol</find>
+      <find>994</find>
+      <find>input</find>
+      <find>user-status</find>
+      <find>button</find>
+      <find>state:</find>
+      <find>state =</find>
+      <find>this.state</find>
+      <find>...</find>
+      <find>e.tar</find>
+      <find>active</find>
+      <find>state =</find>
+      <find>...`</find>
+      <find>?</find>
+      <find>setSt</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -303,11 +310,11 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/config/paths.js" />
         <option value="$PROJECT_DIR$/src/components/studyCategory/studyCategory.scss" />
-        <option value="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" />
         <option value="$PROJECT_DIR$/src/components/studyCategory/studyCategory.js" />
-        <option value="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" />
         <option value="$PROJECT_DIR$/src/shared/App.js" />
         <option value="$PROJECT_DIR$/src/components/loginForm/loginForm.js" />
+        <option value="$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js" />
+        <option value="$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss" />
         <option value="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js" />
         <option value="$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss" />
       </list>
@@ -416,6 +423,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="StudyRoom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toast-pc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toast-pc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="StudyRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="toast-pc" type="b2602c69:ProjectViewProjectNode" />
@@ -534,7 +549,7 @@
       <workItem from="1537243729051" duration="4346000" />
       <workItem from="1537250817706" duration="8691000" />
       <workItem from="1537419483400" duration="15907000" />
-      <workItem from="1537520031115" duration="9298000" />
+      <workItem from="1537520031115" duration="16345000" />
     </task>
     <task id="LOCAL-00001" summary="updated readme">
       <created>1533539631604</created>
@@ -676,17 +691,24 @@
       <option name="project" value="LOCAL" />
       <updated>1537525220474</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="[WIP] fix studyroom">
+      <created>1537538650610</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1537538650610</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91535000" />
+    <option name="totallyTimeSpent" value="98582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.04375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08055556" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -755,7 +777,8 @@
     <MESSAGE value="removed bootstrap, fa" />
     <MESSAGE value="edit css" />
     <MESSAGE value="fixed route" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed route" />
+    <MESSAGE value="[WIP] fix studyroom" />
+    <option name="LAST_COMMIT_MESSAGE" value="[WIP] fix studyroom" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1053,13 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1060">
-          <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/studyCategory/studyCategory.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
@@ -1067,35 +1083,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/StudyRoomList.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StudyRoomList/studyRoomList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        <state relative-caret-position="327">
+          <caret line="88" column="105" lean-forward="true" selection-start-line="88" selection-start-column="105" selection-end-line="88" selection-end-column="105" />
           <folding>
-            <element signature="n#!!block;n#StudyRooms#0" />
+            <element signature="e#3816#4313#0" />
+            <element signature="e#5178#10072#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="124" column="22" lean-forward="true" selection-start-line="124" selection-start-column="22" selection-end-line="124" selection-end-column="22" />
+        <state relative-caret-position="1412">
+          <caret line="195" column="26" lean-forward="true" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
           <folding>
-            <element signature="e#2613#3649#0" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/StudyRoom/StudyRoom.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="263">
+          <caret line="338" lean-forward="true" selection-start-line="338" selection-end-line="338" />
           <folding>
             <element signature="e#93#280#0" />
             <element signature="e#292#479#0" />
-            <element signature="e#492#1520#0" />
-            <element signature="e#1688#1702#0" />
           </folding>
         </state>
       </provider>

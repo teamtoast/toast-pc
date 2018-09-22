@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import "./StudyRoom.scss"
 
 const studyRoomUserList = [{
@@ -38,21 +38,44 @@ const UserList = () => {
                     </div>
                     <p className="userNickname">{User.userNickname}</p>
                     <p className="userID">{User.userID}</p>
-                    <button className="btn-add-friend">친구추가</button>
+                    {User.status === "ready" ?
+                        <button className="btn-add-friend">친구추가</button>
+                        : <button className="btn-add-friend btn-add-friend-grey">친구추가</button>
+                    }
+
 
                 </div>
                 <div className="social-link">
-
+                    <ul>
+                        <li>
+                            <a href="">
+                                <img src={require('./img/ic-social-facebook@3x.png')}
+                                     className="ic-social" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src={require('./img/ic-social-twitter@3x.png')}
+                                     className="ic-social" alt=""/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src={require('./img/ic-social-web@3x.png')}
+                                     className="ic-social" alt=""/>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </li>
     );
 
-    for (var i = 0; i < 4 - studyRoomUserList.length; i++){
+    for (var i = 0; i < 4 - studyRoomUserList.length; i++) {
         UserList.push(
-            <li key={i}>
+            <li key={4 - i}>
                 <div className="user-card user-card-empty">
-                    <img src={require('./img/profile-pic.png')}
+                    <img src={require('./img/ic-toast-gray@3x.png')}
                          className="profile-picture-content" alt=""/>
                     <p>친구를 기다려요!</p>
                 </div>
@@ -60,81 +83,123 @@ const UserList = () => {
         )
 
     }
+
+
     return (
         <ul className="user-list">{UserList}</ul>
     )
-    ;
+        ;
 };
 
 
-const StudyRoom = ({match}) => {
+class StudyRoom extends React.Component {
 
     //API: [GET] 스터디룸 정보
-    // {match.params.studyroomID}
+    // {props.match.params.studyroomID}
 
-    const studyRoomInfo = {
-        studyroomID: 1,
-        studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 4,
-        category: '자유주제',
-        state: "pending"
-    }
+    state= {
+        CurrUser: {
+
+        },
+        CurrStatus: 'wait'
+    };
 
 
-    return (
+    render() {
+        const studyRoomInfo = {
+            studyroomID: 1,
+            studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
+            studyroomDate: "",
+            studyroomMinLevel: 1,
+            studyroomTime: 1,
+            studyroomMaxUser: 4,
+            category: '자유주제',
+            state: "pending"
+        };
 
-        <div className="Container StudyRoom">
-            <div className="main-box">
-                <div className="category">
-                    {studyRoomInfo.category}
+        return (
+
+            <div className="Container StudyRoom">
+                <div className="main-box">
+                    <div className="category">
+                        {studyRoomInfo.category}
+                    </div>
+                    <div className="title">
+                        {studyRoomInfo.studyroomTitle}
+                    </div>
+
+                    <div className="detail">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>참여인원</th>
+                                <th className="MinLevel">진행시간</th>
+                                <th>입장레벨</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td className="MaxUser">
+                                    <strong>{studyRoomUserList.length}</strong> / {studyRoomInfo.studyroomMaxUser}
+                                </td>
+                                <td className="MinLevel">
+                                    <strong>{studyRoomInfo.studyroomTime}</strong> m
+                                </td>
+                                <td className="Time">
+                                    Lv.<strong>{studyRoomInfo.studyroomMinLevel}</strong>
+                                    <img src={require('../StudyRoomList/img/ic-arrow@3x.png')} className="up-arrow"
+                                         alt=""/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="user-box">
+                        <UserList/>
+                    </div>
+
+                    <div className="chat-box">
+                        <div className="text-area">
+
+                        </div>
+                        <div className="input-area">
+                            <div className="border-line"></div>
+                            <input className="chat-input"
+                                   placeholder="메세지를 입력하세요"
+                                   type="text"
+                            />
+                            <button>
+                                <img src={require('./img/button-send@3x.png')}
+                                     className="Button_Send" alt=""/>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="title">
-                    {studyRoomInfo.studyroomTitle}
+
+                <div className="side-box">
+                    <div className="curr-status"></div>
+                    <div className="relative-word">
+                        <p className="title">{studyRoomInfo.category} 추천 단어 </p>
+
+                    </div>
+                    <div className="curr-status-btn">
+                        <button
+                            onClick={() => {
+                                if (this.state.CurrStatus === "wait") this.setState({CurrStatus: 'ready' });
+                                else if (this.state.CurrStatus === "ready") this.setState({CurrStatus: 'wait' });
+
+                            }}
+                            className={this.state.CurrStatus === "wait" ? "Button_Ready" : "Button_Ready active"}>
+                            Ready
+                        </button>
+                    </div>
                 </div>
 
-                <div className="detail">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>참여인원</th>
-                            <th className="MinLevel">진행시간</th>
-                            <th>입장레벨</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td className="MaxUser">
-                                <strong>{studyRoomUserList.length}</strong> / {studyRoomInfo.studyroomMaxUser}
-                            </td>
-                            <td className="MinLevel">
-                                <strong>{studyRoomInfo.studyroomTime}</strong> m
-                            </td>
-                            <td className="Time">
-                                Lv.<strong>{studyRoomInfo.studyroomMinLevel}</strong>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
 
-                <div className="user-box">
-                    <UserList/>
-                </div>
-
-                <div className="chat-box">
-                </div>
             </div>
-
-            <div className="side-box">
-            </div>
-
-
-        </div>
-    );
-
+        );
+    };
 };
 
 export default StudyRoom;
