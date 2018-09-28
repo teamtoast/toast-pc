@@ -90,7 +90,7 @@ const UserList = () => {
 };
 
 
-class StudyRoom extends React.Component {
+class StudyRoom extends Component {
 
     //API: [GET] 스터디룸 정보
     // {props.match.params.studyroomID}

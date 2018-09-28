@@ -1,0 +1,163 @@
+.StudyRoomStart {
+  width: 100%;
+  display: inline-block;
+
+  .toastbot {
+    width: 320px;
+    display: inline-block;
+    float: left;
+    background-color: #ffffff;
+
+    .title {
+      border-bottom: solid 1px #e0e0e0;
+      padding: 37px 0px 24px 0px;
+      text-align: center;
+
+      .ChatBot_Logo {
+        width: 191px;
+        height: 69px;
+        object-fit: contain;
+      }
+    }
+
+  }
+  .main-box {
+    width: calc(100% - 320px);
+    display: inline-block;
+    float: right;
+    background-color: #eeeeee;
+    .main-box-content {
+      padding: 45px 30px 0px 52px;
+      .studyroom-info {
+        margin-bottom: 29px;
+        .category {
+          font-size: 18px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: -0.2px;
+          color: #757575;
+        }
+        .title {
+          font-size: 40px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: -0.6px;
+          color: #212121;
+          display: inline-block;
+        }
+
+        .curr-status {
+          display: inline-block;
+          float: right;
+          .Rectangle-8 {
+            display: inline-block;
+            width: 124px;
+            height: 44px;
+            border-radius: 0px 8px 8px 0px;
+
+            border: solid 1px #ff6032;
+            background-color: #ff6032;
+
+            font-size: 22px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.3px;
+            text-align: center;
+            color: white;
+
+            > p {
+              margin: 10px 0px;
+            }
+          }
+          .Rectangle-8-active {
+            color: #ff6032;
+            background-color: white;
+            border-radius: 8px 0px 0px 8px;
+          }
+        }
+      }
+      .speech-rate {
+        margin-bottom: 40px;
+        >p {
+          font-size: 14px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: -0.2px;
+          color: #212121;
+          margin: 0px;
+
+        }
+      }
+      .user-list {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+
+        >li {
+          display: inline-block;
+          float: left;
+          margin: 0px 16px 16px 0px;
+        }
+        .user-card {
+          width: 450px;
+          height: 260px;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px 0 #aeaeae;
+
+          .user-nickname {
+            opacity: 0.8;
+            border-radius: 8px 8px 0px 0px;
+            background-color: #ff6032;
+            height: 40px;
+            >p {
+              font-size: 14px;
+              font-weight: bold;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: -0.2px;
+              text-align: center;
+              color: #ffffff;
+              margin: 0px;
+              padding: 10px 0px 0px 0px;
+            }
+
+
+          }
+        }
+        .user-card-empty {
+          background-color: #d8d8d8;
+          text-align: center;
+          >img {
+            width: 69px;
+            height: 79px;
+            object-fit: contain;
+            display: inline-block;
+            margin-top: 72px;
+            margin-bottom: 11px;
+          }
+          >p {
+            margin: 0px;
+            font-size: 18px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.3px;
+            text-align: center;
+            color: #afafaf;
+          }
+        }
+      }
+    }
+
+  }
+}
