@@ -71,7 +71,7 @@ class StudyRoomStart extends Component {
             studyroomTime: 1,
             studyroomMaxUser: 4,
             category: '자유주제',
-            state: "start"
+            studyroomState: "start"
         };
 
         return (

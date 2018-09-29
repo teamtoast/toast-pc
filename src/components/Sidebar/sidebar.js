@@ -10,7 +10,8 @@ class Sidebar extends Component {
         return (
             <div className="Sidebar">
                 <div className={"bar" + ((currentPath === '/')? " bar-home":
-                    ((currentPath.includes('/study'))? " bar-study" : " bar-leveltest"))}/>
+                    ((currentPath.includes('/study'))? " bar-study" :
+                        ((currentPath.includes('/level-test'))? " bar-leveltest" : " bar-none")))}/>
 
                 <ul className="menu-list">
                     <li>

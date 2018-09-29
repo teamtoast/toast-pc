@@ -22,7 +22,7 @@ function StudyRooms(props) {
         studyroomMinLevel: 1,
         studyroomTime: 1,
         studyroomMaxUser: 3,
-        state: "ongoing"
+        state: "start"
     }, {
         studyroomID: 3,
         studyroomTitle: "스터디룸 1",
@@ -46,7 +46,7 @@ function StudyRooms(props) {
         studyroomMinLevel: 1,
         studyroomTime: 1,
         studyroomMaxUser: 1,
-        state: "ongoing"
+        state: "start"
     }, {
         studyroomID: 6,
         studyroomTitle: "스터디룸 1",
@@ -61,7 +61,7 @@ function StudyRooms(props) {
 
 
         <li key={i} className="studyRoom">
-            <div className={"studyRoom-header" + (studyRoom.state === "ongoing" ? " ongoing" : "")}>
+            <div className={"studyRoom-header" + (studyRoom.state === "start" ? " start" : "")}>
                 <p>{studyRoom.state === "pending" ? '대기중' : '진행중'}</p>
             </div>
 

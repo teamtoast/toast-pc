@@ -6,13 +6,13 @@ const studyRoomUserList = [{
     userNickname: "user1",
     userProfilePath: " ",
     userLevel: 15,
-    status: 'wait'
+    userState: 'wait'
 }, {
     userID: "asdf@naver.com",
     userNickname: "user2",
     userProfilePath: " ",
     userLevel: 12,
-    status: 'ready'
+    userState: 'ready'
 }];
 
 const UserList = () => {
@@ -22,8 +22,8 @@ const UserList = () => {
         <li key={i}>
             <div className="user-card">
                 <div className="profile">
-                    <div className={"user-status" + (User.status === "ready" ? " ready" : "")}>
-                        <p>{User.status === "ready" ? 'ready' : 'wait'}</p>
+                    <div className={"user-status" + (User.userState === "ready" ? " ready" : "")}>
+                        <p>{User.userState === "ready" ? 'ready' : 'wait'}</p>
                     </div>
                     <div className="profile-picture">
                         <img src={require('./img/profile-pic.png')}
@@ -34,7 +34,7 @@ const UserList = () => {
                     </div>
                     <p className="userNickname">{User.userNickname}</p>
                     <p className="userID">{User.userID}</p>
-                    {User.status === "ready" ?
+                    {User.userState === "ready" ?
                         <button className="btn-add-friend">친구추가</button>
                         : <button className="btn-add-friend btn-add-friend-grey">친구추가</button>
                     }
@@ -103,7 +103,7 @@ class StudyRoom extends Component {
             userLevel: 15,
             status: 'wait'
         },
-        CurrStatus: 'wait'
+        studyroomState: 'wait'
     };
 
 
@@ -116,7 +116,7 @@ class StudyRoom extends Component {
             studyroomTime: 1,
             studyroomMaxUser: 4,
             category: '자유주제',
-            state: "pending"
+            studyroomState: "pending"
         };
 
         return (
@@ -180,7 +180,7 @@ class StudyRoom extends Component {
                 </div>
 
                 <div className="side-box">
-                    <div className="curr-status">
+                    <div className="studyroom-state">
                         <div className="Rectangle-8">
                             <p>진행</p>
                         </div>
@@ -192,18 +192,18 @@ class StudyRoom extends Component {
                         <p className="title">{studyRoomInfo.category} 추천 단어 </p>
 
                     </div>
-                    <div className="curr-status-btn">
+                    <div className="studyroom-state-btn">
                         <button
                             onClick={() => {
-                                if (this.state.CurrStatus === "wait") this.setState({CurrStatus: 'ready'});
-                                else if (this.state.CurrStatus === "ready") this.setState({CurrStatus: 'wait'});
+                                if (this.state.studyroomState === "wait") this.setState({studyroomState: 'ready'});
+                                else if (this.state.studyroomState === "ready") this.setState({studyroomState: 'wait'});
 
                             }}
-                            className={this.state.CurrStatus === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
+                            className={this.state.studyroomState === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
                             Ready
                         </button>
                     </div>
-                    <div className="start-btn">
+                    <div className="studyroom-start-btn">
                         <button className="Button_Ready">
                             Start
                         </button>
