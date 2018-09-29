@@ -72,7 +72,7 @@
             color: white;
 
             > p {
-              margin: 10px 0px;
+              margin: 6px 0px;
             }
           }
           .Rectangle-8-active {
@@ -111,7 +111,7 @@
           height: 260px;
           border-radius: 8px;
           box-shadow: 0 2px 6px 0 #aeaeae;
-
+          position: relative;
           .user-nickname {
             opacity: 0.8;
             border-radius: 8px 8px 0px 0px;
@@ -129,9 +129,18 @@
               margin: 0px;
               padding: 10px 0px 0px 0px;
             }
-
-
           }
+          .button-list {
+            position: absolute;
+            bottom: 192px;
+            right: 12px;
+            .Button_Picture, .Button_Out{
+              width: 44px;
+              height: 44px;
+              object-fit: contain;
+            }
+          }
+
         }
         .user-card-empty {
           background-color: #d8d8d8;

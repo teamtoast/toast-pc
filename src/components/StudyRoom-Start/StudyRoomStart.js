@@ -26,6 +26,18 @@ const UserList = () => {
                 <div className="user-nickname">
                     <p>{User.userNickname}</p>
                 </div>
+                {/*본인인 경우만 button-list 보이도록*/}
+                <div className="button-list">
+                    <button>
+                        <img src={require('./img/button-picture@3x.png')}
+                             className="Button_Picture" alt=""/>
+                    </button>
+                    <button>
+                        <img src={require('./img/button-out@3x.png')}
+                             className="Button_Out" alt=""/>
+                    </button>
+                </div>
+
             </div>
         </li>
     );

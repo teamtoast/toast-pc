@@ -92,15 +92,16 @@ function StudyRooms(props) {
                         </tbody>
                     </table>
                 </div>
-                <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
-                        <button>
-                            {(studyRoom.state === "pending" ?
+                {(studyRoom.state === "pending" ?
+                        <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
+                            <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
-                                : <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban" alt=""/>)}
-                        </button>
-
-                </NavLink>
-
+                            </button>
+                        </NavLink>
+                        :
+                        <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban"
+                             alt=""/>
+                )}
             </div>
 
         </li>
@@ -111,7 +112,7 @@ function StudyRooms(props) {
 }
 
 
-const CreateModal = ({modalSubmit, modalShow,children}) => {
+const CreateModal = ({modalSubmit, modalShow, children}) => {
 
     const studyRoomInfo = {
         studyroomTitle: "",
@@ -146,7 +147,6 @@ class StudyRoomList extends Component {
     };
 
 
-
     showModal = () => {
         this.setState({modalShow: true});
     };
@@ -164,10 +164,10 @@ class StudyRoomList extends Component {
         const categoryID = this.props.match.params.categoryID;
         //API: [GET] 카테고리 리스트
         const category = {
-                categoryID: 1,
-                categoryLevel1: '자유주제',
-                categoryLevel2: '자유주제'
-            }
+            categoryID: 1,
+            categoryLevel1: '자유주제',
+            categoryLevel2: '자유주제'
+        }
 
 
         return (
