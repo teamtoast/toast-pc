@@ -36,6 +36,7 @@ class LoginForm extends React.Component {
 
                     <div className="Rectangle-18">
                         {/*facebook login*/}
+
                         <button onClick={this.facebookSubmit}>
                             <img src={require('./img/button-facebook-login@3x.png')}
                                  className="Button_FacebookLogin" alt=""/>

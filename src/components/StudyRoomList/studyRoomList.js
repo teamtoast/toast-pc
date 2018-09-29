@@ -2,66 +2,22 @@ import React, {Component} from 'react';
 import "./StudyRoomList.scss"
 import {NavLink} from "react-router-dom";
 import StudyCategory from "../studyCategory/studyCategory";
+import Api from "../../api";
 
 
 function StudyRooms(props) {
 
+    const studyRooms = [];
     //API: [GET] 스터디룸 리스트 가져오기
-    const studyRooms = [{
-        studyroomID: 1,
-        studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 1,
-        state: "pending"
-    }, {
-        studyroomID: 2,
-        studyroomTitle: "2018 대기업 준비방입니다 모두모두 어서 들어오세요",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 3,
-        state: "start"
-    }, {
-        studyroomID: 3,
-        studyroomTitle: "스터디룸 1",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 2,
-        state: "pending"
-    }, {
-        studyroomID: 4,
-        studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 4,
-        state: "pending"
-    }, {
-        studyroomID: 5,
-        studyroomTitle: "2018 대기업 준비방입니다",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 1,
-        state: "start"
-    }, {
-        studyroomID: 6,
-        studyroomTitle: "스터디룸 1",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 1,
-        studyroomMaxUser: 2,
-        state: "pending"
-    }];
+    Api.getParam('/studyrooms', props.categoryID).then(function (res) {
+        res.data.forEach(element => {
+            studyRooms.push(element);
+        });
+    });
 
     let listItems = studyRooms.map((studyRoom, i) =>
-
-
         <li key={i} className="studyRoom">
-            <div className={"studyRoom-header" + (studyRoom.state === "start" ? " start" : "")}>
+            <div className={"studyRoom-header" + (studyRoom.studyroomState === "start" ? " start" : "")}>
                 <p>{studyRoom.state === "pending" ? '대기중' : '진행중'}</p>
             </div>
 
@@ -92,7 +48,7 @@ function StudyRooms(props) {
                         </tbody>
                     </table>
                 </div>
-                {(studyRoom.state === "pending" ?
+                {(studyRoom.studyroomState === "pending" ?
                         <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
@@ -114,14 +70,6 @@ function StudyRooms(props) {
 
 const CreateModal = ({modalSubmit, modalShow, children}) => {
 
-    const studyRoomInfo = {
-        studyroomTitle: "",
-        studyroomDate: "",
-        studyroomMinLevel: 1,
-        studyroomTime: 15 | 30 | 45,
-        studyroomMaxUser: 2 | 3 | 4,
-    }
-
     return (
         <div className={modalShow ? "modal display-block" : "modal display-none"}>
             <section className="modal-main">
@@ -138,14 +86,12 @@ class StudyRoomList extends Component {
     state = {
         studyRoomInfo: {
             studyroomTitle: "",
-            studyroomDate: "",
             studyroomMinLevel: 1,
             studyroomTime: 15 | 30 | 45,
             studyroomMaxUser: 2 | 3 | 4,
         },
         modalShow: false
     };
-
 
     showModal = () => {
         this.setState({modalShow: true});
@@ -161,14 +107,14 @@ class StudyRoomList extends Component {
 
 
     render() {
-        const categoryID = this.props.match.params.categoryID;
         //API: [GET] 카테고리 리스트
         const category = {
             categoryID: 1,
             categoryLevel1: '자유주제',
             categoryLevel2: '자유주제'
-        }
+        };
 
+        const categoryID = this.props.match.params.categoryID;
 
         return (
             <div className="Container StudyRoomList">

@@ -7,9 +7,9 @@ function GetStudyCategories(props) {
     let StudyCategoryList = props.categories.map((StudyCategory, i) =>
 
         <li key={i}>
-            <NavLink exact to={{pathname: '/study/' + StudyCategory.id}}>
+            <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryID}}>
                 <div className="category-card">
-                    <div className="category-title">{StudyCategory.name}</div>
+                    <div className="category-title">{StudyCategory.categoryName}</div>
                 </div>
             </NavLink>
         </li>
