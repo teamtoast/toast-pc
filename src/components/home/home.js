@@ -1,0 +1,99 @@
+import React, {Component} from 'react';
+import "./home.scss"
+
+
+function UserRank(props) {
+    let userList = props.userRankList;
+    let userRankList = userList.map((user, i) =>
+        <li className="box-sm-user">
+            <p className="user-index">{i+1}</p>
+            <img src={require('./img/ic-home-character@3x.png')}
+                 className="user-profile-image" alt=""/>
+            <p className="user-nickname">
+                {user.userNickname}
+            </p>
+            <p className="user-level">
+                Lv.{user.userLevel}
+            </p>
+        </li>
+    );
+
+    return <ul>{userRankList}</ul>
+}
+
+class Home extends Component {
+    render() {
+        const toadyEnglish = {
+            koreanSentence: "몇시에 돌아와요?",
+            englishSentence: "When do we come back?",
+            pronunciation: "웬 두 위 컴 백?"
+        }
+
+        const todayStudyroom = {}
+
+        const userRankList = [
+            {
+                profileImage: "",
+                userNickname: "Anna",
+                userLevel: 1
+            },
+            {
+                profileImage: "",
+                userNickname: "Anna",
+                userLevel: 1
+            },
+            {
+                profileImage: "",
+                userNickname: "Anna",
+                userLevel: 1
+            },
+        ]
+
+
+        return (
+            <div className="Container home">
+                <div className="today-eng">
+                    <p className="title">오늘의 문장</p>
+                    <div className="box">
+                        <div className="korean-sentence">
+                            <p>{toadyEnglish.koreanSentence}</p>
+                        </div>
+                        <div className="Line"></div>
+                        <div className="english-sentence">
+                            <p className="main">{toadyEnglish.englishSentence}</p>
+                            <p className="sub">{toadyEnglish.pronunciation}</p>
+                        </div>
+                        <img src={require('./img/ic-home-character@3x.png')}
+                             className="ic_Home_Character" alt=""/>
+                    </div>
+                </div>
+                <div className="left-section">
+                    <div className="today-studyroom">
+                        <p className="title">실시간 참여 가능 채팅방</p>
+
+                        <button className="btn-random">
+                            <img src={require('./img/button-random-in@3x.png')}
+                                 className="Button_Random_In" alt=""/>
+                        </button>
+                    </div>
+                    <div className="today-category">
+                        <p className="title">오늘의 인기 카테고리</p>
+
+                    </div>
+                </div>
+                <div className="right-section">
+                    <div className="user-rank">
+                        <p className="title">유저 랭킹</p>
+                        <div className="box">
+                            <UserRank userRankList={userRankList}/>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        );
+    }
+}
+
+export default Home;

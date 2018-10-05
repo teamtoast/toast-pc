@@ -3,7 +3,7 @@ import './App.scss';
 import '../components/Sidebar/sidebar.scss';
 import Sidebar from '../components/Sidebar/sidebar';
 import Header from "../components/header/header";
-import Home from "../components/home";
+import Home from "../components/home/home";
 import NoMatch from "../components/nomatch";
 import {Route, Switch} from "react-router-dom";
 import StudyCategory from "../components/studyCategory/studyCategory";

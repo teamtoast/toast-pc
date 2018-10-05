@@ -115,7 +115,7 @@ class StudyRoom extends Component {
             studyroomMinLevel: 1,
             studyroomTime: 1,
             studyroomMaxUser: 4,
-            category: '자유주제',
+            categoryID: 1,
             studyroomState: "pending"
         };
 

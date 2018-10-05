@@ -7,13 +7,8 @@ import Api from "../../api";
 
 function StudyRooms(props) {
 
-    const studyRooms = [];
-    //API: [GET] 스터디룸 리스트 가져오기
-    Api.getParam('/studyrooms', props.categoryID).then(function (res) {
-        res.data.forEach(element => {
-            studyRooms.push(element);
-        });
-    });
+    let studyRooms = props.studyRooms;
+    let categoryID = props.categoryID;
 
     let listItems = studyRooms.map((studyRoom, i) =>
         <li key={i} className="studyRoom">
@@ -49,7 +44,7 @@ function StudyRooms(props) {
                     </table>
                 </div>
                 {(studyRoom.studyroomState === "pending" ?
-                        <NavLink exact to={{pathname: '/study/' + props.categoryID + "/" + studyRoom.studyroomID}}>
+                        <NavLink exact to={{pathname: '/study/' + categoryID + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
                             </button>
@@ -62,6 +57,8 @@ function StudyRooms(props) {
 
         </li>
     );
+
+
     return (
         <ul className="studyRoom-list">{listItems}</ul>
     );
@@ -83,15 +80,37 @@ const CreateModal = ({modalSubmit, modalShow, children}) => {
 }
 
 class StudyRoomList extends Component {
-    state = {
-        studyRoomInfo: {
-            studyroomTitle: "",
-            studyroomMinLevel: 1,
-            studyroomTime: 15 | 30 | 45,
-            studyroomMaxUser: 2 | 3 | 4,
-        },
-        modalShow: false
-    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            studyroomList: [],
+            studyRoomInfo: {
+                studyroomTitle: "",
+                studyroomMinLevel: 1,
+                studyroomTime: 15 | 30 | 45,
+                studyroomMaxUser: 2 | 3 | 4,
+            },
+            modalShow: false
+        };
+
+        const categoryID = this.props.match.params.categoryID;
+
+        var that = this;
+        //API: [GET] 스터디룸 리스트 가져오기
+        Api.getParam('/studyrooms', categoryID).then(function (res) {
+            let studyRooms = [];
+            res.data.forEach(element => {
+                studyRooms.push(element);
+            });
+            that.setState({
+                studyroomList: studyRooms
+            })
+        });
+
+    }
+
+
 
     showModal = () => {
         this.setState({modalShow: true});
@@ -107,6 +126,7 @@ class StudyRoomList extends Component {
 
 
     render() {
+
         //API: [GET] 카테고리 리스트
         const category = {
             categoryID: 1,
@@ -114,7 +134,6 @@ class StudyRoomList extends Component {
             categoryLevel2: '자유주제'
         };
 
-        const categoryID = this.props.match.params.categoryID;
 
         return (
             <div className="Container StudyRoomList">
@@ -216,7 +235,7 @@ class StudyRoomList extends Component {
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms categoryID={categoryID}/>
+                <StudyRooms categoryID = {category.categoryID} studyRooms={this.state.studyroomList}/>
 
                 <button onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}

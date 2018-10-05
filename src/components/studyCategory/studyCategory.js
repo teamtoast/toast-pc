@@ -38,7 +38,7 @@ class StudyCategory extends Component {
             });
             that.setState({
                 categories: categories
-            })
+            });
         });
     }
 
