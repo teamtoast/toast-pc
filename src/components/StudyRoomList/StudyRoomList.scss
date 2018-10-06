@@ -27,138 +27,6 @@
 
     margin-top: 40px;
   }
-  .studyRoom-list {
-    list-style: none;
-    display: inline-block;
-    padding: 0px;
-  }
-  .studyRoom {
-    float: left;
-    width: 280px;
-    height: 325px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    margin: 0px 16px 16px 0px;
-    text-align: center;
-
-  }
-
-  .studyRoom-header {
-    width: 280px;
-    height: 48px;
-    border-radius: 8px 8px 0px 0px;
-    background-color: #ff6032;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
-    display: inline-block;
-
-    > p {
-      font-size: 16px;
-      font-weight: 500;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #ffffff;
-      margin: 12px;
-
-    }
-  }
-
-  .studyRoom-header.start {
-    background-color: #bdbdbd;
-  }
-
-  .studyRoom-content {
-    padding: 24px;
-
-    .title {
-      width: 232px;
-      height: 72px;
-      font-size: 24px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      letter-spacing: -0.3px;
-      text-align: center;
-      color: #212121;
-      margin-top: 16px;
-
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-
-      line-height: 36px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-wrap: break-word;
-    }
-
-    .detail {
-      table {
-        display: inline-block;
-        margin: 20px 0px 32px;
-        tr {
-          th {
-            width: 71px;
-            text-align: inherit;
-            font-size: 10px;
-            font-weight: 500;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: -0.2px;
-            color: #aeaeae;
-            padding: 0px 16px 2px;
-          }
-          td {
-            font-size: 16px;
-            font-weight: normal;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: 1.81;
-            letter-spacing: -0.5px;
-            text-align: center;
-            color: rgba(0, 0, 0, 0.5);
-
-            > strong {
-              font-size: 20px;
-              font-weight: 500;
-              line-height: 1.45;
-              color: #ff6032;
-            }
-          }
-          .Time {
-            .up-arrow {
-              width: 11.2px;
-              height: 15.4px;
-              border-radius: 0.5px;
-              background-color: #ff6032;
-              background-color: var(--dusty-orange);
-              margin-left: 3px;
-            }
-          }
-        }
-        .MinLevel {
-          border-left: solid 1px #e0e0e0;
-          border-right: solid 1px #e0e0e0;
-        }
-      }
-
-    }
-
-    > button {
-      background: none;
-      border: none;
-    }
-    .Button_In {
-      width: 232px;
-      height: 40px;
-      object-fit: contain;
-    }
-  }
 
   .Button_FAB_Plus {
     width: 75px;
@@ -326,4 +194,141 @@
   .display-none {
     display: none;
   }
+}
+
+.studyRoom-list {
+  list-style: none;
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+
+  .studyRoom {
+    float: left;
+    width: 280px;
+    height: 325px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin: 0px 16px 16px 0px;
+    text-align: center;
+
+    .studyRoom-header {
+      width: 280px;
+      height: 48px;
+      border-radius: 8px 8px 0px 0px;
+      background-color: #ff6032;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+      display: inline-block;
+
+      > p {
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #ffffff;
+        margin: 12px;
+
+      }
+    }
+
+    .studyRoom-header.start {
+      background-color: #bdbdbd;
+    }
+
+    .studyRoom-content {
+      padding: 24px;
+
+      .title {
+        width: 232px;
+        height: 72px;
+        font-size: 24px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: -0.3px;
+        text-align: center;
+        color: #212121;
+        margin-top: 16px;
+        margin-bottom: 0px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        line-height: 36px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+
+      .detail {
+        table {
+          display: inline-block;
+          margin: 20px 0px;
+          tr {
+            th {
+              width: 71px;
+              text-align: inherit;
+              font-size: 10px;
+              font-weight: 500;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: -0.2px;
+              color: #aeaeae;
+              padding: 0px 16px 2px;
+            }
+            td {
+              font-size: 16px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: 1.81;
+              letter-spacing: -0.5px;
+              text-align: center;
+              color: rgba(0, 0, 0, 0.5);
+
+              > strong {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 1.45;
+                color: #ff6032;
+              }
+            }
+            .Time {
+              .up-arrow {
+                width: 11.2px;
+                height: 15.4px;
+                border-radius: 0.5px;
+                background-color: #ff6032;
+                background-color: var(--dusty-orange);
+                margin-left: 3px;
+              }
+            }
+          }
+
+          .MinLevel {
+            border-left: solid 1px #e0e0e0;
+            border-right: solid 1px #e0e0e0;
+          }
+
+        }
+
+      }
+      .Button_In {
+        width: 232px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+  }
+  > button {
+    background: none;
+    border: none;
+  }
+
 }

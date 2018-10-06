@@ -22,7 +22,6 @@
     margin-bottom: 32px;
     .box {
       position: relative;
-      width: 1124px;
       height: 96px;
       border-radius: 8px;
       background-image: linear-gradient(277deg, #ff7a2f, #ff6032);
@@ -92,29 +91,34 @@
   }
 
   .left-section {
-    width: 75%;
+    width: 78%;
     display: inline-block;
     float: left;
     .today-studyroom {
 
       .btn-random {
         display: block;
-        float: right;
-        >img {
-          width: 180px;
+        text-align: right;
+        img {
           height: 48px;
+          padding-right: 14px;
         }
 
       }
     }
     .today-category {
-
+      .category-card {
+        height: 120px !important;
+        .category-title {
+          top: 37px !important;
+        }
+      }
 
     }
   }
   .right-section {
     padding-left: 24px;
-    width: calc(25% - 24px);
+    width: calc(22% - 24px);
     display: inline-block;
     float: left;
 

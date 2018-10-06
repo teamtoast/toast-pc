@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import "./home.scss"
-
+import {StudyRooms} from "../StudyRoomList/studyRoomList";
+import "../StudyRoomList/StudyRoomList.scss"
+import {CategoryList} from "../studyCategory/studyCategory";
 
 function UserRank(props) {
     let userList = props.userRankList;
     let userRankList = userList.map((user, i) =>
-        <li className="box-sm-user">
+        <li key={i} className="box-sm-user">
             <p className="user-index">{i+1}</p>
             <img src={require('./img/ic-home-character@3x.png')}
                  className="user-profile-image" alt=""/>
@@ -29,7 +31,38 @@ class Home extends Component {
             pronunciation: "웬 두 위 컴 백?"
         }
 
-        const todayStudyroom = {}
+        const todayStudyroom = [
+            {
+                studyroomID: 1,
+                studyroomTitle: "취준생 모임",
+                studyroomDate: null,
+                categoryID: 1,
+                studyroomMinLevel: 1,
+                studyroomTime: 30,
+                studyroomMaxUser: 3,
+                studyroomState: "pending"
+            },
+            {
+                studyroomID: 2,
+                studyroomTitle: "함께 공부해요!",
+                studyroomDate: null,
+                studyroomMinLevel: 3,
+                categoryID: 1,
+                studyroomTime: 45,
+                studyroomMaxUser: 4,
+                studyroomState: "pending"
+            },
+            {
+                studyroomID: 3,
+                studyroomTitle: "토익스피킹 시험대비",
+                studyroomDate: null,
+                studyroomMinLevel: 10,
+                categoryID: 1,
+                studyroomTime: 30,
+                studyroomMaxUser: 2,
+                studyroomState: "start"
+            }
+        ]
 
         const userRankList = [
             {
@@ -48,6 +81,24 @@ class Home extends Component {
                 userLevel: 1
             },
         ]
+
+        const todayCategories = [
+            {
+                "categoryID": 1,
+                "categoryParent": 1,
+                "categoryName": "자유주제"
+            },
+            {
+                "categoryID": 6,
+                "categoryParent": 2,
+                "categoryName": "여행"
+            },
+            {
+                "categoryID": 7,
+                "categoryParent": 5,
+                "categoryName": "연애"
+            }
+    ]
 
 
         return (
@@ -70,15 +121,18 @@ class Home extends Component {
                 <div className="left-section">
                     <div className="today-studyroom">
                         <p className="title">실시간 참여 가능 채팅방</p>
+                        <StudyRooms studyRooms={todayStudyroom}/>
 
-                        <button className="btn-random">
-                            <img src={require('./img/button-random-in@3x.png')}
-                                 className="Button_Random_In" alt=""/>
-                        </button>
+                        <div className="btn-random">
+                            <button>
+                                <img src={require('./img/button-random-in@3x.png')}
+                                     className="Button_Random_In" alt=""/>
+                            </button>
+                        </div>
                     </div>
                     <div className="today-category">
                         <p className="title">오늘의 인기 카테고리</p>
-
+                        <CategoryList categories={todayCategories}/>
                     </div>
                 </div>
                 <div className="right-section">

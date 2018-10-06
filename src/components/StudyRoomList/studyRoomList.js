@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import "./StudyRoomList.scss"
 import {NavLink} from "react-router-dom";
-import StudyCategory from "../studyCategory/studyCategory";
 import Api from "../../api";
 
 
-function StudyRooms(props) {
+export function StudyRooms(props) {
 
     let studyRooms = props.studyRooms;
-    let categoryID = props.categoryID;
 
     let listItems = studyRooms.map((studyRoom, i) =>
         <li key={i} className="studyRoom">
@@ -44,7 +42,7 @@ function StudyRooms(props) {
                     </table>
                 </div>
                 {(studyRoom.studyroomState === "pending" ?
-                        <NavLink exact to={{pathname: '/study/' + categoryID + "/" + studyRoom.studyroomID}}>
+                        <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
                             </button>
@@ -235,7 +233,7 @@ class StudyRoomList extends Component {
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms categoryID = {category.categoryID} studyRooms={this.state.studyroomList}/>
+                <StudyRooms studyRooms={this.state.studyroomList}/>
 
                 <button onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import "./studyCategory.scss"
 import {NavLink} from "react-router-dom";
 import Api from '../../api'
-
-function GetStudyCategories(props) {
+import "../studyCategory/studyCategory.scss"
+export function CategoryList(props) {
     let StudyCategoryList = props.categories.map((StudyCategory, i) =>
 
         <li key={i}>
@@ -49,7 +49,7 @@ class StudyCategory extends Component {
                 <div className="title">어떤 주제로 스터디해볼까요?</div>
                 <div className="list-title">스터디 카테고리 리스트</div>
 
-                <GetStudyCategories categories={this.state.categories}/>
+                <CategoryList categories={this.state.categories}/>
             </div>
         );
     }
