@@ -63,17 +63,6 @@ const UserList = () => {
 class StudyRoomStart extends Component {
 
     render() {
-        const studyRoomInfo = {
-            studyroomID: 1,
-            studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
-            studyroomDate: "",
-            studyroomMinLevel: 1,
-            studyroomTime: 1,
-            studyroomMaxUser: 4,
-            category: '자유주제',
-            studyroomState: "start"
-        };
-
         return (
             <div className="Container StudyRoomStart">
                 <div className="toastbot">
@@ -89,10 +78,10 @@ class StudyRoomStart extends Component {
                     <div className="main-box-content">
                         <div className="studyroom-info">
                             <div className="category">
-                                {studyRoomInfo.category}
+                                {this.props.state.category.categoryName}
                             </div>
                             <div className="title">
-                                {studyRoomInfo.studyroomTitle}
+                                {this.props.state.studyRoomInfo.studyroomTitle}
                             </div>
                             <div className="curr-status">
                                 <div className="Rectangle-8 Rectangle-8-active">

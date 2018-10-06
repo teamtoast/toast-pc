@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import "./StudyRoom.scss"
+import Api from "../../api";
+import StudyRoomStart from "../StudyRoom-Start/StudyRoomStart";
 
 const studyRoomUserList = [{
     userID: "asdf@naver.com",
@@ -92,126 +94,136 @@ const UserList = () => {
 
 class StudyRoom extends Component {
 
-    //API: [GET] 스터디룸 정보
-    // {props.match.params.studyroomID}
+    constructor(props) {
+        super(props);
+        this.state = {
+            category: {
+                categoryName: "",
+                parentName: ""
+            },
+            CurrUser: {
+                userID: "asdf@naver.com",
+                userNickname: "user1",
+                userProfilePath: " ",
+                userLevel: 15,
+                status: 'wait'
+            },
+            studyroomState: 'wait',
+            studyRoomInfo: {}
+        }
+        const categoryID = this.props.match.params.categoryID;
+        const studyroomID = this.props.match.params.studyroomID;
+        var that = this;
+        Api.getParam('/category', categoryID).then(function (res) {
+            that.setState({
+                category: res.data
+            });
+        });
 
-    state = {
-        CurrUser: {
-            userID: "asdf@naver.com",
-            userNickname: "user1",
-            userProfilePath: " ",
-            userLevel: 15,
-            status: 'wait'
-        },
-        studyroomState: 'wait'
-    };
+        Api.getParam('/studyroom', studyroomID).then(function (res) {
+            that.setState({
+                studyRoomInfo: res.data
+            });
+        });
+    }
 
 
     render() {
-        const studyRoomInfo = {
-            studyroomID: 1,
-            studyroomTitle: "취준생들 모여서 즐겁게 얘기해요!",
-            studyroomDate: "",
-            studyroomMinLevel: 1,
-            studyroomTime: 1,
-            studyroomMaxUser: 4,
-            categoryID: 1,
-            studyroomState: "pending"
-        };
-
         return (
+            this.state.studyRoomInfo.studyroomState === 'start'?
+                <StudyRoomStart state = {this.state}/>
+                :
+                <div className="Container StudyRoom">
+                    <div className="main-box">
+                        <div className="category">
+                            {(this.state.category.categoryName === '자유주제' ? this.state.category.categoryName
+                                : this.state.category.parentName + " > " + this.state.category.categoryName)}
+                        </div>
+                        <div className="title">
+                            {this.state.studyRoomInfo.studyroomTitle}
+                        </div>
 
-            <div className="Container StudyRoom">
-                <div className="main-box">
-                    <div className="category">
-                        {studyRoomInfo.category}
-                    </div>
-                    <div className="title">
-                        {studyRoomInfo.studyroomTitle}
+                        <div className="detail">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>참여인원</th>
+                                    <th className="MinLevel">진행시간</th>
+                                    <th>입장레벨</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td className="MaxUser">
+                                        <strong>{studyRoomUserList.length}</strong> / {this.state.studyRoomInfo.studyroomMaxUser}
+                                    </td>
+                                    <td className="MinLevel">
+                                        <strong>{this.state.studyRoomInfo.studyroomTime}</strong> m
+                                    </td>
+                                    <td className="Time">
+                                        Lv.<strong>{this.state.studyRoomInfo.studyroomMinLevel}</strong>
+                                        <img src={require('../StudyRoomList/img/ic-arrow@3x.png')} className="up-arrow"
+                                             alt=""/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="user-box">
+                            <UserList/>
+                        </div>
+
+                        <div className="chat-box">
+                            <div className="text-area">
+
+                            </div>
+                            <div className="input-area">
+                                <div className="border-line"></div>
+                                <input className="chat-input"
+                                       placeholder="메세지를 입력하세요"
+                                       type="text"
+                                />
+                                <button>
+                                    <img src={require('./img/button-send@3x.png')}
+                                         className="Button_Send" alt=""/>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="detail">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>참여인원</th>
-                                <th className="MinLevel">진행시간</th>
-                                <th>입장레벨</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td className="MaxUser">
-                                    <strong>{studyRoomUserList.length}</strong> / {studyRoomInfo.studyroomMaxUser}
-                                </td>
-                                <td className="MinLevel">
-                                    <strong>{studyRoomInfo.studyroomTime}</strong> m
-                                </td>
-                                <td className="Time">
-                                    Lv.<strong>{studyRoomInfo.studyroomMinLevel}</strong>
-                                    <img src={require('../StudyRoomList/img/ic-arrow@3x.png')} className="up-arrow"
-                                         alt=""/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className="user-box">
-                        <UserList/>
-                    </div>
-
-                    <div className="chat-box">
-                        <div className="text-area">
+                    <div className="side-box">
+                        <div className="studyroom-state">
+                            <div className="Rectangle-8">
+                                <p>진행</p>
+                            </div>
+                            <div className="Rectangle-8 Rectangle-8-active">
+                                <p>대기</p>
+                            </div>
+                        </div>
+                        <div className="relative-word">
+                            <p className="title">{this.state.studyRoomInfo.category} 추천 단어 </p>
 
                         </div>
-                        <div className="input-area">
-                            <div className="border-line"></div>
-                            <input className="chat-input"
-                                   placeholder="메세지를 입력하세요"
-                                   type="text"
-                            />
-                            <button>
-                                <img src={require('./img/button-send@3x.png')}
-                                     className="Button_Send" alt=""/>
+                        <div className="studyroom-state-btn">
+                            <button
+                                onClick={() => {
+                                    if (this.state.studyroomState === "wait") this.setState({studyroomState: 'ready'});
+                                    else if (this.state.studyroomState === "ready") this.setState({studyroomState: 'wait'});
+
+                                }}
+                                className={this.state.studyroomState === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
+                                Ready
+                            </button>
+                        </div>
+                        <div className="studyroom-start-btn">
+                            <button
+                                className="Button_Ready">
+                                Start
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <div className="side-box">
-                    <div className="studyroom-state">
-                        <div className="Rectangle-8">
-                            <p>진행</p>
-                        </div>
-                        <div className="Rectangle-8 Rectangle-8-active">
-                            <p>대기</p>
-                        </div>
-                    </div>
-                    <div className="relative-word">
-                        <p className="title">{studyRoomInfo.category} 추천 단어 </p>
-
-                    </div>
-                    <div className="studyroom-state-btn">
-                        <button
-                            onClick={() => {
-                                if (this.state.studyroomState === "wait") this.setState({studyroomState: 'ready'});
-                                else if (this.state.studyroomState === "ready") this.setState({studyroomState: 'wait'});
-
-                            }}
-                            className={this.state.studyroomState === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
-                            Ready
-                        </button>
-                    </div>
-                    <div className="studyroom-start-btn">
-                        <button className="Button_Ready">
-                            Start
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
         );
     };
 };

@@ -83,6 +83,10 @@ class StudyRoomList extends Component {
         super(props);
         this.state = {
             studyroomList: [],
+            category: {
+                categoryName: "",
+                parentName: ""
+            },
             studyRoomInfo: {
                 studyroomTitle: "",
                 studyroomMinLevel: 1,
@@ -106,8 +110,14 @@ class StudyRoomList extends Component {
             })
         });
 
-    }
 
+        Api.getParam('/category', categoryID).then(function (res) {
+            that.setState({
+                category: res.data
+            });
+        });
+
+    }
 
 
     showModal = () => {
@@ -124,13 +134,6 @@ class StudyRoomList extends Component {
 
 
     render() {
-
-        //API: [GET] 카테고리 리스트
-        const category = {
-            categoryID: 1,
-            categoryLevel1: '자유주제',
-            categoryLevel2: '자유주제'
-        };
 
 
         return (
@@ -229,7 +232,8 @@ class StudyRoomList extends Component {
                 </CreateModal>
 
                 <div className="title">
-                    {category.categoryLevel2}
+                    {(this.state.category.categoryName === '자유주제' ? this.state.category.categoryName
+                    : this.state.category.parentName + " > " + this.state.category.categoryName) }
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>

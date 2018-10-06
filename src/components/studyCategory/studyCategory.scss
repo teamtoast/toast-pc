@@ -42,6 +42,7 @@
 
   >li {
     display: inline-block;
+    float: left;
 
     a {
       text-decoration: none;
@@ -57,7 +58,8 @@
     border-radius: 8px;
     background-image: linear-gradient(46deg, #ff7a2f, #ff6032);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-
+    display: table;
+    position: relative;
     margin: 0px 16px 16px 0px;
 
     .category-title {
@@ -69,9 +71,28 @@
       letter-spacing: -0.5px;
       text-align: center;
       color: #ffffff;
-
-      position: relative;
-      top: 96px;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .category-title-parent {
+      text-align: center;
+      position: absolute;
+      top: 64px;
+      left: 112px;
+      >p {
+        line-height: 24px;
+        margin: 0px;
+        width: 56px;
+        height: 24px;
+        border-radius: 16px;
+        background-color: #fcb62f;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #ffffff;
+      }
     }
   }
 

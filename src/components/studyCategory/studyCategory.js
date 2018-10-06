@@ -3,13 +3,20 @@ import "./studyCategory.scss"
 import {NavLink} from "react-router-dom";
 import Api from '../../api'
 import "../studyCategory/studyCategory.scss"
+
 export function CategoryList(props) {
     let StudyCategoryList = props.categories.map((StudyCategory, i) =>
 
         <li key={i}>
             <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryID}}>
                 <div className="category-card">
-                    <div className="category-title">{StudyCategory.categoryName}</div>
+                    {StudyCategory.parentName !== '자유주제' ?
+                        <div className="category-title-parent">
+                            <p>{StudyCategory.parentName}</p>
+                            </div>
+                        : null
+                    }
+                    <div className={"category-title" + (StudyCategory.parentName === '자유주제'? " category-title-free": "")}>{StudyCategory.categoryName}</div>
                 </div>
             </NavLink>
         </li>
@@ -31,7 +38,7 @@ class StudyCategory extends Component {
 
         //API: [GET] 카테고리 리스트
         var that = this;
-        Api.get('/categories').then(function(res) {
+        Api.get('/categories').then(function (res) {
             let categories = [];
             res.data.forEach(element => {
                 categories.push(element);

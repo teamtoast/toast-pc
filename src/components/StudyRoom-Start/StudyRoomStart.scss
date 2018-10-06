@@ -60,24 +60,21 @@
             border-radius: 0px 8px 8px 0px;
 
             border: solid 1px #ff6032;
-            background-color: #ff6032;
 
+            color: #ff6032;
+            background-color: white;
+            text-align: center;
             font-size: 22px;
             font-weight: 500;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
             letter-spacing: -0.3px;
-            text-align: center;
-            color: white;
 
             > p {
               margin: 6px 0px;
             }
           }
           .Rectangle-8-active {
-            color: #ff6032;
-            background-color: white;
+            background-color: #ff6032;
+            color: white;
             border-radius: 8px 0px 0px 8px;
           }
         }
@@ -87,9 +84,6 @@
         >p {
           font-size: 14px;
           font-weight: 500;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
           letter-spacing: -0.2px;
           color: #212121;
           margin: 0px;
