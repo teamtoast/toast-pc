@@ -129,7 +129,18 @@ class StudyRoomList extends Component {
     }
 
     modalSubmit = () => {
+        //[WIP][WIP][WIP][WIP][WIP]
         //API: [POST] 모달 생성
+        // Api.post('/studyroom',
+        //     {
+        //         categoryID: this.props.match.params.categoryID,
+        //         studyroomTitle: this.state.studyRoomInfo.studyroomTitle,
+        //         studyroomMinLevel: this.state.studyRoomInfo.studyroomMinLevel,
+        //         studyroomTime: this.state.studyRoomInfo.studyroomTime,
+        //         studyroomMaxUser: this.state.studyRoomInfo.studyroomMaxUser
+        //     }).then(function (res) {
+        //     console.log(res);
+        // });
     }
 
 
@@ -233,7 +244,7 @@ class StudyRoomList extends Component {
 
                 <div className="title">
                     {(this.state.category.categoryName === '자유주제' ? this.state.category.categoryName
-                    : this.state.category.parentName + " > " + this.state.category.categoryName) }
+                        : this.state.category.parentName + " > " + this.state.category.categoryName)}
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>

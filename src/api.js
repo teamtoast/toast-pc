@@ -14,5 +14,11 @@ export default {
         return new Promise(function(resolve, reject) {
             axios.get(serverUrl + res + '/' + param).then(resolve).catch(reject);
         });
-    }
+    },
+
+    post: function (res,param) {
+        return new Promise(function (resolve, reject) {
+            axios.post(serverUrl + res, param).then(resolve).catch(reject);
+        });
+    },
 }

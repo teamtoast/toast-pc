@@ -164,9 +164,11 @@
               padding-right: 16px;
             }
             .user-profile-image {
-              width: 32px;
-              height: 32px;
-              padding-right: 8px;
+              width: 33px;
+              height: 33px;
+              margin-right: 8px;
+              box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2);
+              border-radius: 50%;
             }
             .user-nickname {
               font-size: 14px;

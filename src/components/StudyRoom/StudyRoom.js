@@ -87,10 +87,23 @@ const UserList = () => {
 
     return (
         <ul className="user-list">{UserList}</ul>
-    )
-        ;
+    );
 };
 
+function CategoryKeyword(props) {
+    let keywords = props.keywords;
+
+    let listItems = keywords.map((keyword, i) =>
+        <li key={i} className="keyword">
+            <p className="keyword-word">{keyword.keyword}</p>
+            <p className="keyword-mean">{keyword.mean}</p>
+        </li>
+    )
+    return (
+        <ul className="keyword-list">{listItems}</ul>
+    );
+
+}
 
 class StudyRoom extends Component {
 
@@ -109,8 +122,10 @@ class StudyRoom extends Component {
                 status: 'wait'
             },
             studyroomState: 'wait',
-            studyRoomInfo: {}
-        }
+            studyRoomInfo: {},
+            categoryKeyword: []
+        };
+
         const categoryID = this.props.match.params.categoryID;
         const studyroomID = this.props.match.params.studyroomID;
         var that = this;
@@ -125,13 +140,23 @@ class StudyRoom extends Component {
                 studyRoomInfo: res.data
             });
         });
+
+        Api.getParam('/keyword', categoryID).then(function (res) {
+            let keywords = [];
+            res.data.forEach(element => {
+                keywords.push(element);
+            });
+            that.setState({
+                categoryKeyword: keywords
+            })
+        });
     }
 
 
     render() {
         return (
-            this.state.studyRoomInfo.studyroomState === 'start'?
-                <StudyRoomStart state = {this.state}/>
+            this.state.studyRoomInfo.studyroomState === 'start' ?
+                <StudyRoomStart state={this.state}/>
                 :
                 <div className="Container StudyRoom">
                     <div className="main-box">
@@ -202,8 +227,8 @@ class StudyRoom extends Component {
                             </div>
                         </div>
                         <div className="relative-word">
-                            <p className="title">{this.state.studyRoomInfo.category} 추천 단어 </p>
-
+                            <p className="title">{this.state.category.categoryName} 추천 단어 </p>
+                            <CategoryKeyword keywords={this.state.categoryKeyword}/>
                         </div>
                         <div className="studyroom-state-btn">
                             <button
