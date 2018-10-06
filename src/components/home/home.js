@@ -86,17 +86,20 @@ class Home extends Component {
             {
                 "categoryID": 1,
                 "categoryParent": 1,
-                "categoryName": "자유주제"
+                categoryName: "자유주제",
+                parentName: '자유주제'
             },
             {
                 "categoryID": 6,
                 "categoryParent": 2,
-                "categoryName": "여행"
+                "categoryName": "여행",
+                parentName: '문화'
             },
             {
                 "categoryID": 7,
                 "categoryParent": 5,
-                "categoryName": "연애"
+                "categoryName": "연애",
+                parentName: '생활'
             }
     ]
 
@@ -120,7 +123,7 @@ class Home extends Component {
                 </div>
                 <div className="left-section">
                     <div className="today-studyroom">
-                        <p className="title">실시간 참여 가능 채팅방</p>
+                        <p className="title">실시간 참여가능 스터디룸</p>
                         <StudyRooms studyRooms={todayStudyroom}/>
 
                         <div className="btn-random">

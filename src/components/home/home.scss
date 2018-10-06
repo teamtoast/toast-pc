@@ -110,7 +110,14 @@
       .category-card {
         height: 120px !important;
         .category-title {
-          top: 37px !important;
+          padding-top: 18px;
+        }
+        .category-title-parent {
+          top: 23px;
+        }
+        .category-title-free {
+          vertical-align: middle;
+          padding-top: 0px;
         }
       }
 
