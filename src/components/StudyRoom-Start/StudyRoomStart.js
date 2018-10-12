@@ -1,30 +1,41 @@
 import {Component} from "react";
 import React from "react";
 import "./StudyRoomStart.scss"
+import {hostClick, remoteClick, connectClick} from "./js/rtc";
+
 
 const studyRoomUserList = [{
     userID: "asdf@naver.com",
-    userNickname: "user1",
+    userNickname: "user",
     userProfilePath: " ",
     userLevel: 15,
     speechRate: 1,
-    videoPath: ""
-}, {
-    userID: "asdf@naver.com",
-    userNickname: "Billy Cullen",
-    userProfilePath: " ",
-    userLevel: 12,
-    speechRate: 1,
-    videoPath: ""
-}];
+    videoPath: "localVideo"
+},
+    {
+        userID: "asdf@naver.com",
+        userNickname: "remote",
+        userProfilePath: " ",
+        userLevel: 15,
+        speechRate: 1,
+        videoPath: "remoteVideo"
+    }];
 
 const UserList = () => {
 
     let UserList = studyRoomUserList.map((User, i) =>
         <li key={i}>
+            <div className="btn-group-3">
+                <button type="button" onClick={hostClick}>Host</button>
+                <button type="button" onClick={remoteClick}>Remote</button>
+                <button type="button" onClick={connectClick}>Offer</button>
+            </div>
             <div className="user-card">
                 <div className="user-nickname">
                     <p>{User.userNickname}</p>
+                </div>
+                <div className="user-video">
+                    <video id="localVideo" playsInline autoPlay muted/>
                 </div>
                 {/*본인인 경우만 button-list 보이도록*/}
                 <div className="button-list">
@@ -39,6 +50,7 @@ const UserList = () => {
                 </div>
 
             </div>
+
         </li>
     );
 
@@ -65,6 +77,10 @@ class StudyRoomStart extends Component {
     render() {
         return (
             <div className="Container StudyRoomStart">
+
+                <script src="./js/stomp.min.js"/>
+                <script src="./js/rtc.js"/>
+
                 <div className="toastbot">
                     <div className="title">
                         <img src={require('./img/chat-bot-logo@3x.png')}
@@ -72,7 +88,7 @@ class StudyRoomStart extends Component {
                     </div>
                     <div className="content-box">
 
-                   </div>
+                    </div>
                 </div>
                 <div className="main-box">
                     <div className="main-box-content">

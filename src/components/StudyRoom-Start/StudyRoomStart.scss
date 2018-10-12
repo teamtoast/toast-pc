@@ -99,18 +99,32 @@
           display: inline-block;
           float: left;
           margin: 0px 16px 16px 0px;
+          .btn-group-3 {
+            z-index: 4;
+            background-color: white;
+            color: red;
+            margin-left: 3px;
+            position: absolute;
+          }
         }
+
         .user-card {
           width: 450px;
           height: 260px;
           border-radius: 8px;
           box-shadow: 0 2px 6px 0 #aeaeae;
           position: relative;
+
           .user-nickname {
+            z-index: 3;
             opacity: 0.8;
             border-radius: 8px 8px 0px 0px;
             background-color: #ff6032;
             height: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
             >p {
               font-size: 14px;
               font-weight: bold;
@@ -124,7 +138,20 @@
               padding: 10px 0px 0px 0px;
             }
           }
+          .user-video {
+
+            >video {
+              z-index: 1;
+
+              width: 450px;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              border-radius: 0px 0px 8px 8px;
+            }
+          }
           .button-list {
+            z-index: 4;
             position: absolute;
             bottom: 192px;
             right: 12px;
