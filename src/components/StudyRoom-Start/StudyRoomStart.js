@@ -6,7 +6,7 @@ import {hostClick, remoteClick, connectClick} from "./js/rtc";
 
 const studyRoomUserList = [{
     userID: "asdf@naver.com",
-    userNickname: "user",
+    userNickname: "나 ME",
     userProfilePath: " ",
     userLevel: 15,
     speechRate: 1,
