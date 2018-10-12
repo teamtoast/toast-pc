@@ -11,6 +11,8 @@ $(document).ready(function() {
 });
 
 var localStream;
+var userId;
+var stompClient;
 
 function onGetUserMedia(mediaStream) {
     console.log('success')
@@ -33,8 +35,6 @@ function onFailedToGetUserMedia(e) {
 var peerConnection;
 
 function onMessage(msg) {
-    let userId;
-
     console.log(msg);
     let data = JSON.parse(msg.body);
     if(data.data.cmd == 'call') {
@@ -60,9 +60,9 @@ function onMessage(msg) {
 }
 
 export function hostClick() {
-    let userId = 'host';
+    userId = 'host';
     let socket = new SockJS("https://toast-sig.run.goorm.io/ws");
-    let stompClient = Stomp.over(socket);
+    stompClient = Stomp.over(socket);
     stompClient.connect({}, function() {
         console.log("connected!");
 
@@ -72,9 +72,9 @@ export function hostClick() {
 }
 
 export function remoteClick() {
-    let userId = 'remote';
+    userId = 'remote';
     let socket = new SockJS("https://toast-sig.run.goorm.io/ws");
-    let stompClient = Stomp.over(socket);
+    stompClient = Stomp.over(socket);
     stompClient.connect({}, function() {
         console.log("connected!");
 
@@ -88,14 +88,10 @@ export function connectClick() {
 }
 
 function sendToAll(data) {
-    let userId;
-    let socket = new SockJS("https://toast-sig.run.goorm.io/ws");
-    let stompClient = Stomp.over(socket);
     stompClient.send('/study/send', {}, JSON.stringify({'sender': userId, 'data': data}));
 }
 
 function call(caller) {
-    let userId;
     peerConnection = new RTCPeerConnection({
         'iceServers': [
             {
