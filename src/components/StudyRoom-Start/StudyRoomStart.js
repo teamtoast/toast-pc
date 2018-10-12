@@ -35,7 +35,7 @@ const UserList = () => {
                     <p>{User.userNickname}</p>
                 </div>
                 <div className="user-video">
-                    <video id="localVideo" playsInline autoPlay muted/>
+                    <video id={User.videoPath} playsInline autoPlay muted/>
                 </div>
                 {/*본인인 경우만 button-list 보이도록*/}
                 <div className="button-list">
