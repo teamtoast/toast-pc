@@ -142,8 +142,7 @@
           margin: 0px 16px 16px 0px;
           .btn-group-3 {
             z-index: 4;
-            background-color: white;
-            color: red;
+            color: black;
             margin-left: 3px;
             position: absolute;
           }
@@ -183,7 +182,8 @@
 
             >video {
               z-index: 1;
-
+              height: 255px;
+              overflow: hidden;
               width: 450px;
               position: absolute;
               bottom: 0;

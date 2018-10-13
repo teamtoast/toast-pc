@@ -48,8 +48,13 @@ export function StudyRooms(props) {
                             </button>
                         </NavLink>
                         :
-                        <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban"
-                             alt=""/>
+                    <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
+                        <button>
+                            <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban"
+                                 alt=""/>
+                        </button>
+                    </NavLink>
+
                 )}
             </div>
 
