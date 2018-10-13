@@ -4,17 +4,12 @@ import SockJS from 'sockjs-client'
 var Stomp = require('stompjs');
 window.$ = $;
 
-$(document).ready(function() {
-    navigator.mediaDevices.getUserMedia({video: true, audio: true})
-        .then(onGetUserMedia)
-        .catch(onFailedToGetUserMedia);
-});
 
 var localStream;
 var userId;
 var stompClient;
 
-function onGetUserMedia(mediaStream) {
+export function onGetUserMedia(mediaStream) {
     console.log('success')
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
@@ -28,7 +23,7 @@ function onGetRemoteMedia(e) {
     }
 }
 
-function onFailedToGetUserMedia(e) {
+export function onFailedToGetUserMedia(e) {
     console.log(e);
 }
 
@@ -37,14 +32,14 @@ var peerConnection;
 function onMessage(msg) {
     console.log(msg);
     let data = JSON.parse(msg.body);
-    if(data.data.cmd == 'call') {
+    if(data.data.cmd === 'call') {
         call(data.sender);
     }
-    else if(data.sender != userId && data.data.cmd == 'candidate') {
+    else if(data.sender !== userId && data.data.cmd === 'candidate') {
         console.log("candidate!");
         peerConnection.addIceCandidate(data.data.data).then(() => console.log("AddIceCandidates")).catch(err => console.log("Ice Error: " + err));
     }
-    else if(data.sender != userId && data.data.cmd == 'offer') {
+    else if(data.sender !== userId && data.data.cmd === 'offer') {
         peerConnection.setRemoteDescription(data.data.data).then(function() {
             peerConnection.createAnswer().then(function(sdp) {
                 peerConnection.setLocalDescription(sdp).then(function() {
@@ -54,7 +49,7 @@ function onMessage(msg) {
         });
         
     }
-    else if(data.sender != userId && data.data.cmd == 'answer') {
+    else if(data.sender !== userId && data.data.cmd === 'answer') {
         peerConnection.setRemoteDescription(data.data.data);
     }
 }
@@ -109,7 +104,7 @@ function call(caller) {
     localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
     peerConnection.ontrack = onGetRemoteMedia;
     peerConnection.oniceconnectionstatechange = e => console.log('Ice Changed: ' + e);
-    if(userId == 'host') {
+    if(userId === 'host') {
         peerConnection.onnegotiationneeded = function() {
             peerConnection.createOffer({
                 offerToReceiveAudio: 1,

@@ -129,7 +129,6 @@ class StudyRoomList extends Component {
     }
 
     modalSubmit = () => {
-        //[WIP][WIP][WIP][WIP][WIP]
         //API: [POST] 모달 생성
         // Api.post('/studyroom',
         //     {

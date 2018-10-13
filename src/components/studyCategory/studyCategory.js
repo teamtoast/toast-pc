@@ -9,14 +9,23 @@ export function CategoryList(props) {
 
         <li key={i}>
             <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryID}}>
-                <div className="category-card">
+                {/*style={*/}
+                {/*(StudyCategory.parentName === '자유주제')? null*/}
+                    {/*: { backgroundImage: "url(https://"+StudyCategory.categoryImage+")",*/}
+                        {/*backgroundSize: 'contain'}*/}
+            {/*}*/}
+                <div className="category-card" >
+                    <div
+                        className={"category-title" + (StudyCategory.parentName === '자유주제' ? " category-title-free" : "")}>
+                        {StudyCategory.categoryName}
+                    </div>
                     {StudyCategory.parentName !== '자유주제' ?
                         <div className="category-title-parent">
                             <p>{StudyCategory.parentName}</p>
-                            </div>
-                        : null
+                        </div>
+                        : <img src={require('./img/logo-card@3x.png')}
+                               className="Logo-Card" alt=""/>
                     }
-                    <div className={"category-title" + (StudyCategory.parentName === '자유주제'? " category-title-free": "")}>{StudyCategory.categoryName}</div>
                 </div>
             </NavLink>
         </li>

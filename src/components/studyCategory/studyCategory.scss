@@ -61,18 +61,14 @@
     display: table;
     position: relative;
     margin: 0px 16px 16px 0px;
-
+    z-index: 1;
     .category-title {
       font-size: 34px;
       font-weight: 300;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
       letter-spacing: -0.5px;
       text-align: center;
       color: #ffffff;
       display: table-cell;
-      text-align: center;
       vertical-align: middle;
     }
     .category-title-parent {
@@ -94,6 +90,15 @@
         color: #ffffff;
       }
     }
+    .Logo-Card {
+      left: 85px;
+      width: 109px;
+      height: 123px;
+      position: absolute;
+      top: 59px;
+      z-index: -1;
+
+    }
   }
 
   .category-card:hover {
@@ -102,5 +107,6 @@
     opacity: 0.7;
     border-radius: 8px;
     background-color: #ff6032;
+    z-index: 1;
   }
 }
