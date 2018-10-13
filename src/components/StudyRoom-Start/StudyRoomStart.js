@@ -18,18 +18,29 @@ const studyRoomUserList = [{
         userProfilePath: " ",
         userLevel: 15,
         speechRate: 1,
-        videoPath: "remoteVideo"
+        videoPath: "remoteVideo1"
+    },
+    {
+        userID: "asdf@naver.com",
+        userNickname: "remote",
+        userProfilePath: " ",
+        userLevel: 15,
+        speechRate: 1,
+        videoPath: "remoteVideo2"
+    },
+    {
+        userID: "asdf@naver.com",
+        userNickname: "remote",
+        userProfilePath: " ",
+        userLevel: 15,
+        speechRate: 1,
+        videoPath: "remoteVideo3"
     }];
 
 const UserList = () => {
 
     let UserList = studyRoomUserList.map((User, i) =>
         <li key={i}>
-            <div className="btn-group-3">
-                <button type="button" onClick={hostClick}>Host</button>
-                <button type="button" onClick={remoteClick}>Remote</button>
-                <button type="button" onClick={connectClick}>Offer</button>
-            </div>
             <div className="user-card">
                 <div className="user-nickname">
                     <p>{User.userNickname}</p>

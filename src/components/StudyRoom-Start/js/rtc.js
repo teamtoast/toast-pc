@@ -1,9 +1,7 @@
 import $ from 'jquery';
-import SockJS from 'sockjs-client'
-// import Stomp from './stomp.min'
-var Stomp = require('stompjs');
 window.$ = $;
 
+var socket;
 $(document).ready(function() {
     navigator.mediaDevices.getUserMedia({video: true, audio: true})
         .then(onGetUserMedia)
@@ -11,88 +9,101 @@ $(document).ready(function() {
 });
 
 var localStream;
-var userId;
-var stompClient;
+var id;
+var remotes = [];
 
 function onGetUserMedia(mediaStream) {
-    console.log('success')
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
-}
 
-function onGetRemoteMedia(e) {
-    console.log('Get remote!')
-    let remoteView = document.querySelector('#remoteVideo');
-    if (remoteView.srcObject !== e.streams[0]) {
-        remoteView.srcObject = e.streams[0];
-    }
+    socket = new WebSocket('ws://localhost:8080/study');
+    socket.onopen = onOpen;
+    socket.onmessage = msg => onMessage(JSON.parse(msg.data));
 }
 
 function onFailedToGetUserMedia(e) {
     console.log(e);
 }
 
-var peerConnection;
+function onGetRemoteMedia(target, e) {
+    console.log('Get remote!')
+
+    let viewId = 0;
+    for(let i = 0; i < remotes.length; i++) {
+        if(remotes[i].target == target) {
+            viewId = remotes[i].view;
+            console.log("si " + i);
+            break;
+        }
+    }
+
+    if(viewId == 0) {
+        for(let i = 1; i < 4; i++) {
+            let used = false;
+            for(let j = 0; j < remotes.length; j++) {
+                if(remotes[j].view == i) {
+                    used = true;
+                    break;
+                }
+            }
+
+            if(!used) {
+                remotes.push({target: target, view: i});
+                viewId = i;
+                console.log("bal " + i);
+                break;
+            }
+        }
+    }
+
+    let remoteView = document.querySelector('#remoteVideo' + viewId);
+    if (remoteView.srcObject !== e.streams[0]) {
+        remoteView.srcObject = e.streams[0];
+    }
+}
+
+function onOpen(event) {
+    socket.send(JSON.stringify({cmd: 'join', data: 0}));
+}
 
 function onMessage(msg) {
     console.log(msg);
-    let data = JSON.parse(msg.body);
-    if(data.data.cmd == 'call') {
-        call(data.sender);
-    }
-    else if(data.sender != userId && data.data.cmd == 'candidate') {
-        console.log("candidate!");
-        peerConnection.addIceCandidate(data.data.data).then(() => console.log("AddIceCandidates")).catch(err => console.log("Ice Error: " + err));
-    }
-    else if(data.sender != userId && data.data.cmd == 'offer') {
-        peerConnection.setRemoteDescription(data.data.data).then(function() {
-            peerConnection.createAnswer().then(function(sdp) {
-                peerConnection.setLocalDescription(sdp).then(function() {
-                    sendToAll({'cmd': 'answer', 'data': sdp});
-                });
-            });
-        });
-        
-    }
-    else if(data.sender != userId && data.data.cmd == 'answer') {
-        peerConnection.setRemoteDescription(data.data.data);
+    switch(msg.cmd) {
+        case 'info':
+            id = msg.data.id;
+            break;
+        case 'join':
+            onUserJoined(msg.data);
+            break;
+        case 'offer':
+            onReceiveOffer(msg.data.from, msg.data.data);
+            break;
+        case 'answer':
+            onReceiveAnswer(msg.data.from, msg.data.data);
+            break;
+        case 'candidate':
+            OnReceiveIceCandidate(msg.data.from, msg.data.data);
+            break;
     }
 }
 
-export function hostClick() {
-    userId = 'host';
-    let socket = new SockJS("https://toast-sig.run.goorm.io/ws");
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function() {
-        console.log("connected!");
-
-        stompClient.subscribe('/study/member', onMessage);
-        stompClient.send('/study/send', {}, "{\"cmd\": \"msg\", \"data\": \"Host Connected!\"}");
-    });
+function onUserJoined(user) {
+    console.log("User " + user.id + " Joined!");
+    if(user.id != id) {
+        let peerConnection = createPeerConnection(user.id);
+        connectionObj[user.id.toString()] = peerConnection;
+        peerConnection.onnegotiationneeded = () => sendOffer(peerConnection, user.id);
+    }
 }
 
-export function remoteClick() {
-    userId = 'remote';
-    let socket = new SockJS("https://toast-sig.run.goorm.io/ws");
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function() {
-        console.log("connected!");
-
-        stompClient.subscribe('/study/member', onMessage);
-        stompClient.send('/study/send', {}, "{\"cmd\": \"msg\", \"data\": \"Remote Connected!\"}");
-    });
+function send(cmd, data) {
+    let obj = {cmd: cmd, data: data};
+    //console.log(obj);
+    socket.send(JSON.stringify(obj));
 }
 
-export function connectClick() {
-    sendToAll({'cmd': 'call'});
-}
-
-function sendToAll(data) {
-    stompClient.send('/study/send', {}, JSON.stringify({'sender': userId, 'data': data}));
-}
-
-function call(caller) {
-    peerConnection = new RTCPeerConnection({
+function createPeerConnection(target) {
+    let peerConnection = new RTCPeerConnection({
         'iceServers': [
             {
                 'urls': ['stun:stun.l.google.com:19302']
@@ -105,29 +116,69 @@ function call(caller) {
         ]
     });
 
-    peerConnection.onicecandidate = onIceCandidate;
     localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
-    peerConnection.ontrack = onGetRemoteMedia;
+    peerConnection.ontrack = e => onGetRemoteMedia(target, e);
     peerConnection.oniceconnectionstatechange = e => console.log('Ice Changed: ' + e);
-    if(userId == 'host') {
-        peerConnection.onnegotiationneeded = function() {
-            peerConnection.createOffer({
-                offerToReceiveAudio: 1,
-                offerToReceiveVideo: 1
-            })
-            .then(function(sdp) {
-                console.log("aaa!");
-                peerConnection.setLocalDescription(sdp).then(function() {
-                    sendToAll({'cmd': 'offer', 'data': sdp});
-                });
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
-        }
-    }
+
+    return peerConnection;
 }
 
-function onIceCandidate(e) {
-    sendToAll({'cmd': 'candidate', 'data': e.candidate})
+function onIceCandidate(target, e) {
+    if(e.candidate != null)
+        send('candidate', {target: target, data: e.candidate});
+}
+
+function sendOffer(peerConnection, target) {
+    if(isNegotiating) return;
+    isNegotiating = true;
+    peerConnection.onsignalingstatechange = (e) => {  // Workaround for Chrome: skip nested negotiations
+        isNegotiating = (peerConnection.signalingState != "stable");
+        console.log("Negotiating: " + isNegotiating);
+    }
+    peerConnection.createOffer({
+        offerToReceiveAudio: 1,
+        offerToReceiveVideo: 1
+    })
+    .then(function(sdp) {
+        peerConnection.setLocalDescription(sdp).then(function() {
+            send('offer', {target: target, data: sdp});
+            peerConnection.onicecandidate = e => onIceCandidate(target, e);
+        });
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+}
+
+var connectionObj = {};
+var isNegotiating = false;
+
+function onReceiveOffer(from, data) {
+    let key = from.toString();
+    if(!connectionObj.hasOwnProperty(key)) {
+        connectionObj[key] = createPeerConnection(from);
+    }
+
+    let peerConnection = connectionObj[key];
+    peerConnection.setRemoteDescription(data).then(function() {
+        peerConnection.createAnswer().then(function(sdp) {
+            peerConnection.setLocalDescription(sdp).then(function() {
+                send('answer', {target: from, data: sdp});
+                peerConnection.onicecandidate = e => onIceCandidate(from, e);
+            });
+        });
+    });
+}
+
+function onReceiveAnswer(from, data) {
+    let key = from.toString();
+    let peerConnection = connectionObj[key];
+    peerConnection.setRemoteDescription(data);
+}
+
+function OnReceiveIceCandidate(from, data) {
+    let key = from.toString();
+    let peerConnection = connectionObj[key];
+    console.log("heyhey " + key + " " + connectionObj);
+    peerConnection.addIceCandidate(data).then(() => console.log("AddIceCandidates")).catch(err => console.log("Ice Error: " + err));
 }
