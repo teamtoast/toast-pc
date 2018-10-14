@@ -4,17 +4,17 @@ import Api from "../../api";
 import StudyRoomStart from "../StudyRoom-Start/StudyRoomStart";
 
 const studyRoomUserList = [{
-    userID: "asdf@naver.com",
-    userNickname: "user1",
+    userID: "taylor@naver.com",
+    userNickname: "Taylor",
     userProfilePath: " ",
     userLevel: 15,
-    status: 'wait'
+    userState: "ready"
 }, {
-    userID: "taylor@naver.com",
-    userNickname: "user2",
+    userID: "Ben55@naver.com",
+    userNickname: "Ben",
     userProfilePath: " ",
     userLevel: 12,
-    userState: 'ready'
+    userState: "ready"
 }];
 
 const UserList = (props) => {
@@ -117,11 +117,11 @@ class StudyRoom extends Component {
                 parentName: ""
             },
             CurrUser: {
-                userID: "asdf@naver.com",
-                userNickname: "user1",
+                userID: "taylor@naver.com",
+                userNickname: "Taylor",
                 userProfilePath: " ",
                 userLevel: 15,
-                status: 'wait'
+                userState: "ready"
             },
             studyroomState: 'wait',
             studyRoomInfo: {},

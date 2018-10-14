@@ -134,17 +134,18 @@ class StudyRoomList extends Component {
     }
 
     modalSubmit = () => {
-        //API: [POST] 모달 생성
-        // Api.post('/studyroom',
-        //     {
-        //         categoryID: this.props.match.params.categoryID,
-        //         studyroomTitle: this.state.studyRoomInfo.studyroomTitle,
-        //         studyroomMinLevel: this.state.studyRoomInfo.studyroomMinLevel,
-        //         studyroomTime: this.state.studyRoomInfo.studyroomTime,
-        //         studyroomMaxUser: this.state.studyRoomInfo.studyroomMaxUser
-        //     }).then(function (res) {
-        //     console.log(res);
-        // });
+        // API: [POST] 모달 생성
+        Api.post('/studyroom',
+            {
+                categoryID: parseInt(this.props.match.params.categoryID),
+                studyroomTitle: this.state.studyRoomInfo.studyroomTitle,
+                studyroomMinLevel: this.state.studyRoomInfo.studyroomMinLevel,
+                studyroomTime: this.state.studyRoomInfo.studyroomTime,
+                studyroomMaxUser: this.state.studyRoomInfo.studyroomMaxUser
+            }).then(function (res) {
+            console.log(res);
+        });
+        window.location.reload();
     }
 
 
