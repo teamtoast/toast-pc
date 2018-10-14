@@ -244,10 +244,14 @@ class StudyRoom extends Component {
                             </button>
                         </div>
                         <div className="studyroom-start-btn">
-                            <button
-                                className="Button_Ready">
-                                Start
+                            {/*<button onClick=""*/}
+                                {/*className="Button_Ready">*/}
+                                {/*Start*/}
+                            {/*</button>*/}
+                            <button className="Button_Ready">
+                                <a href="http://localhost:3000/study/6/5">Start</a>
                             </button>
+
                         </div>
                     </div>
                 </div>
