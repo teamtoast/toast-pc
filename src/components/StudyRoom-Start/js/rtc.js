@@ -1,8 +1,18 @@
 import $ from 'jquery';
 window.$ = $;
+var RecordRTC = require('recordrtc');
+var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
+var SockJS = require('sockjs-client');
 
 var socket;
 $(document).ready(function() {
+    try {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        window.audioContext = new AudioContext();
+    } catch (e) {
+        alert('Web Audio API not supported.');
+    }
+
     navigator.mediaDevices.getUserMedia({video: true, audio: true})
         .then(onGetUserMedia)
         .catch(onFailedToGetUserMedia);
@@ -11,14 +21,25 @@ $(document).ready(function() {
 var localStream;
 var id;
 var remotes = [];
+var connected = false;
 
 function onGetUserMedia(mediaStream) {
+    console.log("왜시발");
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
 
-    socket = new WebSocket('ws://localhost:8080/study');
+    socket = new SockJS('http://localhost:8080/study');
     socket.onopen = onOpen;
     socket.onmessage = msg => onMessage(JSON.parse(msg.data));
+
+    startRecording();
+
+    var script = window.audioContext.createScriptProcessor(2048, 1, 1);
+    script.onaudioprocess = onAudio;
+
+    var mic = window.audioContext.createMediaStreamSource(mediaStream);
+    mic.connect(script);
+    script.connect(window.audioContext.destination);
 }
 
 function onFailedToGetUserMedia(e) {
@@ -32,7 +53,6 @@ function onGetRemoteMedia(target, e) {
     for(let i = 0; i < remotes.length; i++) {
         if(remotes[i].target == target) {
             viewId = remotes[i].view;
-            console.log("si " + i);
             break;
         }
     }
@@ -50,7 +70,6 @@ function onGetRemoteMedia(target, e) {
             if(!used) {
                 remotes.push({target: target, view: i});
                 viewId = i;
-                console.log("bal " + i);
                 break;
             }
         }
@@ -64,6 +83,7 @@ function onGetRemoteMedia(target, e) {
 
 function onOpen(event) {
     socket.send(JSON.stringify({cmd: 'join', data: 0}));
+    connected = true;
 }
 
 function onMessage(msg) {
@@ -179,6 +199,87 @@ function onReceiveAnswer(from, data) {
 function OnReceiveIceCandidate(from, data) {
     let key = from.toString();
     let peerConnection = connectionObj[key];
-    console.log("heyhey " + key + " " + connectionObj);
     peerConnection.addIceCandidate(data).then(() => console.log("AddIceCandidates")).catch(err => console.log("Ice Error: " + err));
+}
+
+var shouldSave = false;
+
+var startTime = 0;
+var recentTime = 0;
+
+var recordRTC;
+var recordedChunks = [];
+
+function startRecording() {
+    recordRTC = RecordRTC(localStream, { recorderType: StereoAudioRecorder, numberOfAudioChannels: 1, type: 'audio/wav', sampleRate: 44100});
+    startTime = new Date().getTime();
+    recordedChunks = [];
+    shouldSave = false;
+    recordRTC.startRecording();
+}
+
+function onAudio(event) {
+    const input = event.inputBuffer.getChannelData(0);
+    let i;
+    let max = 0;
+    for (i = 0; i < input.length; ++i) {
+      if(max < input[i])
+        max = input[i];
+    }
+
+
+    if(max < 0.5) {
+      let currentTime = new Date().getTime();
+      if(recordRTC.state == 'recording' && ((!shouldSave && currentTime - startTime >= 3000) || 
+        (shouldSave && currentTime - recentTime >= 3000))) {
+        recordRTC.stopRecording(onFinishRecord);
+      }
+    }
+    else {
+      shouldSave = true;
+      recentTime = new Date().getTime();
+    }
+}
+
+function onFinishRecord(audioURL) {
+    console.log("finish")
+    if(shouldSave) {
+        console.log("save")
+      console.log(audioURL);
+      var reader = new FileReader();
+      reader.readAsDataURL(recordRTC.getBlob()); 
+      reader.onloadend = function() {
+        //console.log(reader.result)
+        if(connected) {
+            send('say', reader.result.split(",")[1]);
+        }
+        /*$.ajax({
+          type: "POST",
+          url: "https://speech.googleapis.com/v1p1beta1/speech:recognize?key=AIzaSyCXLjwSN8kpjr86r_NG3mj1tIhONMICEbo",
+          data: JSON.stringify({
+            "audio": {
+              "content": 
+            },
+            "config": {
+              "enableAutomaticPunctuation": true,
+              "encoding":"LINEAR16",
+              "sampleRateHertz": 44100,
+              "languageCode":"en-US",
+              "model": "default"
+            }
+          }),
+          success: function(data) {
+            let question = data.results[0].alternatives[0].transcript;
+            $('#chats').append('<div class="chat my">' + question + '</div>');
+            $.get('http://toast.run.goorm.io/?content=' + encodeURI(question) + '&userid=a', function(result) {
+              console.log(result);
+              $('#chats').append('<div class="chat suggestion">' + result + '</div>');
+            });
+          },
+          contentType: "application/json",
+          dataType: "json"
+        });*/
+      }
+    }
+    startRecording();
 }
