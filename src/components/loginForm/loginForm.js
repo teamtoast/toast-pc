@@ -15,10 +15,12 @@ class LoginForm extends React.Component {
     handleSubmit = (e) => {
         // 페이지 리로딩 방지
         e.preventDefault();
-        const {dispatch} = this.props;
-        const userID = this.userID.value;
-        const userPassword = this.userPassword.value;
-        dispatch(login(userID, userPassword));
+        // const {dispatch} = this.props;
+        // const userID = this.userID.value;
+        // const userPassword = this.userPassword.value;
+        // dispatch(login(userID, userPassword));
+        //
+
     }
 
 
@@ -69,10 +71,11 @@ class LoginForm extends React.Component {
                             <label htmlFor="login-status" className="\-">로그인 상태 유지하기</label>
                         </div>
 
-                        <button>
-                            <img src={require('./img/button-login@3x.png')}
-                                 className="Button_Login"
-                                 onClick={this.handleSubmit} alt=""/>
+                        <button className="Button_Login">
+                            {/*<img src={require('./img/button-login@3x.png')}*/}
+                                 {/*className="Button_Login"*/}
+                                 {/*onClick={this.handleSubmit} alt=""/>*/}
+                            <a href="http://localhost:3000">로그인</a>
                         </button>
                     </div>
                     <br/>
