@@ -42,7 +42,7 @@ function onGetUserMedia(mediaStream) {
     script.connect(window.audioContext.destination);
 }
 
-function onFailedToGetUserMedia(e) {
+export function onFailedToGetUserMedia(e) {
     console.log(e);
 }
 

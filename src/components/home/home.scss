@@ -109,15 +109,31 @@
     .today-category {
       .category-card {
         height: 120px !important;
-        .category-title {
-          padding-top: 18px;
+        .category-main {
+          height: 120px !important;
+          .category-title {
+            padding-top: 18px;
+          }
+          .category-title-parent {
+            top: 23px;
+          }
+          .category-title-free {
+            vertical-align: middle;
+            padding-top: 0px;
+          }
+          .Logo-Card {
+            display: none;
+          }
         }
-        .category-title-parent {
-          top: 23px;
-        }
-        .category-title-free {
-          vertical-align: middle;
-          padding-top: 0px;
+      }
+      .category-desc {
+        height: 120px !important;
+        .Button_Next_Category {
+          position: absolute;
+          right: 30px;
+          bottom: 25px;
+          width: 30px;
+          height: 30px;
         }
       }
 

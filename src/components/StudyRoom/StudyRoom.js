@@ -8,21 +8,22 @@ const studyRoomUserList = [{
     userNickname: "user1",
     userProfilePath: " ",
     userLevel: 15,
-    userState: 'wait'
+    status: 'wait'
 }, {
-    userID: "asdf@naver.com",
+    userID: "taylor@naver.com",
     userNickname: "user2",
     userProfilePath: " ",
     userLevel: 12,
     userState: 'ready'
 }];
 
-const UserList = () => {
+const UserList = (props) => {
     //API: [GET] 스터디룸 유저 정보
+    let CurrUser = props.currUser;
 
     let UserList = studyRoomUserList.map((User, i) =>
         <li key={i}>
-            <div className="user-card">
+            <div className={"user-card" + (User.userID === CurrUser.userID ? " user-card-current" : "")}>
                 <div className="profile">
                     <div className={"user-status" + (User.userState === "ready" ? " ready" : "")}>
                         <p>{User.userState === "ready" ? 'ready' : 'wait'}</p>
@@ -36,9 +37,10 @@ const UserList = () => {
                     </div>
                     <p className="userNickname">{User.userNickname}</p>
                     <p className="userID">{User.userID}</p>
-                    {User.userState === "ready" ?
-                        <button className="btn-add-friend">친구추가</button>
-                        : <button className="btn-add-friend btn-add-friend-grey">친구추가</button>
+                    {(User.userID === CurrUser.userID) ? <div className="currUser-circle">나</div>
+                        : (User.userState === "ready" ?
+                            <button className="btn-add-friend">친구추가</button> :
+                            <button className="btn-add-friend btn-add-friend-grey">친구추가</button>)
                     }
 
 
@@ -196,7 +198,7 @@ class StudyRoom extends Component {
                         </div>
 
                         <div className="user-box">
-                            <UserList/>
+                            <UserList currUser={this.state.CurrUser}/>
                         </div>
 
                         <div className="chat-box">
@@ -242,10 +244,14 @@ class StudyRoom extends Component {
                             </button>
                         </div>
                         <div className="studyroom-start-btn">
-                            <button
-                                className="Button_Ready">
-                                Start
+                            {/*<button onClick=""*/}
+                                {/*className="Button_Ready">*/}
+                                {/*Start*/}
+                            {/*</button>*/}
+                            <button className="Button_Ready">
+                                <a href="http://localhost:3000/study/6/5">Start</a>
                             </button>
+
                         </div>
                     </div>
                 </div>
