@@ -1,7 +1,7 @@
 import {Component} from "react";
 import React from "react";
 import "./StudyRoomStart.scss"
-import {hostClick, remoteClick, connectClick, onGetUserMedia, onFailedToGetUserMedia} from "./js/rtc";
+import {onStudyStart, setOnBotChat} from "./js/rtc";
 
 
 const studyRoomUserList = [
@@ -97,10 +97,8 @@ const UserList = () => {
 }
 
 
-const ChatList = () => {
-
-
-    let ChatList = chatList.map((Chat, i) =>
+const ChatList = (props) => {
+    let ChatList = props.chats.map((Chat, i) =>
         <li key={i}>
             <div className="bot-icon">
                 <img src={require('../StudyRoom/img/ic-toast-gray@3x.png')}
@@ -122,13 +120,33 @@ const ChatList = () => {
     );
 }
 
+function onBotChat(component, content) {
+    console.log(content);
+    let chats = component.state.chats;
+    let now = new Date();
+    chats.push({
+        time: now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds(),
+        content: content
+    })
+    
+    component.setState({
+        chats: chats
+    })
+}
+
 class StudyRoomStart extends Component {
 
-    render() {
-        navigator.mediaDevices.getUserMedia({video: true, audio: true})
-            .then(onGetUserMedia)
-            .catch(onFailedToGetUserMedia);
+    constructor(props) {
+        super(props);
+        this.state = {
+            chats: []
+        };
 
+        setOnBotChat(content => onBotChat(this, content));
+        onStudyStart();
+    }
+
+    render() {
         return (
             <div className="Container StudyRoomStart" id="StudyRoomStart">
 
@@ -141,7 +159,7 @@ class StudyRoomStart extends Component {
                              className="ChatBot_Logo" alt=""/>
                     </div>
                     <div className="content-box">
-                        <ChatList/>
+                        <ChatList chats={this.state.chats}/>
                     </div>
                 </div>
                 <div className="main-box">
@@ -165,7 +183,7 @@ class StudyRoomStart extends Component {
                         <div className="speech-rate">
                             <p>스피킹 점유율</p>
                         </div>
-                        <UserList/>
+                        <UserList />
 
                     </div>
                 </div>

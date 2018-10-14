@@ -5,7 +5,7 @@ var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
 var SockJS = require('sockjs-client');
 
 var socket;
-$(document).ready(function() {
+export function onStudyStart() {
     try {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         window.audioContext = new AudioContext();
@@ -16,7 +16,7 @@ $(document).ready(function() {
     navigator.mediaDevices.getUserMedia({video: true, audio: true})
         .then(onGetUserMedia)
         .catch(onFailedToGetUserMedia);
-});
+};
 
 var localStream;
 var id;
@@ -24,7 +24,6 @@ var remotes = [];
 var connected = false;
 
 function onGetUserMedia(mediaStream) {
-    console.log("왜시발");
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
 
@@ -103,6 +102,12 @@ function onMessage(msg) {
             break;
         case 'candidate':
             OnReceiveIceCandidate(msg.data.from, msg.data.data);
+            break;
+        case 'recommend':
+            if(onBotChat != null && msg.data.script.length > 0 && msg.data.recommend.length > 0) {
+                onBotChat('"' + msg.data.script + '"에 대한 추천 답변 문장입니다.');
+                onBotChat(msg.data.recommend);
+            }
             break;
     }
 }
@@ -253,33 +258,13 @@ function onFinishRecord(audioURL) {
         if(connected) {
             send('say', reader.result.split(",")[1]);
         }
-        /*$.ajax({
-          type: "POST",
-          url: "https://speech.googleapis.com/v1p1beta1/speech:recognize?key=AIzaSyCXLjwSN8kpjr86r_NG3mj1tIhONMICEbo",
-          data: JSON.stringify({
-            "audio": {
-              "content": 
-            },
-            "config": {
-              "enableAutomaticPunctuation": true,
-              "encoding":"LINEAR16",
-              "sampleRateHertz": 44100,
-              "languageCode":"en-US",
-              "model": "default"
-            }
-          }),
-          success: function(data) {
-            let question = data.results[0].alternatives[0].transcript;
-            $('#chats').append('<div class="chat my">' + question + '</div>');
-            $.get('http://toast.run.goorm.io/?content=' + encodeURI(question) + '&userid=a', function(result) {
-              console.log(result);
-              $('#chats').append('<div class="chat suggestion">' + result + '</div>');
-            });
-          },
-          contentType: "application/json",
-          dataType: "json"
-        });*/
       }
     }
     startRecording();
+}
+
+var onBotChat;
+
+export function setOnBotChat(callback) {
+    onBotChat = callback;
 }
