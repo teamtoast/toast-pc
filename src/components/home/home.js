@@ -93,13 +93,17 @@ class Home extends Component {
                 "categoryID": 6,
                 "categoryParent": 2,
                 "categoryName": "여행",
-                parentName: '문화'
+                parentName: '문화',
+                categoryImage: "toast-ser.run.goorm.io/image/3.png"
+
             },
             {
                 "categoryID": 7,
                 "categoryParent": 5,
                 "categoryName": "연애",
-                parentName: '생활'
+                parentName: '생활',
+                categoryImage: "toast-ser.run.goorm.io/image/4.png"
+
             }
     ]
 
