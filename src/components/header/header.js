@@ -15,13 +15,13 @@ class Header extends Component {
                 </div>
 
 
-                <div className="login-btn">
-                    <NavLink to="/login" activeClassName="active">
-                        <img alt="logo"
-                             src={require('./img/button-login@3x.png')}
-                             className="Button_Login"/>
-                        </NavLink>
-                </div>
+                {/*<div className="login-btn">*/}
+                    {/*<NavLink to="/login" activeClassName="active">*/}
+                        {/*<img alt="logo"*/}
+                             {/*src={require('./img/button-login@3x.png')}*/}
+                             {/*className="Button_Login"/>*/}
+                        {/*</NavLink>*/}
+                {/*</div>*/}
             </div>
         );
     }
