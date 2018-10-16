@@ -120,12 +120,18 @@ const ChatList = (props) => {
     );
 }
 
+function pad(n, width) {
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+  }
+  
+
 function onBotChat(component, content) {
     console.log(content);
     let chats = component.state.chats;
     let now = new Date();
     chats.push({
-        time: now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds(),
+        time: pad(now.getHours(), 2) + ':' + pad(now.getMinutes(), 2) + ':' + pad(now.getSeconds(), 2),
         content: content
     })
     
