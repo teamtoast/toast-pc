@@ -249,7 +249,7 @@ class StudyRoom extends Component {
                                 {/*Start*/}
                             {/*</button>*/}
                             <button className="Button_Ready">
-                                <a href="http://localhost:3000/study/6/5">Start</a>
+                                <a href="https://toast-pc.run.goorm.io/study/6/5">Start</a>
                             </button>
 
                         </div>
