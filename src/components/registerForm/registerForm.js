@@ -1,24 +1,28 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import "./registerForm.scss"
+import api from "../../api"
+import Cookies from "js-cookie";
 import {axios} from "axios";
 
 class RegisterForm extends React.Component {
     state = {
-        userID: '',
-        userPassword: '',
-        userNickname: '',
-        userBirth: '',
-        userGender: ''
+        email: '',
+        password: '',
+        nickname: '',
+        birth: '',
+        gender: ''
     }
 
     handleSubmit = (e) => {
         console.log(this.state);
         const state = this.state;
-        axios.post(`/siginin`, {state})
+        api.post(`/users`, state)
             .then(res => {
-                console.log(res);
-                console.log(res.data);
+                if(res.status == 200) {
+                    Cookies.set('token', res.data.token);
+                    window.location.href = '/';
+                }
             })
     }
 
@@ -63,7 +67,7 @@ class RegisterForm extends React.Component {
                                placeholder="이메일 주소 입력"
                                type="text"
                                onChange={(e) => {
-                                   this.setState({userID: e.target.value})
+                                   this.setState({email: e.target.value})
                                }}/>
 
                         <div className="inLine inLine-icCheck">
@@ -79,19 +83,20 @@ class RegisterForm extends React.Component {
                                placeholder="닉네임 입력"
                                type="text"
                                onChange={(e) => {
-                                   this.setState({userNickname: e.target.value})
+                                   this.setState({nickname: e.target.value})
                                }}/>
                     </div>
 
                     <div className="input-group">
                         <div className="type">비밀번호</div>
                         <input className="Rectangle-19"
-                               placeholder="비밀번호 입력"/>
+                               placeholder="비밀번호 입력"
+                               type="password" />
                         <input className="Rectangle-19 Rectangle-19-confirm"
                                placeholder="비밀번호 확인"
-                               type="text"
+                               type="password"
                                onChange={(e) => {
-                                   this.setState({userPassword: e.target.value})
+                                   this.setState({password: e.target.value})
                                }}/>
                     </div>
 
@@ -101,7 +106,7 @@ class RegisterForm extends React.Component {
                                placeholder="생년월일 입력 (예시: 960101)"
                                type="text"
                                onChange={(e) => {
-                                   this.setState({userBirth: e.target.value})
+                                   this.setState({birth: e.target.value})
                                }}/>
                     </div>
 
@@ -110,19 +115,19 @@ class RegisterForm extends React.Component {
                         <div className="Button_Gender">
                             <button
                                 onClick={() => {
-                                    this.setState({userGender: "Woman"});
-                                    console.log(this.state.userGender);
+                                    this.setState({gender: "female"});
+                                    console.log(this.state.gender);
                                 }}
-                                className={this.state.userGender === "Woman" ? "Button_Woman active" : "Button_Woman"}>
+                                className={this.state.gender === "female" ? "Button_Woman active" : "Button_Woman"}>
                                 여자
                             </button>
 
                             <button
                                 onClick={() => {
-                                    this.setState({userGender: "Man"});
-                                    console.log(this.state.userGender);
+                                    this.setState({gender: "male"});
+                                    console.log(this.state.gender);
                                 }}
-                                className={this.state.userGender === "Man" ? "Button_Man active" : "Button_Man"}>
+                                className={this.state.gender === "male" ? "Button_Man active" : "Button_Man"}>
                                 남자
                             </button>
                         </div>
