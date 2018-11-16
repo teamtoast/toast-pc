@@ -36,7 +36,7 @@ class Home extends Component {
                 studyroomID: 1,
                 studyroomTitle: "취준생 모임",
                 studyroomDate: null,
-                categoryID: 1,
+                categoryId: 1,
                 studyroomMinLevel: 1,
                 studyroomTime: 30,
                 studyroomMaxUser: 3,
@@ -47,7 +47,7 @@ class Home extends Component {
                 studyroomTitle: "함께 공부해요!",
                 studyroomDate: null,
                 studyroomMinLevel: 3,
-                categoryID: 1,
+                categoryId: 1,
                 studyroomTime: 45,
                 studyroomMaxUser: 4,
                 studyroomState: "pending"
@@ -57,7 +57,7 @@ class Home extends Component {
                 studyroomTitle: "토익스피킹 시험대비",
                 studyroomDate: null,
                 studyroomMinLevel: 10,
-                categoryID: 1,
+                categoryId: 1,
                 studyroomTime: 30,
                 studyroomMaxUser: 2,
                 studyroomState: "start"
@@ -84,13 +84,13 @@ class Home extends Component {
 
         const todayCategories = [
             {
-                "categoryID": 1,
+                "categoryId": 1,
                 "categoryParent": 1,
                 categoryName: "자유주제",
                 parentName: '자유주제'
             },
             {
-                "categoryID": 6,
+                "categoryId": 6,
                 "categoryParent": 2,
                 "categoryName": "여행",
                 parentName: '문화',
@@ -98,7 +98,7 @@ class Home extends Component {
 
             },
             {
-                "categoryID": 7,
+                "categoryId": 7,
                 "categoryParent": 5,
                 "categoryName": "연애",
                 parentName: '생활',

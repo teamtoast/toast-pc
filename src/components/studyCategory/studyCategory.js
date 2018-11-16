@@ -8,7 +8,7 @@ export function CategoryList(props) {
     let StudyCategoryList = props.categories.map((StudyCategory, i) =>
 
         <li key={i}>
-            <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryID}}>
+            <NavLink exact to={{pathname: '/study/' + StudyCategory.categoryId}}>
                 <div className="category-card" >
                     <div className="category-main" style={
                         (StudyCategory.parentName === '자유주제')? null

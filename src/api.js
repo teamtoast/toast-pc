@@ -1,6 +1,6 @@
 import axios from "axios"
 
-var serverUrl = 'https://toast-ser.run.goorm.io';
+var serverUrl = 'https://api.toast-study.com';
 // var serverUrl = 'http://localhost:8080';
 
 export default {

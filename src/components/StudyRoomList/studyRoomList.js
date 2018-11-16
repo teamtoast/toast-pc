@@ -42,13 +42,13 @@ export function StudyRooms(props) {
                     </table>
                 </div>
                 {(studyRoom.studyroomState === "pending" ?
-                        <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
+                        <NavLink exact to={{pathname: '/study/' + studyRoom.categoryId + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
                             </button>
                         </NavLink>
                         :
-                    <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
+                    <NavLink exact to={{pathname: '/study/' + studyRoom.categoryId + "/" + studyRoom.studyroomID}}>
                         <button>
                             <img src={require('./img/button-ban@3x.png')} className="Button_In Button_In_Ban"
                                  alt=""/>
@@ -101,11 +101,11 @@ class StudyRoomList extends Component {
             modalShow: false
         };
 
-        const categoryID = this.props.match.params.categoryID;
+        const categoryId = this.props.match.params.categoryId;
 
         var that = this;
         //API: [GET] 스터디룸 리스트 가져오기
-        Api.getParam('/studyrooms', categoryID).then(function (res) {
+        Api.getParam('/studyrooms', categoryId).then(function (res) {
             let studyRooms = [];
             res.data.forEach(element => {
                 studyRooms.push(element);
@@ -116,7 +116,7 @@ class StudyRoomList extends Component {
         });
 
 
-        Api.getParam('/category', categoryID).then(function (res) {
+        Api.getParam('/categories', categoryId).then(function (res) {
             that.setState({
                 category: res.data
             });
@@ -137,7 +137,7 @@ class StudyRoomList extends Component {
         // API: [POST] 모달 생성
         Api.post('/studyroom',
             {
-                categoryID: parseInt(this.props.match.params.categoryID),
+                categoryId: parseInt(this.props.match.params.categoryId),
                 studyroomTitle: this.state.studyRoomInfo.studyroomTitle,
                 studyroomMinLevel: this.state.studyRoomInfo.studyroomMinLevel,
                 studyroomTime: this.state.studyRoomInfo.studyroomTime,

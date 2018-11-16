@@ -32,8 +32,8 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                         <Route exact path="/" component={Home} />
                         <Route path="/home" component={Home} />
                         <Route exact path="/study" component={StudyCategory} />
-                        <Route exact path="/study/:categoryID" component={StudyRoomList} />
-                        <Route exact path="/study/:categoryID/:studyroomID" component={StudyRoom} />
+                        <Route exact path="/study/:categoryId" component={StudyRoomList} />
+                        <Route exact path="/study/:categoryId/:studyroomID" component={StudyRoom} />
                         <Route path="/level-test" component={LevelTest} />
                         <Route path="/login" component={LoginForm} />
                         <Route path="/register" component={RegisterForm} />

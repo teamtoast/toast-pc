@@ -152,13 +152,24 @@
               width: 87px;
               height: 55px;
               border-radius: 7px;
-              background-color: #ff8432;
               font-size: 16px;
               font-weight: bold;
               letter-spacing: -0.2px;
               text-align: center;
               color: #ffffff;
 
+            }
+            .score-box-excellent {
+              background-color: #ff8432;
+            }
+            .score-box-great{
+              background-color: #ff9620;
+            }
+            .score-box-good{
+              background-color: #ffb219;
+            }
+            .score-box-bad{
+              background-color: #9b9b9b;
             }
           }
         }

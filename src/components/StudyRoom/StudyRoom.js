@@ -128,10 +128,10 @@ class StudyRoom extends Component {
             categoryKeyword: []
         };
 
-        const categoryID = this.props.match.params.categoryID;
+        const categoryId = this.props.match.params.categoryId;
         const studyroomID = this.props.match.params.studyroomID;
         var that = this;
-        Api.getParam('/category', categoryID).then(function (res) {
+        Api.getParam('/category', categoryId).then(function (res) {
             that.setState({
                 category: res.data
             });
@@ -143,7 +143,7 @@ class StudyRoom extends Component {
             });
         });
 
-        Api.getParam('/keyword', categoryID).then(function (res) {
+        Api.getParam('/keyword', categoryId).then(function (res) {
             let keywords = [];
             res.data.forEach(element => {
                 keywords.push(element);

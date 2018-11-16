@@ -91,25 +91,25 @@ class Feedback extends Component {
                             <div className="box-content">
                                 <div className="score">
                                     <p>발음</p>
-                                    <div className="score-box">
+                                    <div className="score-box score-box-excellent">
                                         Excellent
                                     </div>
                                 </div>
                                 <div className="score">
                                     <p>문법</p>
-                                    <div className="score-box">
+                                    <div className="score-box score-box-great">
                                         Great
                                     </div>
                                 </div>
                                 <div className="score">
                                     <p>단어</p>
-                                    <div className="score-box">
+                                    <div className="score-box score-box-good">
                                         Good
                                     </div>
-                                </div>
+                               </div>
                                 <div className="score">
                                     <p>표현</p>
-                                    <div className="score-box">
+                                    <div className="score-box score-box-bad">
                                         Bad
                                     </div>
                                 </div>
