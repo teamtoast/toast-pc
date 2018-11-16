@@ -1,12 +1,15 @@
 .home {
+  width: 100%;
+  min-height: 100%;
   padding: 41px 104px;
   display: inline-block;
+  box-sizing: border-box;
 
   p {
     padding: 0px;
     margin: 0px;
   }
-
+  
   background-color: #eeeeee;
   .title {
     font-size: 16px;
