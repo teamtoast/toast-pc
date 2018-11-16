@@ -11,7 +11,8 @@ class Sidebar extends Component {
             <div className="Sidebar">
                 <div className={"bar" + ((currentPath === '/')? " bar-home":
                     ((currentPath.includes('/study'))? " bar-study" :
-                        ((currentPath.includes('/level-test'))? " bar-leveltest" : " bar-none")))}/>
+                        ((currentPath.includes('/level-test'))? " bar-leveltest" :
+                            ((currentPath.includes('/feedback'))? " bar-feedback": " bar-none"))))}/>
 
                 <ul className="menu-list">
                     <li>
@@ -61,6 +62,20 @@ class Sidebar extends Component {
                                        className="ic_LevelTest"/>)}
                             <br/>
                             <div className={"menu-font" + (currentPath === '/level-test' ? " active" : "")}>Level Test
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/feedback" activeClassName="active">
+                            {(currentPath === '/feedback' ?
+                                <img alt="level"
+                                     src={require('./img/ic-feed-back-active@3x.png')}
+                                     className="ic_LevelTest"/>
+                                : <img alt="level"
+                                       src={require('./img/ic-feed-back-active@3x.png')}
+                                       className="ic_LevelTest"/>)}
+                            <br/>
+                            <div className={"menu-font" + (currentPath === '/feedback' ? " active" : "")}>Feedback
                             </div>
                         </NavLink>
                     </li>

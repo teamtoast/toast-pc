@@ -131,7 +131,7 @@ class StudyRoomList extends Component {
 
     hideModal = () => {
         this.setState({modalShow: false});
-    }
+    };
 
     modalSubmit = () => {
         // API: [POST] 모달 생성
