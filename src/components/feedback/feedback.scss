@@ -210,16 +210,20 @@
               color: #ffffff;
 
             }
-            .score-box-excellent {
-              background-color: #ff8432;
+            .score-box-Excellent {
+              background-color: #E74C3C;
             }
-            .score-box-great {
-              background-color: #ff9620;
+            .score-box-Great {
+              background-color: #3498DB;
             }
-            .score-box-good {
+            .score-box-Good {
+              background-color: #27AE60;
+            }
+            .score-box-Intermediate {
               background-color: #ffb219;
+
             }
-            .score-box-bad {
+            .score-box-Bad {
               background-color: #9b9b9b;
             }
           }
@@ -263,7 +267,10 @@
             color: #ffffff;
             background-color: #4a90e2;
             position: absolute;
-            top: -10px;
+            height: 13px;
+            border-radius: 16px;
+            top: 5px;
+            line-height: 13px;
           }
           .bad-word-spelling:before {
             text-decoration: none;
@@ -274,9 +281,12 @@
             letter-spacing: -0.1px;
             text-align: center;
             color: #ffffff;
-            background-color: #ff802f;
             position: absolute;
-            top: -10px;
+            height: 13px;
+            border-radius: 16px;
+            top: 5px;
+            line-height: 13px;
+            background-color: #ff802f;
           }
           .better-word-grammar {
             font-weight: bold;

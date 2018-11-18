@@ -97,37 +97,25 @@ class FeedbackContent extends Component {
                     "expression": "What is the nearest hospital"
                 }
             ],
-            recommendSentence: [
+            "recommendSentences": [
                 {
-                    question: 'How many places have you traveled to?',
-                    answer: 'I’ve visited all the provinces throughout my country.'
+                    "question": "Where is nearest hospital",
+                    "answer": "It’s 500 m far from my house."
                 },
                 {
-                    question: 'Who do you usually go with?',
-                    answer: 'I often go with my family, sometimes with my best friends.'
+                    "question": "My mother are a doctor, but my father is a angeneer",
+                    "answer": "It adds structure to our social lives and connects us with our families and backgrounds."
                 },
                 {
-                    question: 'How many places have you traveled to?',
-                    answer: 'I’ve visited all the provinces throughout my country.'
-                },
-                {
-                    question: 'Who do you usually go with?',
-                    answer: 'I often go with my family, sometimes with my best friends.'
-                },
-                {
-                    question: 'How many places have you traveled to?',
-                    answer: 'I’ve visited all the provinces throughout my country.'
-                },
-                {
-                    question: 'Who do you usually go with?',
-                    answer: 'I often go with my family, sometimes with my best friends.'
+                    "question": "What is the nearest hospital",
+                    "answer": "Museums are an integral part of any country’s history, and they keep history alive."
                 }
             ],
             "poorPronunciation": ["nearest", "hospital"],
-            "pronunciationScore": "excellent",
-            "grammarScore": "great",
-            "wordScore": "good",
-            "expressionScore": "bad"
+            "pronunciationScore": "Excellent",
+            "grammarScore": "Excellent",
+            "wordScore": "Excellent",
+            "expressionScore": "Great"
         }
 
 
@@ -143,7 +131,7 @@ class FeedbackContent extends Component {
             </li>
         );
 
-        let recommendSentList = this.state.feedbackTotal.recommendSentence.map((qna, i) =>
+        let recommendSentList = this.state.feedbackTotal.recommendSentences.map((qna, i) =>
             <li className="recommend-sentence">
                 <p>Q. {qna.question}</p>
                 <p>A. {qna.answer}</p>

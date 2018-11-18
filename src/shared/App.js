@@ -8,7 +8,7 @@ import NoMatch from "../components/nomatch";
 import {Route, Switch} from "react-router-dom";
 import StudyCategory from "../components/studyCategory/studyCategory";
 import StudyRoomList from "../components/StudyRoomList/studyRoomList";
-import LevelTest from "../components/levelTest";
+import LevelTest from "../components/levelTest/levelTest";
 import LoginForm from "../components/loginForm/loginForm";
 import RegisterForm from "../components/registerForm/registerForm";
 import StudyRoom from "../components/StudyRoom/StudyRoom";

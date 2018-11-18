@@ -72,12 +72,12 @@ class Home extends Component {
             },
             {
                 profileImage: "",
-                userNickname: "Anna",
+                userNickname: "Taylor",
                 userLevel: 1
             },
             {
                 profileImage: "",
-                userNickname: "Anna",
+                userNickname: "Mark",
                 userLevel: 1
             },
         ]
@@ -94,7 +94,7 @@ class Home extends Component {
                 "categoryParent": 2,
                 "categoryName": "여행",
                 parentName: '문화',
-                categoryImage: "toast-ser.run.goorm.io/image/3.png"
+                categoryImage: "api.toast-study.com/img/culture.png"
 
             },
             {
@@ -102,7 +102,7 @@ class Home extends Component {
                 "categoryParent": 5,
                 "categoryName": "연애",
                 parentName: '생활',
-                categoryImage: "toast-ser.run.goorm.io/image/4.png"
+                categoryImage: "api.toast-study.com/img/love.png"
 
             }
     ]
