@@ -1,12 +1,19 @@
 import axios from "axios"
 
-var serverUrl = 'https://toast-ser.run.goorm.io';
-// var serverUrl = 'http://localhost:8080';
+var serverUrl = 'https://api.toast-study.com';
+//var serverUrl = 'http://localhost:8080';
 
 export default {
-    get: function(res) {
+    get: function(res, authorization = '') {
         return new Promise(function(resolve, reject) {
-            axios.get(serverUrl + res).then(resolve).catch(reject);
+            if(authorization.length > 0) {
+                axios.get(serverUrl + res, {
+                    headers: {Authorization: authorization}
+                }).then(resolve).catch(reject);
+            }
+            else {
+                axios.get(serverUrl + res).then(resolve).catch(reject);
+            }
         });
     },
 

@@ -22,5 +22,26 @@
     height: 40px;
   }
 
+  #login-info {
+    height: 64px;
+    position: absolute;
+    top: 0;
+    right: 64px;
+    line-height: 64px;
+
+    a {
+      display: inline-block;
+      height: 64px;
+      color: #5a5a5a;
+      text-decoration: none
+    }
+  }
+
+  #top-nickname {
+    display: inline-block;
+    height: 64px;
+    margin-right: 10px
+  }
+
 }
 

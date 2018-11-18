@@ -134,24 +134,15 @@
     object-fit: contain;
     margin-top: 22px;
     background-color: #ff6032;
+    
 
     border-radius: 50px;
-    a:link {
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: -0.2px;
-      text-align: center;
-    }
-    /* unvisited link */
-    a:link {
-      color: #ffffff;
-    }
-
-    /* visited link */
-    a:visited {
-      color: #ffffff;
-    }
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #ffffff;
   }
 
   .TOAST- {
