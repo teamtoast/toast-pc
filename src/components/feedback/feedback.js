@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './feedback.scss'
+import FeedbackContent from "./feedbackContent";
 
 class Feedback extends Component {
     state = {
@@ -50,73 +51,7 @@ class Feedback extends Component {
                     </div>
                 </div>
                 <div className="study-feedback">
-                    <div className="top-box">
-                        <div className="feedback-date">
-                            {this.state.currentFeedback.studyroomDate}
-                        </div>
-                        <div className="feedback-title">
-                            {this.state.currentFeedback.studyroomTitle}
-                        </div>
-                        <img src={require('../home/img/ic-home-character@3x.png')}
-                             className="ic_Home_Character" alt=""/>
-                    </div>
-
-                    <div className="feedback-content">
-                        <div className="box box-1">
-                            <p className="box-title">
-                                내가 했던 표현들
-                            </p>
-                            <div className="box-content">
-                                That would be Venice city where Italy.
-                                I love riding the gondola along the canals while watch Italian person live their daily
-                                lives.
-                            </div>
-                        </div>
-                        <div className="box box-2">
-                            <p className="box-title">
-                                토스트가 추천하는 표현
-                            </p>
-                            <div className="box-content">hi</div>
-
-                            <p className="box-title">
-                                내가 실수했던 발음들 Check!
-                            </p>
-                            <div className="box-content">hi</div>
-
-                        </div>
-                        <div className="box box-3">
-                            <p className="box-title">
-                                나의 점수
-                            </p>
-                            <div className="box-content">
-                                <div className="score">
-                                    <p>발음</p>
-                                    <div className="score-box score-box-excellent">
-                                        Excellent
-                                    </div>
-                                </div>
-                                <div className="score">
-                                    <p>문법</p>
-                                    <div className="score-box score-box-great">
-                                        Great
-                                    </div>
-                                </div>
-                                <div className="score">
-                                    <p>단어</p>
-                                    <div className="score-box score-box-good">
-                                        Good
-                                    </div>
-                               </div>
-                                <div className="score">
-                                    <p>표현</p>
-                                    <div className="score-box score-box-bad">
-                                        Bad
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    <FeedbackContent feedback={this.state.currentFeedback}/>
                 </div>
 
             </div>

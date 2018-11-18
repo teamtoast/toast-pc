@@ -72,7 +72,7 @@ class Sidebar extends Component {
                                      src={require('./img/ic-feed-back-active@3x.png')}
                                      className="ic_LevelTest"/>
                                 : <img alt="level"
-                                       src={require('./img/ic-feed-back-active@3x.png')}
+                                       src={require('./img/ic-feed-back@3x.png')}
                                        className="ic_LevelTest"/>)}
                             <br/>
                             <div className={"menu-font" + (currentPath === '/feedback' ? " active" : "")}>Feedback
