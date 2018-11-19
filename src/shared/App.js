@@ -32,7 +32,6 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
             api.get('/me', authorization).then(function(res) {
                 that.setState({user: res.data, loadComplete: true});
             })
-            console.log('aa');
         }
         else
             this.state.loadComplete = true;

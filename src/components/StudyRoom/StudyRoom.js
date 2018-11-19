@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./StudyRoom.scss"
 import Api from "../../api";
 import StudyRoomStart from "../StudyRoom-Start/StudyRoomStart";
+import session from "../../socket/session"
 
 const studyRoomUserList = [{
     userID: "taylor@naver.com",
