@@ -12,7 +12,6 @@ import LevelTest from "../components/levelTest/levelTest";
 import LoginForm from "../components/loginForm/loginForm";
 import RegisterForm from "../components/registerForm/registerForm";
 import StudyRoom from "../components/StudyRoom/StudyRoom";
-import StudyRoomStart from "../components/StudyRoom-Start/StudyRoomStart";
 import Feedback from "../components/feedback/feedback";
 import api from '../api';
 import Cookies from 'js-cookie';

@@ -49,7 +49,7 @@ class RegisterForm extends React.Component {
             Cookies.set('authorization', 'Bearer ' + res.data.token);
             window.location.href = '/';
         }).catch(error => {
-            if(error.response.status == 401) {
+            if(error.response.status === 401) {
                 this.token = response.accessToken;
                 this.type = 'FACEBOOK';
                 this.setState({hideSNS: true});
@@ -79,7 +79,7 @@ class RegisterForm extends React.Component {
                         appId="1920112471405816"
                         callback={this.handleFacebookLogin}
                         render={renderProps => (
-                            <button class="hide-sns" onClick={renderProps.onClick}>
+                            <button className="hide-sns" onClick={renderProps.onClick}>
                                 <img src={require('./img/button-facebook-signup@3x.png')}
                                     className="Button_FacebookSignup" alt=""/>
                             </button>

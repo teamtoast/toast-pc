@@ -21,7 +21,7 @@ export function StudyRooms(props) {
                         <thead>
                         <tr>
                             <th>참여인원</th>
-                            <th className="MinLevel">진행시간</th>
+                            <th className="Time">진행시간</th>
                             <th>입장레벨</th>
                         </tr>
                         </thead>
@@ -267,7 +267,7 @@ class StudyRoomList extends Component {
                 <br/>
                 <StudyRooms studyrooms={this.state.studyrooms} onJoinClick={this.joinRoom} />
 
-                <button class="Button_FAB" onClick={this.showModal}>
+                <button className="Button_FAB" onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}
                          className="Button_FAB_Plus" alt=""/>
                 </button>

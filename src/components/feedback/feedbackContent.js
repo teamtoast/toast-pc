@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './feedback.scss'
-import Api from "../../api";
+import api from "../../api";
 
 export function GrammerFeedbackList(props) {
     let grammarFeedbacks;
@@ -63,11 +63,14 @@ class FeedbackContent extends Component {
 
         var that = this;
         const path = "home/ubuntu/speeches_saved";
-        Api.getParam('/feedback/getAllFeedback', path).then(function (res) {
-            that.setState({
-                feedbackTotal: res.data
-            });
+        api.post('/feedback/getAllFeedback', {path: path}).then(function (res) {
+            console.log(res);
         });
+        // Api.getParam('/feedback/getAllFeedback', path).then(function (res) {
+        //     that.setState({
+        //         feedbackTotal: res.data
+        //     });
+        // });
 
         this.state.feedback = this.props.feedback;
         if (this.state.feedbackTotal.poorPronunciation) {

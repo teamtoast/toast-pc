@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
             Cookies.set('authorization', 'Bearer ' + res.data.token);
             window.location.href = '/';
         }).catch(error => {
-            if(error.response.status == 401) {
+            if(error.response.status === 401) {
                 alert('먼저 회원가입을 해주세요.');
             }
         });

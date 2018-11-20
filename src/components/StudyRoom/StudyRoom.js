@@ -115,6 +115,7 @@ class StudyRoom extends Component {
         console.log(props);
         this.state = {
             category: {
+                categoryId: null,
                 categoryName: "",
                 parentName: ""
             },
@@ -135,6 +136,7 @@ class StudyRoom extends Component {
             that.setState({
                 category: res.data
             });
+            console.log(res.data);
         });
 
         Api.getParam('/keyword', categoryId).then(function (res) {
@@ -226,7 +228,7 @@ class StudyRoom extends Component {
                                 <thead>
                                 <tr>
                                     <th>참여인원</th>
-                                    <th className="MinLevel">진행시간</th>
+                                    <th className="Time">진행시간</th>
                                     <th>입장레벨</th>
                                 </tr>
                                 </thead>
@@ -257,7 +259,7 @@ class StudyRoom extends Component {
 
                             </div>
                             <div className="input-area">
-                                <div className="border-line"></div>
+                                <div className="border-line"/>
                                 <input className="chat-input"
                                        placeholder="메세지를 입력하세요"
                                        type="text"
@@ -286,7 +288,7 @@ class StudyRoom extends Component {
                         <div className="studyroom-state-btn">
                             <button
                                 onClick={this.toggleReady}
-                                class="Button_Ready">
+                                className="Button_Ready">
                                 Ready
                             </button>
                         </div>
@@ -295,9 +297,7 @@ class StudyRoom extends Component {
                                 {/*className="Button_Ready">*/}
                                 {/*Start*/}
                             {/*</button>*/}
-                            <button className="Button_Ready" onClick={this.start}>
-                                <a href="https://toast-pc.run.goorm.io/study/6/5">Start</a>
-                            </button>
+                            <button className="Button_Ready" onClick={this.start}>Start</button>
 
                         </div>
                     </div>

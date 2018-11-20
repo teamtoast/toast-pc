@@ -20,7 +20,7 @@ var callbacks = {};
 
 function onMessage(msg) {
     console.log(msg);
-    if(msg.cmd == 'connect') {
+    if(msg.cmd === 'connect') {
         userId = msg.data;
         if(onConnected)
             onConnected();

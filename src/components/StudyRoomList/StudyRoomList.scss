@@ -303,21 +303,20 @@
                 color: #ff6032;
               }
             }
-            .Time {
-              .up-arrow {
-                width: 11.2px;
-                height: 15.4px;
-                border-radius: 0.5px;
-                background-color: #ff6032;
-                background-color: var(--dusty-orange);
-                margin-left: 3px;
-              }
-            }
+
           }
 
-          .MinLevel {
+          .Time {
             border-left: solid 1px #e0e0e0;
             border-right: solid 1px #e0e0e0;
+          }
+          .MinLevel {
+            .up-arrow {
+              width: 11.2px;
+              height: 15.4px;
+              border-radius: 0.5px;
+              margin-left: 3px;
+            }
           }
 
         }

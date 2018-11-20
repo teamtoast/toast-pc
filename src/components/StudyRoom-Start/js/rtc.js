@@ -138,7 +138,7 @@ function onAudio(event) {
 
     if(max < 0.5) {
       let currentTime = new Date().getTime();
-      if(recordRTC.state == 'recording' && ((!shouldSave && currentTime - startTime >= 3000) || 
+      if(recordRTC.state === 'recording' && ((!shouldSave && currentTime - startTime >= 3000) ||
         (shouldSave && currentTime - recentTime >= 3000))) {
         recordRTC.stopRecording(onFinishRecord);
       }

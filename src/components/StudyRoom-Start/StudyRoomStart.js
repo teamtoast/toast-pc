@@ -49,7 +49,7 @@ const UserList = (props) => {
                     <p>{User.nickname}</p>
                 </div>
                 <div className="user-video">
-                    {User.id == props.myId ? <video id='localVideo' playsInline autoPlay muted/>
+                    {User.id === props.myId ? <video id='localVideo' playsInline autoPlay muted/>
                         : <video id={'video' + User.id} playsInline autoPlay/>}
                 </div>
                 {/*본인인 경우만 button-list 보이도록*/}
