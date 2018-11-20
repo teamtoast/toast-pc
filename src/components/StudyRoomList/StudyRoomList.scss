@@ -28,13 +28,18 @@
     margin-top: 40px;
   }
 
+  .Button_FAB {
+    width: 75px;
+    height: 75px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+  }
+
   .Button_FAB_Plus {
     width: 75px;
     height: 75px;
     object-fit: contain;
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
   }
 
   .modal {
@@ -88,7 +93,6 @@
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
-        line-height: normal;
         letter-spacing: -0.2px;
         color: #4a4a4a;
         padding-left: 12px;
@@ -100,7 +104,6 @@
         font-weight: 300;
         font-style: normal;
         font-stretch: normal;
-        line-height: normal;
         letter-spacing: -0.2px;
         color: #9b9b9b;
       }
@@ -168,6 +171,7 @@
     .Rectangle-19 {
       width: 296px;
       height: 48px;
+      line-height: 48px;
       border-radius: 4px;
       border: solid 1px #e6e6e6;
     }

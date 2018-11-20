@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import "./StudyRoom.scss"
 import Api from "../../api";
 import StudyRoomStart from "../StudyRoom-Start/StudyRoomStart";
+import session from "../../socket/session"
 
-const studyRoomUserList = [{
+/*const studyRoomUserList = [{
     userID: "taylor@naver.com",
     userNickname: "Taylor",
     userProfilePath: " ",
@@ -15,29 +16,29 @@ const studyRoomUserList = [{
     userProfilePath: " ",
     userLevel: 12,
     userState: "ready"
-}];
+}];*/
 
 const UserList = (props) => {
     //API: [GET] 스터디룸 유저 정보
-    let CurrUser = props.currUser;
+    let myId = props.myId;
 
-    let UserList = studyRoomUserList.map((User, i) =>
+    let UserList = props.users.map((User, i) =>
         <li key={i}>
-            <div className={"user-card" + (User.userID === CurrUser.userID ? " user-card-current" : "")}>
+            <div className={"user-card" + (User.id === myId ? " user-card-current" : "")}>
                 <div className="profile">
-                    <div className={"user-status" + (User.userState === "ready" ? " ready" : "")}>
-                        <p>{User.userState === "ready" ? 'ready' : 'wait'}</p>
+                    <div className={"user-status" + (User.ready ? " ready" : "")}>
+                        <p>{User.ready ? 'ready' : 'wait'}</p>
                     </div>
                     <div className="profile-picture">
                         <img src={require('./img/profile-pic.png')}
                              className="profile-picture-content" alt=""/>
                         <div className="level-circle">
-                            <p>{User.userLevel}</p>
+                            <p>{User.level}</p>
                         </div>
                     </div>
-                    <p className="userNickname">{User.userNickname}</p>
-                    <p className="userID">{User.userID}</p>
-                    {(User.userID === CurrUser.userID) ? <div className="currUser-circle">나</div>
+                    <p className="userNickname">{User.nickname}</p>
+                    {/*} <p className="userID">{User.userID}</p> {*/}
+                    {(User.userID === myId) ? <div className="currUser-circle">나</div>
                         : (User.userState === "ready" ?
                             <button className="btn-add-friend">친구추가</button> :
                             <button className="btn-add-friend btn-add-friend-grey">친구추가</button>)
@@ -73,7 +74,7 @@ const UserList = (props) => {
         </li>
     );
 
-    for (var i = 0; i < 4 - studyRoomUserList.length; i++) {
+    for (var i = 0; i < 4 - props.users.length; i++) {
         UserList.push(
             <li key={4 - i}>
                 <div className="user-card user-card-empty">
@@ -111,39 +112,32 @@ class StudyRoom extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             category: {
                 categoryName: "",
                 parentName: ""
             },
-            CurrUser: {
-                userID: "taylor@naver.com",
-                userNickname: "Taylor",
-                userProfilePath: " ",
-                userLevel: 15,
-                userState: "ready"
-            },
+            users: [],
+            started: false,
             studyroomState: 'wait',
             studyRoomInfo: {},
             categoryKeyword: []
         };
+        session.setCallback('join', this.onJoinUser);
+        session.setCallback('ready', this.onReadyUpdate);
+        session.setCallback('start', this.onStart);
 
         const categoryId = this.props.match.params.categoryId;
         const studyroomID = this.props.match.params.studyroomID;
         var that = this;
-        Api.getParam('/category', categoryId).then(function (res) {
+        Api.getParam('/categories', categoryId).then(function (res) {
             that.setState({
                 category: res.data
             });
         });
 
-        Api.getParam('/studyroom', studyroomID).then(function (res) {
-            that.setState({
-                studyRoomInfo: res.data
-            });
-        });
-
-        Api.getParam('/keyword', categoryId).then(function (res) {
+        Api.getParam('/keyword', categoryID).then(function (res) {
             let keywords = [];
             res.data.forEach(element => {
                 keywords.push(element);
@@ -152,13 +146,70 @@ class StudyRoom extends Component {
                 categoryKeyword: keywords
             })
         });
+
+        this.addUser(this.props.user);
+        this.getUsersInfo(this.props.location.state.info.users);
+    }
+
+    getUsersInfo = (ids, i = 0) => {
+        console.log(ids);
+        Api.get('/users/' + ids[i]).then(res => {
+            let data = res.data;
+            this.addUser(data);
+
+            if(ids.length > i)
+                this.getUsersInfo(ids, i + 1);
+        });
+    }
+
+    addUser = (data) => {
+        let conflict = false;
+        this.state.users.forEach(user => {
+            conflict = conflict || user.id == data.id;
+        });
+
+        if(!conflict) {
+            data.ready = false;
+            let users = this.state.users;
+            users.push(data);
+            this.setState({users: users});
+        }
+    }
+
+    onJoinUser = (id) => {
+        this.getUsersInfo([id]);
+    }
+
+    onReadyUpdate = (data) => {
+        let users = this.state.users;
+        data.forEach(e => {
+            users.forEach(u => {
+                if(e.id == u.id) {
+                    u.ready = e.ready;
+                }
+            });
+        });
+
+        this.setState(users);
+    }
+
+    toggleReady = () => {
+        session.send('ready', null);
+    }
+
+    start = () => {
+        session.send('start', null);
+    }
+
+    onStart = () => {
+        this.setState({started: true});
     }
 
 
     render() {
         return (
-            this.state.studyRoomInfo.studyroomState === 'start' ?
-                <StudyRoomStart state={this.state}/>
+            this.state.started ?
+                <StudyRoomStart state={this.state} user={this.props.user} info={this.props.location.state.info} />
                 :
                 <div className="Container StudyRoom">
                     <div className="main-box">
@@ -167,7 +218,7 @@ class StudyRoom extends Component {
                                 : this.state.category.parentName + " > " + this.state.category.categoryName)}
                         </div>
                         <div className="title">
-                            {this.state.studyRoomInfo.studyroomTitle}
+                            {this.props.location.state.info.title}
                         </div>
 
                         <div className="detail">
@@ -182,13 +233,13 @@ class StudyRoom extends Component {
                                 <tbody>
                                 <tr>
                                     <td className="MaxUser">
-                                        <strong>{studyRoomUserList.length}</strong> / {this.state.studyRoomInfo.studyroomMaxUser}
-                                    </td>
-                                    <td className="MinLevel">
-                                        <strong>{this.state.studyRoomInfo.studyroomTime}</strong> m
+                                        <strong>{this.state.users.length}</strong> / {this.props.location.state.info.maxUsers}
                                     </td>
                                     <td className="Time">
-                                        Lv.<strong>{this.state.studyRoomInfo.studyroomMinLevel}</strong>
+                                        <strong>{this.props.location.state.info.studyMinutes}</strong> m
+                                    </td>
+                                    <td className="MinLevel">
+                                        Lv.<strong>{this.props.location.state.info.minLevel}</strong>
                                         <img src={require('../StudyRoomList/img/ic-arrow@3x.png')} className="up-arrow"
                                              alt=""/>
                                     </td>
@@ -198,7 +249,7 @@ class StudyRoom extends Component {
                         </div>
 
                         <div className="user-box">
-                            <UserList currUser={this.state.CurrUser}/>
+                            <UserList myId={this.props.user.id} users={this.state.users}/>
                         </div>
 
                         <div className="chat-box">
@@ -234,12 +285,8 @@ class StudyRoom extends Component {
                         </div>
                         <div className="studyroom-state-btn">
                             <button
-                                onClick={() => {
-                                    if (this.state.studyroomState === "wait") this.setState({studyroomState: 'ready'});
-                                    else if (this.state.studyroomState === "ready") this.setState({studyroomState: 'wait'});
-
-                                }}
-                                className={this.state.studyroomState === "wait" ? "Button_Ready" : "Button_Ready Button_Ready-active"}>
+                                onClick={this.toggleReady}
+                                class="Button_Ready">
                                 Ready
                             </button>
                         </div>
@@ -248,7 +295,7 @@ class StudyRoom extends Component {
                                 {/*className="Button_Ready">*/}
                                 {/*Start*/}
                             {/*</button>*/}
-                            <button className="Button_Ready">
+                            <button className="Button_Ready" onClick={this.start}>
                                 <a href="https://toast-pc.run.goorm.io/study/6/5">Start</a>
                             </button>
 

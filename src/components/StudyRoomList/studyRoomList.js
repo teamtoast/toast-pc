@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 import "./StudyRoomList.scss"
 import {NavLink} from "react-router-dom";
 import Api from "../../api";
+import session from "../../socket/session"
+import Cookies from "js-cookie"
 
 
 export function StudyRooms(props) {
 
-    let studyRooms = props.studyRooms;
-
-    let listItems = studyRooms.map((studyRoom, i) =>
+    let listItems = props.studyrooms.map((studyRoom, i) =>
         <li key={i} className="studyRoom">
-            <div className={"studyRoom-header" + (studyRoom.studyroomState === "start" ? " start" : "")}>
+            <div className={"studyRoom-header" + (studyRoom.state === "start" ? " start" : "")}>
                 <p>{studyRoom.state === "pending" ? '대기중' : '진행중'}</p>
             </div>
 
             <div className="studyRoom-content">
-                <div className="title"> {studyRoom.studyroomTitle} </div>
+                <div className="title"> {studyRoom.title} </div>
                 <div className="detail">
                     <table>
                         <thead>
@@ -28,21 +28,24 @@ export function StudyRooms(props) {
                         <tbody>
                         <tr>
                             <td className="MaxUser">
-                                <strong>{studyRoom.studyroomMaxUser}</strong> / 4
-                            </td>
-                            <td className="MinLevel">
-                                <strong>{studyRoom.studyroomTime}</strong> m
+                                <strong>{studyRoom.users.length}</strong> / {studyRoom.maxUsers}
                             </td>
                             <td className="Time">
-                                Lv.<strong>{studyRoom.studyroomMinLevel}</strong>
+                                <strong>{studyRoom.studyMinutes}</strong> m
+                            </td>
+                            <td className="MinLevel">
+                                Lv.<strong>{studyRoom.minLevel}</strong>
                                 <img src={require('./img/ic-arrow@3x.png')} className="up-arrow" alt=""/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                {(studyRoom.studyroomState === "pending" ?
-                        <NavLink exact to={{pathname: '/study/' + studyRoom.categoryId + "/" + studyRoom.studyroomID}}>
+                <button onClick={() => props.onJoinClick(studyRoom.id)}>
+                    <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
+                </button>
+                {/*(studyRoom.studyroomState === "pending" ?
+                        <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
                             </button>
@@ -55,7 +58,7 @@ export function StudyRooms(props) {
                         </button>
                     </NavLink>
 
-                )}
+                )*/}
             </div>
 
         </li>
@@ -84,39 +87,31 @@ const CreateModal = ({modalSubmit, modalShow, children}) => {
 
 class StudyRoomList extends Component {
 
+    categoryID;
+
     constructor(props) {
         super(props);
         this.state = {
-            studyroomList: [],
+            studyrooms: [],
             category: {
                 categoryName: "",
                 parentName: ""
             },
-            studyRoomInfo: {
-                studyroomTitle: "",
-                studyroomMinLevel: 1,
-                studyroomTime: 15 | 30 | 45,
-                studyroomMaxUser: 2 | 3 | 4,
-            },
+            info: {category: this.props.match.params.categoryID},
             modalShow: false
         };
-
-        const categoryId = this.props.match.params.categoryId;
+        this.categoryID = this.props.match.params.categoryID;
 
         var that = this;
         //API: [GET] 스터디룸 리스트 가져오기
-        Api.getParam('/studyrooms', categoryId).then(function (res) {
-            let studyRooms = [];
-            res.data.forEach(element => {
-                studyRooms.push(element);
-            });
+        Api.get('/studyrooms/' + this.categoryID).then(function (res) {
             that.setState({
-                studyroomList: studyRooms
+                studyrooms: res.data
             })
         });
 
 
-        Api.getParam('/categories', categoryId).then(function (res) {
+        Api.getParam('/categories', this.categoryID).then(function (res) {
             that.setState({
                 category: res.data
             });
@@ -135,7 +130,10 @@ class StudyRoomList extends Component {
 
     modalSubmit = () => {
         // API: [POST] 모달 생성
-        Api.post('/studyroom',
+        let authorization = Cookies.get('authorization');
+        session.setCallback('info', this.onJoin);
+        session.createRoom(authorization, this.state.info);
+        /*Api.post('/studyroom',
             {
                 categoryId: parseInt(this.props.match.params.categoryId),
                 studyroomTitle: this.state.studyRoomInfo.studyroomTitle,
@@ -144,14 +142,22 @@ class StudyRoomList extends Component {
                 studyroomMaxUser: this.state.studyRoomInfo.studyroomMaxUser
             }).then(function (res) {
             console.log(res);
-        });
-        window.location.reload();
+        });*/
+        //window.location.reload();
+    }
+
+    joinRoom = (id) => {
+        let authorization = Cookies.get('authorization');
+        session.setCallback('info', this.onJoin);
+        session.joinRoom(authorization, id);
+    }
+
+    onJoin = (info) => {
+        this.props.history.push({pathname: '/study/' + this.categoryID + '/' + info.id, state: {info: info}});
     }
 
 
     render() {
-
-
         return (
             <div className="Container StudyRoomList">
 
@@ -168,9 +174,9 @@ class StudyRoomList extends Component {
                                placeholder="방 제목 입력"
                                type="text"
                                onChange={(e) => {
-                                   let studyRoomInfo = {...this.state.studyRoomInfo};
-                                   studyRoomInfo.studyroomTitle = e.target.value;
-                                   this.setState({studyRoomInfo});
+                                   let info = this.state.info;
+                                   info.title = e.target.value;
+                                   this.setState({info: info});
                                }}/>
                     </div>
                     <div className="input-group">
@@ -179,9 +185,9 @@ class StudyRoomList extends Component {
                                placeholder="Lv.(예시: 3)"
                                type="text"
                                onChange={(e) => {
-                                   let studyRoomInfo = {...this.state.studyRoomInfo};
-                                   studyRoomInfo.studyroomMinLevel = e.target.value;
-                                   this.setState({studyRoomInfo});
+                                    let info = this.state.info;
+                                    info.minLevel = e.target.value;
+                                    this.setState({info: info});
                                }}/> <p className="desc">이상 입장 가능</p>
                     </div>
                     <div className="input-group">
@@ -189,26 +195,29 @@ class StudyRoomList extends Component {
                         <div className="Time">
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomTime: 15});
-                                    console.log(this.state.studyroomTime);
+                                    let info = this.state.info;
+                                    info.studyMinutes = 15;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomTime === 15 ? "Button_Time_1 active" : "Button_Time_1"}>
+                                className={this.state.info.studyMinutes === 15 ? "Button_Time_1 active" : "Button_Time_1"}>
                                 15m
                             </button>
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomTime: 30});
-                                    console.log(this.state.studyroomTime);
+                                    let info = this.state.info;
+                                    info.studyMinutes = 30;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomTime === 30 ? "Button_Time_2 active" : "Button_Time_2"}>
+                                className={this.state.info.studyMinutes === 30 ? "Button_Time_2 active" : "Button_Time_2"}>
                                 30m
                             </button>
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomTime: 45});
-                                    console.log(this.state.studyroomTime);
+                                    let info = this.state.info;
+                                    info.studyMinutes = 45;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomTime === 45 ? "Button_Time_3 active" : "Button_Time_3"}>
+                                className={this.state.info.studyMinutes === 45 ? "Button_Time_3 active" : "Button_Time_3"}>
                                 45m
                             </button>
 
@@ -219,26 +228,29 @@ class StudyRoomList extends Component {
                         <div className="MaxUser">
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomMaxUser: 15});
-                                    console.log(this.state.studyroomMaxUser);
+                                    let info = this.state.info;
+                                    info.maxUsers = 2;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomMaxUser === 15 ? "Button_MaxUser_1 active" : "Button_MaxUser_1"}>
+                                className={this.state.info.maxUsers === 2 ? "Button_MaxUser_1 active" : "Button_MaxUser_1"}>
                                 2명
                             </button>
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomMaxUser: 30});
-                                    console.log(this.state.studyroomMaxUser);
+                                    let info = this.state.info;
+                                    info.maxUsers = 3;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomMaxUser === 30 ? "Button_MaxUser_2 active" : "Button_MaxUser_2"}>
+                                className={this.state.info.maxUsers === 3 ? "Button_MaxUser_2 active" : "Button_MaxUser_2"}>
                                 3명
                             </button>
                             <button
                                 onClick={() => {
-                                    this.setState({studyroomMaxUser: 45});
-                                    console.log(this.state.studyroomMaxUser);
+                                    let info = this.state.info;
+                                    info.maxUsers = 4;
+                                    this.setState({info: info});
                                 }}
-                                className={this.state.studyroomMaxUser === 45 ? "Button_MaxUser_3 active" : "Button_MaxUser_3"}>
+                                className={this.state.info.maxUsers === 4 ? "Button_MaxUser_3 active" : "Button_MaxUser_3"}>
                                 4명
                             </button>
                         </div>
@@ -253,9 +265,9 @@ class StudyRoomList extends Component {
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms studyRooms={this.state.studyroomList}/>
+                <StudyRooms studyrooms={this.state.studyrooms} onJoinClick={this.joinRoom} />
 
-                <button onClick={this.showModal}>
+                <button class="Button_FAB" onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}
                          className="Button_FAB_Plus" alt=""/>
                 </button>
