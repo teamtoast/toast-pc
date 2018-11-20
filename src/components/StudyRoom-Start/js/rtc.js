@@ -42,9 +42,9 @@ function createPeerConnection(target) {
                 'urls': ['stun:stun.l.google.com:19302']
             },
             {
-                'urls': ['turn:w1.xirsys.com:80?transport=udp'],
-                'username': '35f846ee-be26-11e8-a7fe-35e8f7ade332',
-                'credential': '35f84770-be26-11e8-b1ea-1c6f81131643'
+                'urls': ['turn:tk-turn1.xirsys.com:80?transport=udp'],
+                'username': 'aa236ee0-eb1c-11e8-8e45-9be63629c971',
+                'credential': 'aa236fb2-eb1c-11e8-a9c0-f0544aed98f6'
             }
         ]
     });

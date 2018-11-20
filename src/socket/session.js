@@ -5,7 +5,7 @@ var onConnected;
 var userId;
 
 function connect(authorization, callback = null) {
-    socket = new SockJS('http://192.168.0.2:8080/study');
+    socket = new SockJS('https://api.toast-study.com/study');
     socket.onopen = event => send('connect', authorization);
     socket.onmessage = msg => onMessage(JSON.parse(msg.data));
     onConnected = callback;

@@ -137,7 +137,7 @@ class StudyRoom extends Component {
             });
         });
 
-        Api.getParam('/keyword', categoryID).then(function (res) {
+        Api.getParam('/keyword', categoryId).then(function (res) {
             let keywords = [];
             res.data.forEach(element => {
                 keywords.push(element);
