@@ -131,6 +131,12 @@ class StudyRoomStart extends Component {
                 this.onBotChat(data.recommend);
             }
         });
+        session.setCallback('leave', data => {
+            this.props.state.users.forEach(e => {
+                if(e.id == data)
+                    this.onBotChat(e.nickname + '님이 퇴장하셨습니다.');
+            });
+        });
         study.onStudyStart();
     }
 

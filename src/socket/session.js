@@ -44,6 +44,13 @@ module.exports = {
     },
 
     send: send,
+    shouldAlive: false,
+    close: () => {
+        if(socket) {
+            socket.close();
+            socket = null;
+        }
+    },
 
     printInfo: () => {
         console.log(userId);

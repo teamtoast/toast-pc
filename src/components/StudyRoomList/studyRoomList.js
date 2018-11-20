@@ -153,6 +153,7 @@ class StudyRoomList extends Component {
     }
 
     onJoin = (info) => {
+        session.shouldAlive = true;
         this.props.history.push({pathname: '/study/' + this.categoryID + '/' + info.id, state: {info: info}});
     }
 

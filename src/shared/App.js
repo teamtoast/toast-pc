@@ -15,6 +15,8 @@ import StudyRoom from "../components/StudyRoom/StudyRoom";
 import Feedback from "../components/feedback/feedback";
 import api from '../api';
 import Cookies from 'js-cookie';
+import session from '../socket/session'
+import rtc from '../components/StudyRoom-Start/js/rtc'
 
 
 class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함수를 통
@@ -37,7 +39,17 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
             this.state.loadComplete = true;
     }
 
-    render() { //class 형태의 Component에 필수로 있어야하는 함수_내부에서 JSX 리턴
+    handleSession = () =>  {
+        if(!session.shouldAlive) {
+            session.close();
+            rtc.stop();
+        }
+        
+        session.shouldAlive = false;
+    }
+
+    render() {
+        this.handleSession();
         if(this.state.loadComplete) {
             return (
                 <div>
@@ -53,7 +65,7 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                             <Route path="/home" component={Home} />
                             <Route exact path="/study" component={StudyCategory} />
                             <Route exact path="/study/:categoryID" component={StudyRoomList} />
-                            <Route exact path="/study/:categoryID/:studyroomID" component={(props) => <StudyRoom user={this.state.user} {...props} />} />
+                            <Route exact path="/study/:categoryId/:studyroomID" component={(props) => <StudyRoom user={this.state.user} {...props} />} />
                             <Route path="/level-test" component={LevelTest} />
                             <Route path="/login" component={LoginForm} />
                             <Route path="/register" component={RegisterForm} />

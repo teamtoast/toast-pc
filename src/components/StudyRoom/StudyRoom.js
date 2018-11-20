@@ -128,9 +128,11 @@ class StudyRoom extends Component {
         session.setCallback('join', this.onJoinUser);
         session.setCallback('ready', this.onReadyUpdate);
         session.setCallback('start', this.onStart);
+        session.setCallback('leave', this.onLeaveUser);
 
-        const categoryId = this.props.match.params.categoryID;
-        const studyroomID = this.props.match.params.studyroomID;
+        console.log(this.props);
+
+        const categoryId = this.props.match.params.categoryId;
         var that = this;
         if(categoryId) {
             Api.getParam('/categories', categoryId).then(function (res) {
@@ -186,6 +188,11 @@ class StudyRoom extends Component {
         this.getUsersInfo([id]);
     }
 
+    onLeaveUser = (id) => {
+        let users = this.state.users;
+        this.setState({users: users.filter(item => item.id != id)});
+    }
+
     onReadyUpdate = (data) => {
         let users = this.state.users;
         data.forEach(e => {
@@ -210,7 +217,6 @@ class StudyRoom extends Component {
     onStart = () => {
         this.setState({started: true});
     }
-
 
     render() {
         return (
