@@ -9,24 +9,24 @@ class Feedback extends Component {
             {
                 studyroomID: 1,
                 studyroomTitle: "취준생 같이 토론해요",
-                studyroomDate: '18/10/01',
+                studyroomDate: '18/11/21',
                 categoryName: '환경',
             }, {
                 studyroomID: 3,
                 studyroomTitle: "같이 얘기할까요",
-                studyroomDate: '18/10/02',
+                studyroomDate: '18/11/21',
                 categoryName: '사회',
             }, {
                 studyroomID: 4,
                 studyroomTitle: "영어스피킹 공부",
-                studyroomDate: '18/10/03',
+                studyroomDate: '18/11/21',
                 categoryName: '연애',
             },
         ],
         currentFeedback: {
             studyroomID: 1,
             studyroomTitle: "취준생 같이 토론해요",
-            studyroomDate: '18/10/01',
+            studyroomDate: '18/11/21',
             categoryName: '환경',
         },
     };

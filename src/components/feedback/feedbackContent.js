@@ -129,23 +129,31 @@ class FeedbackContent extends Component {
             recommendSentList: []
         };
         var that = this;
-        const path = '/home/ubuntu/speeches_saved';
+        var studyroomId;
+        api.get('/studyrooms').then(function (res) {
+            studyroomId= res.data
+        });
 
-        axios({
-            method: 'post',
-            url: 'https://api.toast-study.com/feedback/getAllFeedback',
-            headers: {"Content-Type": "text/plain"},
-            // body: {path}
-            data: path
-        })
-            .then(function (response) {
-                that.setState({
-                    feedbackTotal: response.data
-                });
+        if(this.props.user && studyroomId) {
+            const path = '/home/ubuntu/speeches/' + studyroomId + '/' +this.props.user.userID;
+            axios({
+                method: 'post',
+                url: 'https://api.toast-study.com/feedback/getAllFeedback',
+                headers: {"Content-Type": "text/plain"},
+                // body: {path}
+                data: path
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .then(function (response) {
+                    that.setState({
+                        feedbackTotal: response.data
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+
     }
 
 
@@ -164,7 +172,7 @@ class FeedbackContent extends Component {
         this.state.feedback = this.props.feedback;
         if (this.state.feedbackTotal.poorPronunciation) {
             this.state.missedPronunciationList = this.state.feedbackTotal.poorPronunciation.map((word, i) =>
-                <li className="missed-pronunciation">
+                <li key={i} className="missed-pronunciation">
                     <p>{word}</p>
                     <img src={require('./img/button_sound.png')}
                          className="btn-sound" alt=""/>
@@ -174,7 +182,7 @@ class FeedbackContent extends Component {
 
         if (this.state.feedbackTotal.recommendSentences) {
             this.state.recommendSentList = this.state.feedbackTotal.recommendSentences.map((qna, i) =>
-                <li className="recommend-sentence">
+                <li key={i} className="recommend-sentence">
                     <p>Q. {qna.question}</p>
                     <p>A. {qna.answer}</p>
                 </li>
