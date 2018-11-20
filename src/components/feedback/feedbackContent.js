@@ -63,7 +63,7 @@ class FeedbackContent extends Component {
     render() {
 
         var that = this;
-        let path = "home/ubuntu/speeches_saved";
+        const path = "home/ubuntu/speeches_saved";
         Api.getParam('/feedback/getAllFeedback', path).then(function (res) {
             that.setState({
                 feedbackTotal: res.data
