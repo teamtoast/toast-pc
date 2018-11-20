@@ -128,6 +128,11 @@ class Home extends Component {
                 <div className="left-section">
                     <div className="today-studyroom">
                         <p className="title">실시간 참여가능 스터디룸</p>
+                        <div className={"today-studyroom-empty"}>
+                            <img src={require('../StudyRoom/img/ic-toast-gray@3x.png')}
+                                 className="profile-picture-content" alt=""/>
+                            <p>스터디룸을 개설해보세요!</p>
+                        </div>
                         {/*<StudyRooms studyRooms={todayStudyroom}/>*/}
 
                         <div className="btn-random">

@@ -50,7 +50,79 @@ class FeedbackContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            feedbackTotal: {},
+            feedbackTotal: {
+                "grammarFeedbacks": [
+                    {
+                        "expression": "Where is nearest hospital",
+                        "grammarFeedback": [
+                            {
+                                "offset": 6,
+                                "length": 10,
+                                "bad": "is nearest",
+                                "better": [
+                                    "is the nearest"
+                                ],
+                                "type": "grammar"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "My mother are a doctor, but my father is a angeneer",
+                        "grammarFeedback": [
+                            {
+                                "offset": 10,
+                                "length": 3,
+                                "bad": "are",
+                                "better": [
+                                    "is"
+                                ],
+                                "type": "grammar"
+                            },
+                            {
+                                "offset": 41,
+                                "length": 1,
+                                "bad": "a",
+                                "better": [
+                                    "an"
+                                ],
+                                "type": "spelling"
+                            },
+                            {
+                                "offset": 43,
+                                "length": 8,
+                                "bad": "angeneer",
+                                "better": [
+                                    "engineer",
+                                    "engender"
+                                ],
+                                "type": "spelling"
+                            }
+                        ]
+                    },
+                    {
+                        "expression": "What is the nearest hospital"
+                    }
+                ],
+                "recommendSentences": [
+                    {
+                        "question": "Where is nearest hospital",
+                        "answer": "It’s 500 m far from my house."
+                    },
+                    {
+                        "question": "My mother are a doctor, but my father is a angeneer",
+                        "answer": "It adds structure to our social lives and connects us with our families and backgrounds."
+                    },
+                    {
+                        "question": "What is the nearest hospital",
+                        "answer": "Museums are an integral part of any country’s history, and they keep history alive."
+                    }
+                ],
+                "poorPronunciation": ["nearest", "hospital"],
+                "pronunciationScore": "Excellent",
+                "grammarScore": "Intermediate",
+                "wordScore": "Excellent",
+                "expressionScore": "Great"
+            },
             feedback: {},
             missedPronunciationList: [],
             recommendSentList: []
@@ -120,7 +192,7 @@ class FeedbackContent extends Component {
                             토스트가 추천하는 표현
                         </p>
                         <div className="box-content">
-                            <ul className="recommend-sentence-list">{this.state.ecommendSentList}</ul>
+                            <ul className="recommend-sentence-list">{this.state.recommendSentList}</ul>
                         </div>
 
                         <p className="box-title">

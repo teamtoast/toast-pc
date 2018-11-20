@@ -129,25 +129,29 @@ class StudyRoom extends Component {
         session.setCallback('ready', this.onReadyUpdate);
         session.setCallback('start', this.onStart);
 
-        const categoryId = this.props.match.params.categoryId;
+        const categoryId = this.props.match.params.categoryID;
         const studyroomID = this.props.match.params.studyroomID;
         var that = this;
-        Api.getParam('/categories', categoryId).then(function (res) {
-            that.setState({
-                category: res.data
+        if(categoryId) {
+            Api.getParam('/categories', categoryId).then(function (res) {
+                that.setState({
+                    category: res.data
+                });
+                console.log(res.data);
             });
-            console.log(res.data);
-        });
 
-        Api.getParam('/keyword', categoryId).then(function (res) {
-            let keywords = [];
-            res.data.forEach(element => {
-                keywords.push(element);
+            let APIPath = '/categories/' + categoryId + '/keywords';
+            Api.get(APIPath).then(function (res) {
+                let keywords = [];
+                res.data.forEach(element => {
+                    keywords.push(element);
+                });
+                that.setState({
+                    categoryKeyword: keywords
+                })
             });
-            that.setState({
-                categoryKeyword: keywords
-            })
-        });
+        }
+
 
         this.addUser(this.props.user);
         this.getUsersInfo(this.props.location.state.info.users);
