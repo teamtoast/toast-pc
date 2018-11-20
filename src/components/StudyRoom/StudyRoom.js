@@ -180,6 +180,11 @@ class StudyRoom extends Component {
         this.getUsersInfo([id]);
     }
 
+    onLeaveUser = (id) => {
+        let users = this.state.users;
+        this.setState({users: users.filter(item => item.id != id)});
+    }
+
     onReadyUpdate = (data) => {
         let users = this.state.users;
         data.forEach(e => {
@@ -204,7 +209,6 @@ class StudyRoom extends Component {
     onStart = () => {
         this.setState({started: true});
     }
-
 
     render() {
         return (

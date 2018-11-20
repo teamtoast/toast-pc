@@ -58,7 +58,7 @@ const UserList = (props) => {
                         <img src={require('./img/button-picture@3x.png')}
                              className="Button_Picture" alt=""/>
                     </button>
-                    <button>
+                    <button onClick={() => session.send('leave', null)}>
                         <img src={require('./img/button-out@3x.png')}
                              className="Button_Out" alt=""/>
                     </button>
