@@ -8,16 +8,14 @@ import Cookies from "js-cookie"
 
 export function StudyRooms(props) {
 
-    let studyRooms = props.studyRooms;
-
-    let listItems = studyRooms.map((studyRoom, i) =>
+    let listItems = props.studyrooms.map((studyRoom, i) =>
         <li key={i} className="studyRoom">
-            <div className={"studyRoom-header" + (studyRoom.studyroomState === "start" ? " start" : "")}>
+            <div className={"studyRoom-header" + (studyRoom.state === "start" ? " start" : "")}>
                 <p>{studyRoom.state === "pending" ? '대기중' : '진행중'}</p>
             </div>
 
             <div className="studyRoom-content">
-                <div className="title"> {studyRoom.studyroomTitle} </div>
+                <div className="title"> {studyRoom.title} </div>
                 <div className="detail">
                     <table>
                         <thead>
@@ -30,20 +28,23 @@ export function StudyRooms(props) {
                         <tbody>
                         <tr>
                             <td className="MaxUser">
-                                <strong>{studyRoom.studyroomMaxUser}</strong> / 4
-                            </td>
-                            <td className="MinLevel">
-                                <strong>{studyRoom.studyroomTime}</strong> m
+                                <strong>{studyRoom.users.length}</strong> / {studyRoom.maxUsers}
                             </td>
                             <td className="Time">
-                                Lv.<strong>{studyRoom.studyroomMinLevel}</strong>
+                                <strong>{studyRoom.studyMinutes}</strong> m
+                            </td>
+                            <td className="MinLevel">
+                                Lv.<strong>{studyRoom.minLevel}</strong>
                                 <img src={require('./img/ic-arrow@3x.png')} className="up-arrow" alt=""/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                {(studyRoom.studyroomState === "pending" ?
+                <button onClick={() => props.onJoinClick(studyRoom.id)}>
+                    <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
+                </button>
+                {/*(studyRoom.studyroomState === "pending" ?
                         <NavLink exact to={{pathname: '/study/' + studyRoom.categoryID + "/" + studyRoom.studyroomID}}>
                             <button>
                                 <img src={require('./img/button-in@3x.png')} className="Button_In" alt=""/>
@@ -57,7 +58,7 @@ export function StudyRooms(props) {
                         </button>
                     </NavLink>
 
-                )}
+                )*/}
             </div>
 
         </li>
@@ -91,31 +92,26 @@ class StudyRoomList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            studyroomList: [],
+            studyrooms: [],
             category: {
                 categoryName: "",
                 parentName: ""
             },
-            info: {},
+            info: {category: this.props.match.params.categoryID},
             modalShow: false
         };
-
         this.categoryID = this.props.match.params.categoryID;
 
         var that = this;
         //API: [GET] 스터디룸 리스트 가져오기
-        Api.getParam('/studyrooms', this.categoryID).then(function (res) {
-            let studyRooms = [];
-            res.data.forEach(element => {
-                studyRooms.push(element);
-            });
+        Api.get('/studyrooms/' + this.categoryID).then(function (res) {
             that.setState({
-                studyroomList: studyRooms
+                studyrooms: res.data
             })
         });
 
 
-        Api.getParam('/category', this.categoryID).then(function (res) {
+        Api.getParam('/categories', this.categoryID).then(function (res) {
             that.setState({
                 category: res.data
             });
@@ -150,16 +146,18 @@ class StudyRoomList extends Component {
         //window.location.reload();
     }
 
+    joinRoom = (id) => {
+        let authorization = Cookies.get('authorization');
+        session.setCallback('info', this.onJoin);
+        session.joinRoom(authorization, id);
+    }
+
     onJoin = (info) => {
-        console.log('info');
-        console.log(info);
-        this.props.history.push('/study/' + this.categoryID + '/' + info.id);
+        this.props.history.push({pathname: '/study/' + this.categoryID + '/' + info.id, state: {info: info}});
     }
 
 
     render() {
-        console.log(this.props);
-
         return (
             <div className="Container StudyRoomList">
 
@@ -267,7 +265,7 @@ class StudyRoomList extends Component {
                 </div>
                 <div className="list-title">스터디룸 리스트</div>
                 <br/>
-                <StudyRooms studyRooms={this.state.studyroomList}/>
+                <StudyRooms studyrooms={this.state.studyrooms} onJoinClick={this.joinRoom} />
 
                 <button class="Button_FAB" onClick={this.showModal}>
                     <img src={require('./img/button-fab-plus@3x.png')}

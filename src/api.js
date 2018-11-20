@@ -1,7 +1,7 @@
 import axios from "axios"
 
-//var serverUrl = 'https://api.toast-study.com';
-var serverUrl = 'http://localhost:8080';
+var serverUrl = 'https://api.toast-study.com';
+//var serverUrl = 'http://192.168.0.2:8080';
 
 export default {
     get: function(res, authorization = '') {

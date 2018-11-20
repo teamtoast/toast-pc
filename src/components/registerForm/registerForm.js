@@ -22,10 +22,8 @@ class RegisterForm extends React.Component {
         console.log(this.state);
         const state = this.state;
         let callback = res => {
-            if(res.status == 200) {
-                Cookies.set('authorization', 'Bearer ' + res.data.token);
-                window.location.href = '/';
-            }
+            Cookies.set('authorization', 'Bearer ' + res.data.token);
+            window.location.href = '/';
         };
 
         if(this.state.hideSNS) {

@@ -1,35 +1,15 @@
-import $ from 'jquery';
-window.$ = $;
+import session from "../../../socket/session"
 var RecordRTC = require('recordrtc');
 var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
-var SockJS = require('sockjs-client');
 
-var socket;
-export function onStudyStart() {
-    try {
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        window.audioContext = new AudioContext();
-    } catch (e) {
-        alert('Web Audio API not supported.');
-    }
-
-    navigator.mediaDevices.getUserMedia({video: true, audio: true})
-        .then(onGetUserMedia)
-        .catch(onFailedToGetUserMedia);
-};
+var connectionObj = {};
+var isNegotiating = false;
 
 var localStream;
-var id;
-var remotes = [];
-var connected = false;
 
 function onGetUserMedia(mediaStream) {
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
-
-    socket = new SockJS('http://localhost:8080/study');
-    socket.onopen = onOpen;
-    socket.onmessage = msg => onMessage(JSON.parse(msg.data));
 
     startRecording();
 
@@ -39,92 +19,20 @@ function onGetUserMedia(mediaStream) {
     var mic = window.audioContext.createMediaStreamSource(mediaStream);
     mic.connect(script);
     script.connect(window.audioContext.destination);
+    session.send('stream', null);
 }
 
-export function onFailedToGetUserMedia(e) {
+function onFailedToGetUserMedia(e) {
     console.log(e);
 }
 
 function onGetRemoteMedia(target, e) {
     console.log('Get remote!')
 
-    let viewId = 0;
-    for(let i = 0; i < remotes.length; i++) {
-        if(remotes[i].target == target) {
-            viewId = remotes[i].view;
-            break;
-        }
-    }
-
-    if(viewId == 0) {
-        for(let i = 1; i < 4; i++) {
-            let used = false;
-            for(let j = 0; j < remotes.length; j++) {
-                if(remotes[j].view == i) {
-                    used = true;
-                    break;
-                }
-            }
-
-            if(!used) {
-                remotes.push({target: target, view: i});
-                viewId = i;
-                break;
-            }
-        }
-    }
-
-    let remoteView = document.querySelector('#remoteVideo' + viewId);
+    let remoteView = document.querySelector('#video' + target);
     if (remoteView.srcObject !== e.streams[0]) {
         remoteView.srcObject = e.streams[0];
     }
-}
-
-function onOpen(event) {
-    socket.send(JSON.stringify({cmd: 'join', data: 0}));
-    connected = true;
-}
-
-function onMessage(msg) {
-    console.log(msg);
-    switch(msg.cmd) {
-        case 'info':
-            id = msg.data.id;
-            break;
-        case 'join':
-            onUserJoined(msg.data);
-            break;
-        case 'offer':
-            onReceiveOffer(msg.data.from, msg.data.data);
-            break;
-        case 'answer':
-            onReceiveAnswer(msg.data.from, msg.data.data);
-            break;
-        case 'candidate':
-            OnReceiveIceCandidate(msg.data.from, msg.data.data);
-            break;
-        case 'recommend':
-            if(onBotChat != null && msg.data.script.length > 0 && msg.data.recommend.length > 0) {
-                onBotChat('"' + msg.data.script + '"에 대한 추천 답변 문장입니다.');
-                onBotChat(msg.data.recommend);
-            }
-            break;
-    }
-}
-
-function onUserJoined(user) {
-    console.log("User " + user.id + " Joined!");
-    if(user.id != id) {
-        let peerConnection = createPeerConnection(user.id);
-        connectionObj[user.id.toString()] = peerConnection;
-        peerConnection.onnegotiationneeded = () => sendOffer(peerConnection, user.id);
-    }
-}
-
-function send(cmd, data) {
-    let obj = {cmd: cmd, data: data};
-    //console.log(obj);
-    socket.send(JSON.stringify(obj));
 }
 
 function createPeerConnection(target) {
@@ -148,11 +56,6 @@ function createPeerConnection(target) {
     return peerConnection;
 }
 
-function onIceCandidate(target, e) {
-    if(e.candidate != null)
-        send('candidate', {target: target, data: e.candidate});
-}
-
 function sendOffer(peerConnection, target) {
     if(isNegotiating) return;
     isNegotiating = true;
@@ -166,7 +69,7 @@ function sendOffer(peerConnection, target) {
     })
     .then(function(sdp) {
         peerConnection.setLocalDescription(sdp).then(function() {
-            send('offer', {target: target, data: sdp});
+            session.send('offer', {target: target, data: sdp});
             peerConnection.onicecandidate = e => onIceCandidate(target, e);
         });
     })
@@ -175,8 +78,10 @@ function sendOffer(peerConnection, target) {
     });
 }
 
-var connectionObj = {};
-var isNegotiating = false;
+function onIceCandidate(target, e) {
+    if(e.candidate != null)
+        session.send('candidate', {target: target, data: e.candidate});
+}
 
 function onReceiveOffer(from, data) {
     let key = from.toString();
@@ -188,7 +93,7 @@ function onReceiveOffer(from, data) {
     peerConnection.setRemoteDescription(data).then(function() {
         peerConnection.createAnswer().then(function(sdp) {
             peerConnection.setLocalDescription(sdp).then(function() {
-                send('answer', {target: from, data: sdp});
+                session.send('answer', {target: from, data: sdp});
                 peerConnection.onicecandidate = e => onIceCandidate(from, e);
             });
         });
@@ -213,12 +118,10 @@ var startTime = 0;
 var recentTime = 0;
 
 var recordRTC;
-var recordedChunks = [];
 
 function startRecording() {
     recordRTC = RecordRTC(localStream, { recorderType: StereoAudioRecorder, numberOfAudioChannels: 1, type: 'audio/wav', sampleRate: 44100});
     startTime = new Date().getTime();
-    recordedChunks = [];
     shouldSave = false;
     recordRTC.startRecording();
 }
@@ -255,16 +158,31 @@ function onFinishRecord(audioURL) {
       reader.readAsDataURL(recordRTC.getBlob()); 
       reader.onloadend = function() {
         //console.log(reader.result)
-        if(connected) {
-            send('say', reader.result.split(",")[1]);
-        }
+        session.send('say', reader.result.split(",")[1]);
       }
     }
     startRecording();
 }
 
-var onBotChat;
-
-export function setOnBotChat(callback) {
-    onBotChat = callback;
-}
+export default {
+    onStudyStart: () => {
+        session.setCallback('offer', data => onReceiveOffer(data.from, data.data));
+        session.setCallback('answer', data => onReceiveAnswer(data.from, data.data));
+        session.setCallback('candidate', data => OnReceiveIceCandidate(data.from, data.data));
+        session.setCallback('stream', target => {
+            let peerConnection = createPeerConnection(target);
+            connectionObj[target.toString()] = peerConnection;
+            peerConnection.onnegotiationneeded = () => sendOffer(peerConnection, target);
+        });
+        try {
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            window.audioContext = new AudioContext();
+        } catch (e) {
+            alert('Web Audio API not supported.');
+        }
+    
+        navigator.mediaDevices.getUserMedia({video: true, audio: true})
+            .then(onGetUserMedia)
+            .catch(onFailedToGetUserMedia);
+    }
+};

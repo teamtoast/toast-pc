@@ -1,10 +1,11 @@
 import {Component} from "react";
 import React from "react";
 import "./StudyRoomStart.scss"
-import {onStudyStart, setOnBotChat} from "./js/rtc";
+import study from "./js/rtc";
+import session from "../../socket/session"
 
 
-const studyRoomUserList = [
+/*const studyRoomUserList = [
     {
         userID: "asdf@naver.com",
         userNickname: "나 ME",
@@ -37,30 +38,19 @@ const studyRoomUserList = [
         speechRate: 1,
         videoPath: "remoteVideo3"
     }
-];
+];*/
 
+const UserList = (props) => {
 
-let chatList = [
-    {
-        time: '15:03:02',
-        content: '안녕하세요!'
-    }, {
-        time: '15:03:02',
-        content: '방금 말한 단어의 이미지를 찾았어요!'
-    }
-]
-
-const UserList = () => {
-
-    let UserList = studyRoomUserList.map((User, i) =>
+    let UserList = props.users.map((User, i) =>
         <li key={i}>
             <div className="user-card">
                 <div className="user-nickname">
-                    <p>{User.userNickname}</p>
+                    <p>{User.nickname}</p>
                 </div>
                 <div className="user-video">
-                    {User.videoPath === 'localVideo' ? <video id={User.videoPath} playsInline autoPlay muted/>
-                        : <video id={User.videoPath} playsInline autoPlay/>}
+                    {User.id == props.myId ? <video id='localVideo' playsInline autoPlay muted/>
+                        : <video id={'video' + User.id} playsInline autoPlay/>}
                 </div>
                 {/*본인인 경우만 button-list 보이도록*/}
                 <div className="button-list">
@@ -79,7 +69,7 @@ const UserList = () => {
         </li>
     );
 
-    for (var i = 0; i < 4 - studyRoomUserList.length; i++) {
+    for (var i = 0; i < 4 - props.users.length; i++) {
         UserList.push(
             <li key={4 - i}>
                 <div className="user-card user-card-empty">
@@ -126,30 +116,35 @@ function pad(n, width) {
   }
   
 
-function onBotChat(component, content) {
-    console.log(content);
-    let chats = component.state.chats;
-    let now = new Date();
-    chats.push({
-        time: pad(now.getHours(), 2) + ':' + pad(now.getMinutes(), 2) + ':' + pad(now.getSeconds(), 2),
-        content: content
-    })
-    
-    component.setState({
-        chats: chats
-    })
-}
-
 class StudyRoomStart extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             chats: []
         };
 
-        setOnBotChat(content => onBotChat(this, content));
-        onStudyStart();
+        session.setCallback('recommend', data => {
+            if(data.script.length > 0 && data.recommend.length > 0) {
+                this.onBotChat('"' + data.script + '"에 대한 추천 답변 문장입니다.');
+                this.onBotChat(data.recommend);
+            }
+        });
+        study.onStudyStart();
+    }
+
+    onBotChat = content => {
+        let chats = this.state.chats;
+        let now = new Date();
+        chats.push({
+            time: pad(now.getHours(), 2) + ':' + pad(now.getMinutes(), 2) + ':' + pad(now.getSeconds(), 2),
+            content: content
+        })
+        
+        this.setState({
+            chats: chats
+        })
     }
 
     render() {
@@ -175,7 +170,7 @@ class StudyRoomStart extends Component {
                                 {this.props.state.category.categoryName}
                             </div>
                             <div className="title">
-                                {this.props.state.studyRoomInfo.studyroomTitle}
+                                {this.props.info.title}
                             </div>
                             <div className="curr-status">
                                 <div className="Rectangle-8 Rectangle-8-active">
@@ -189,7 +184,7 @@ class StudyRoomStart extends Component {
                         <div className="speech-rate">
                             <p>스피킹 점유율</p>
                         </div>
-                        <UserList />
+                        <UserList users={this.props.state.users} myId={this.props.user.id} />
 
                     </div>
                 </div>

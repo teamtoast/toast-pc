@@ -5,7 +5,7 @@ var onConnected;
 var userId;
 
 function connect(authorization, callback = null) {
-    socket = new SockJS('http://localhost:8080/study');
+    socket = new SockJS('http://192.168.0.2:8080/study');
     socket.onopen = event => send('connect', authorization);
     socket.onmessage = msg => onMessage(JSON.parse(msg.data));
     onConnected = callback;
@@ -35,9 +35,15 @@ module.exports = {
         connect(authorization, () => send('create', info));
     },
 
+    joinRoom: function(authorization, id) {
+        connect(authorization, () => send('join', id));
+    },
+
     setCallback: (cmd, callback) => {
         callbacks[cmd] = callback;
     },
+
+    send: send,
 
     printInfo: () => {
         console.log(userId);

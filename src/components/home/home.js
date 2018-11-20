@@ -128,7 +128,7 @@ class Home extends Component {
                 <div className="left-section">
                     <div className="today-studyroom">
                         <p className="title">실시간 참여가능 스터디룸</p>
-                        <StudyRooms studyRooms={todayStudyroom}/>
+                        {/*<StudyRooms studyRooms={todayStudyroom}/>*/}
 
                         <div className="btn-random">
                             <button>
