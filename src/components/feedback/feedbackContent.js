@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './feedback.scss'
 import api from "../../api";
+import * as axios from "axios";
 
 export function GrammerFeedbackList(props) {
     let grammarFeedbacks;
@@ -127,17 +128,33 @@ class FeedbackContent extends Component {
             missedPronunciationList: [],
             recommendSentList: []
         };
+        var that = this;
+        const path = '/home/ubuntu/speeches_saved';
 
+        axios({
+            method: 'post',
+            url: 'https://api.toast-study.com/feedback/getAllFeedback',
+            headers: {"Content-Type": "text/plain"},
+            // body: {path}
+            data: path
+        })
+            .then(function (response) {
+                that.setState({
+                    feedbackTotal: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 
     render() {
 
-        var that = this;
-        const path = "home/ubuntu/speeches_saved";
-        api.post('/feedback/getAllFeedback', {path: path}).then(function (res) {
+
+        /*api.post('/feedback/getAllFeedback',{headers: {"Content-Type": "text/plain"}, body: {path}}).then(function (res) {
             console.log(res);
-        });
+        });*/
         // Api.getParam('/feedback/getAllFeedback', path).then(function (res) {
         //     that.setState({
         //         feedbackTotal: res.data

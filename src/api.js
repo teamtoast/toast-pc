@@ -22,9 +22,10 @@ export default {
         });
     },
 
-    post: function (res,param) {
+    post: function (res,data) {
         return new Promise(function (resolve, reject) {
-            axios.post(serverUrl + res, param).then(resolve).catch(reject);
+            axios.post(serverUrl + res, data).then(resolve).catch(reject);
         });
     },
+
 }
