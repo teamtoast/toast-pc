@@ -58,7 +58,7 @@ const UserList = (props) => {
                         <img src={require('./img/button-picture@3x.png')}
                              className="Button_Picture" alt=""/>
                     </button>
-                    <button onClick={() => session.send('leave', null)}>
+                    <button>
                         <img src={require('./img/button-out@3x.png')}
                              className="Button_Out" alt=""/>
                     </button>
@@ -130,6 +130,12 @@ class StudyRoomStart extends Component {
                 this.onBotChat('"' + data.script + '"에 대한 추천 답변 문장입니다.');
                 this.onBotChat(data.recommend);
             }
+        });
+        session.setCallback('leave', data => {
+            this.props.state.users.forEach(e => {
+                if(e.id == data)
+                    this.onBotChat(e.nickname + '님이 퇴장하셨습니다.');
+            });
         });
         study.onStudyStart();
     }

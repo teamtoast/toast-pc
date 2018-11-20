@@ -27,10 +27,6 @@ function onGetUserMedia(mediaStream) {
     localStream = mediaStream;
     document.querySelector('#localVideo').srcObject = mediaStream;
 
-    socket = new SockJS('http://localhost:8080/study');
-    socket.onopen = onOpen;
-    socket.onmessage = msg => onMessage(JSON.parse(msg.data));
-
     startRecording();
 
     var script = window.audioContext.createScriptProcessor(2048, 1, 1);

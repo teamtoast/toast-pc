@@ -127,9 +127,11 @@ class StudyRoom extends Component {
         session.setCallback('join', this.onJoinUser);
         session.setCallback('ready', this.onReadyUpdate);
         session.setCallback('start', this.onStart);
+        session.setCallback('leave', this.onLeaveUser);
+
+        console.log(this.props);
 
         const categoryId = this.props.match.params.categoryId;
-        const studyroomID = this.props.match.params.studyroomID;
         var that = this;
         Api.getParam('/categories', categoryId).then(function (res) {
             that.setState({
@@ -300,7 +302,7 @@ class StudyRoom extends Component {
                                 {/*Start*/}
                             {/*</button>*/}
                             <button className="Button_Ready" onClick={this.start}>
-                                <a href="https://toast-pc.run.goorm.io/study/6/5">Start</a>
+                                Start
                             </button>
 
                         </div>
