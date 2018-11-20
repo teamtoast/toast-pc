@@ -7,8 +7,8 @@ export function GrammerFeedbackList(props) {
     let grammarFeedbacks;
     let feedbackResult = [];
 
-    if(props.grammarFeedbacks) {
-        grammarFeedbacks=props.grammarFeedbacks;
+    if (props.grammarFeedbacks) {
+        grammarFeedbacks = props.grammarFeedbacks;
         for (let i = 0; i < grammarFeedbacks.length; i++) {
             let expression = grammarFeedbacks[i].expression;
             let grammarFeedback = grammarFeedbacks[i].grammarFeedback;
@@ -40,7 +40,6 @@ export function GrammerFeedbackList(props) {
     }
 
 
-
     return (
         <ul className={"feedbackResult"}>{feedbackResult}</ul>
     );
@@ -69,27 +68,25 @@ class FeedbackContent extends Component {
                 feedbackTotal: res.data
             });
         });
-        if (this.state.feedbackTotal) {
-            this.state.feedback = this.props.feedback;
-            if(this.state.feedbackTotal.poorPronunciation) {
-                this.state.missedPronunciationList = this.state.feedbackTotal.poorPronunciation.map((word, i) =>
-                    <li className="missed-pronunciation">
-                        <p>{word}</p>
-                        <img src={require('./img/button_sound.png')}
-                             className="btn-sound" alt=""/>
-                    </li>
-                );
-            }
 
-            if(this.state.feedbackTotal.recommendSentences) {
-                this.state.recommendSentList = this.state.feedbackTotal.recommendSentences.map((qna, i) =>
-                    <li className="recommend-sentence">
-                        <p>Q. {qna.question}</p>
-                        <p>A. {qna.answer}</p>
-                    </li>
-                );
+        this.state.feedback = this.props.feedback;
+        if (this.state.feedbackTotal.poorPronunciation) {
+            this.state.missedPronunciationList = this.state.feedbackTotal.poorPronunciation.map((word, i) =>
+                <li className="missed-pronunciation">
+                    <p>{word}</p>
+                    <img src={require('./img/button_sound.png')}
+                         className="btn-sound" alt=""/>
+                </li>
+            );
+        }
 
-            }
+        if (this.state.feedbackTotal.recommendSentences) {
+            this.state.recommendSentList = this.state.feedbackTotal.recommendSentences.map((qna, i) =>
+                <li className="recommend-sentence">
+                    <p>Q. {qna.question}</p>
+                    <p>A. {qna.answer}</p>
+                </li>
+            );
 
         }
 
