@@ -184,5 +184,13 @@ export default {
         navigator.mediaDevices.getUserMedia({video: true, audio: true})
             .then(onGetUserMedia)
             .catch(onFailedToGetUserMedia);
+    },
+
+    stop: () => {
+        if(localStream)
+            localStream.stop();
+
+        if(recordRTC)
+            recordRTC.stopRecording();
     }
 };
