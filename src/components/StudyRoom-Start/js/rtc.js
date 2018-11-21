@@ -27,9 +27,10 @@ function onFailedToGetUserMedia(e) {
 }
 
 function onGetRemoteMedia(target, e) {
-    console.log('Get remote!')
+    console.log('Get remote! ' + target)
 
     let remoteView = document.querySelector('#video' + target);
+    console.log(remoteView);
     if (remoteView.srcObject !== e.streams[0]) {
         remoteView.srcObject = e.streams[0];
     }
@@ -57,12 +58,13 @@ function createPeerConnection(target) {
 }
 
 function sendOffer(peerConnection, target) {
+    /*console.log('offer to ' + target + ' nego: ' + isNegotiating);
     if(isNegotiating) return;
     isNegotiating = true;
     peerConnection.onsignalingstatechange = (e) => {  // Workaround for Chrome: skip nested negotiations
         isNegotiating = (peerConnection.signalingState != "stable");
         console.log("Negotiating: " + isNegotiating);
-    }
+    }*/
     peerConnection.createOffer({
         offerToReceiveAudio: 1,
         offerToReceiveVideo: 1
@@ -166,13 +168,17 @@ function onFinishRecord(audioURL) {
 
 export default {
     onStudyStart: () => {
+        connectionObj = {};
         session.setCallback('offer', data => onReceiveOffer(data.from, data.data));
         session.setCallback('answer', data => onReceiveAnswer(data.from, data.data));
         session.setCallback('candidate', data => OnReceiveIceCandidate(data.from, data.data));
         session.setCallback('stream', target => {
+            console.log('stream from ' + target);
             let peerConnection = createPeerConnection(target);
             connectionObj[target.toString()] = peerConnection;
-            peerConnection.onnegotiationneeded = () => sendOffer(peerConnection, target);
+            sendOffer(peerConnection, target);
+            //peerConnection.onnegotiationneeded = () => sendOffer(peerConnection, target);
+            //peerConnection.onnegotiationneeded = () => console.log("need");
         });
         try {
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
