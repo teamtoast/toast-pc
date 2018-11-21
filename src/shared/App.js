@@ -69,7 +69,7 @@ class App extends Component { //Component 만드는 법 1. class 형태 , 2. 함
                             <Route path="/level-test" component={LevelTest} />
                             <Route path="/login" component={LoginForm} />
                             <Route path="/register" component={RegisterForm} />
-                            <Route path="/feedback" component={Feedback} />
+                            <Route path="/feedback" component={(props) => <Feedback user={this.state.user} {...props} />} />
                             <Route component={NoMatch} />
                         </Switch>
                     </div>

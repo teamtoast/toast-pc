@@ -50,6 +50,7 @@ class FeedbackContent extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             feedbackTotal: {
                 "grammarFeedbacks": [
@@ -128,48 +129,24 @@ class FeedbackContent extends Component {
             missedPronunciationList: [],
             recommendSentList: []
         };
+
         var that = this;
-        var studyroomId;
-        api.get('/studyrooms').then(function (res) {
-            studyroomId= res.data
-        });
-
-        if(this.props.user && studyroomId) {
-            const path = '/home/ubuntu/speeches/' + studyroomId + '/' +this.props.user.userID;
-            axios({
-                method: 'post',
-                url: 'https://api.toast-study.com/feedback/getAllFeedback',
-                headers: {"Content-Type": "text/plain"},
-                // body: {path}
-                data: path
-            })
-                .then(function (response) {
-                    that.setState({
-                        feedbackTotal: response.data
-                    });
-                })
-                .catch(function (error) {
-                    console.log(error);
+        var userId = this.props.userId;
+        var studyroomId = this.props.currentFeedback;
+        if (userId && studyroomId) {
+            axios.get('https://api.toast-study.com' + '/feedback/getAllFeedback' + '/' + studyroomId+ '/' + userId).then(function (res) {
+                that.setState({
+                    feedbackTotal: res.data
                 });
+            });
         }
-
-
     }
 
 
     render() {
 
 
-        /*api.post('/feedback/getAllFeedback',{headers: {"Content-Type": "text/plain"}, body: {path}}).then(function (res) {
-            console.log(res);
-        });*/
-        // Api.getParam('/feedback/getAllFeedback', path).then(function (res) {
-        //     that.setState({
-        //         feedbackTotal: res.data
-        //     });
-        // });
-
-        this.state.feedback = this.props.feedback;
+        this.state.feedback = this.props.currentFeedback;
         if (this.state.feedbackTotal.poorPronunciation) {
             this.state.missedPronunciationList = this.state.feedbackTotal.poorPronunciation.map((word, i) =>
                 <li key={i} className="missed-pronunciation">
@@ -194,10 +171,10 @@ class FeedbackContent extends Component {
             <div>
                 <div className="top-box">
                     <div className="feedback-date">
-                        {this.state.feedback.studyroomDate}
+                        {/*{this.state.feedback.studyroomDate}*/}
                     </div>
                     <div className="feedback-title">
-                        {this.state.feedback.studyroomTitle}
+                        {this.props.currentFeedback.title}
                     </div>
                     <img src={require('../home/img/ic-home-character@3x.png')}
                          className="ic_Home_Character" alt=""/>

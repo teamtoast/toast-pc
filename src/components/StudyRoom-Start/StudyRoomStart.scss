@@ -3,7 +3,7 @@
   display: inline-block;
 
   .toastbot {
-    width: 320px;
+    width: 310px;
     display: inline-block;
     float: left;
     background-color: #ffffff;
@@ -20,7 +20,8 @@
       }
     }
     .content-box{
-      overflow-y: scroll;
+      overflow: scroll;
+      height: 704px;
       .chat-list {
         list-style: none;
         margin: 10px 0px 0px 0px;
