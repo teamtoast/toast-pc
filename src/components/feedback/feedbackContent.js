@@ -130,7 +130,7 @@ class FeedbackContent extends Component {
             recommendSentList: []
         };
 
-        var that = this;
+        /*var that = this;
         var userId = this.props.userId;
         var studyroomId = this.props.currentFeedback;
         if (userId && studyroomId) {
@@ -139,7 +139,7 @@ class FeedbackContent extends Component {
                     feedbackTotal: res.data
                 });
             });
-        }
+        }*/
     }
 
 
@@ -147,8 +147,8 @@ class FeedbackContent extends Component {
 
 
         this.state.feedback = this.props.currentFeedback;
-        if (this.state.feedbackTotal.poorPronunciation) {
-            this.state.missedPronunciationList = this.state.feedbackTotal.poorPronunciation.map((word, i) =>
+        if (this.props.feedback.poorPronunciation) {
+            this.state.missedPronunciationList = this.props.feedback.poorPronunciation.map((word, i) =>
                 <li key={i} className="missed-pronunciation">
                     <p>{word}</p>
                     <img src={require('./img/button_sound.png')}
@@ -157,8 +157,8 @@ class FeedbackContent extends Component {
             );
         }
 
-        if (this.state.feedbackTotal.recommendSentences) {
-            this.state.recommendSentList = this.state.feedbackTotal.recommendSentences.map((qna, i) =>
+        if (this.props.feedback.recommendSentences) {
+            this.state.recommendSentList = this.props.feedback.recommendSentences.map((qna, i) =>
                 <li key={i} className="recommend-sentence">
                     <p>Q. {qna.question}</p>
                     <p>A. {qna.answer}</p>
@@ -174,7 +174,7 @@ class FeedbackContent extends Component {
                         {/*{this.state.feedback.studyroomDate}*/}
                     </div>
                     <div className="feedback-title">
-                        {this.props.currentFeedback.title}
+                        {this.props.title}
                     </div>
                     <img src={require('../home/img/ic-home-character@3x.png')}
                          className="ic_Home_Character" alt=""/>
@@ -186,7 +186,7 @@ class FeedbackContent extends Component {
                             내가 했던 표현들
                         </p>
                         <div className="box-content">
-                            <GrammerFeedbackList grammarFeedbacks={this.state.feedbackTotal.grammarFeedbacks}/>
+                            <GrammerFeedbackList grammarFeedbacks={this.props.feedback.grammarFeedbacks}/>
                         </div>
                     </div>
                     <div className="box box-2">
@@ -212,28 +212,28 @@ class FeedbackContent extends Component {
                         <div className="box-content">
                             <div className="score">
                                 <p>발음</p>
-                                <div className={"score-box score-box-" + this.state.feedbackTotal.pronunciationScore}>
-                                    {this.state.feedbackTotal.pronunciationScore}
+                                <div className={"score-box score-box-" + this.props.feedback.pronunciationScore}>
+                                    {this.props.feedback.pronunciationScore}
                                 </div>
                             </div>
                             <div className="score">
                                 <p>문법</p>
-                                <div className={"score-box score-box-" + this.state.feedbackTotal.grammarScore}>
-                                    {this.state.feedbackTotal.grammarScore}
+                                <div className={"score-box score-box-" + this.props.feedback.grammarScore}>
+                                    {this.props.feedback.grammarScore}
 
                                 </div>
                             </div>
                             <div className="score">
                                 <p>단어</p>
-                                <div className={"score-box score-box-" + this.state.feedbackTotal.wordScore}>
-                                    {this.state.feedbackTotal.wordScore}
+                                <div className={"score-box score-box-" + this.props.feedback.wordScore}>
+                                    {this.props.feedback.wordScore}
 
                                 </div>
                             </div>
                             <div className="score">
                                 <p>표현</p>
-                                <div className={"score-box score-box-" + this.state.feedbackTotal.expressionScore}>
-                                    {this.state.feedbackTotal.expressionScore}
+                                <div className={"score-box score-box-" + this.props.feedback.expressionScore}>
+                                    {this.props.feedback.expressionScore}
 
                                 </div>
                             </div>

@@ -30,7 +30,7 @@ class Feedback extends Component {
             //     },
             // ]
             ,
-            currentFeedback: {},
+            currentFeedback: {id: 0},
         };
 
         var that = this;
@@ -54,8 +54,14 @@ class Feedback extends Component {
         let feedbackList = this.state.feedbackList.map((feedback, i) =>
             <li key={i}
                 className={"list-box"}>
-                <a onClick={() => {
-                    this.setState({currentFeedback: feedback});
+                <a href="javascript:void(0)" onClick={() => {
+                    api.get('/feedback/getAllFeedback/' + feedback.id+ '/' + this.props.user.id).then(res => {
+                        this.setState({
+                            currentFeedback: res.data,
+                            feedbackTitle: feedback.title
+                        });
+                    });
+                    //this.setState({currentFeedback: feedback.id});
                 }}>
                     {feedback.title}
                 </a>
@@ -71,8 +77,8 @@ class Feedback extends Component {
                     </div>
                 </div>
                 <div className="study-feedback">
-                    {this.props.user ? (
-                        <FeedbackContent userId={this.props.user.id} currentFeedback = {this.state.currentFeedback}  />
+                    {this.props.user && this.state.currentFeedback.id != 0 ? (
+                        <FeedbackContent userId={this.props.user.id} feedback={this.state.currentFeedback} title={this.state.feedbackTitle}  />
                     ) : null}
                 </div>
 
